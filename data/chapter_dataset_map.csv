@@ -1,0 +1,12 @@
+chapter,method_theme,primary_dataset,processed_file,risk_level,notes
+CH2 数据中的共同变化,散点图/相关/共同变化,NBS 70 城房价; WDI 中国与全球宏观,nbs_70city_house_price_2025.csv; wdi_china_macro_1960_2024.csv; wdi_global_selected_indicators_wide.csv,A,新房与二手房价格共同变化；收入-寿命、收入-贸易、人口-GDP 等相关图
+CH4 总体相关推断,相关系数/置信区间/假设检验,WDI 全球面板,wdi_global_selected_indicators_wide.csv,A,跨国收入与寿命或贸易开放相关推断
+CH5 一元线性回归,简单 OLS,WDI 全球或中国宏观,wdi_global_selected_indicators_wide.csv,A,life_expectancy ~ log(gdp_per_capita)；也可用 BEA 州 GDP 与收入
+CH6 多元线性回归,控制变量/遗漏变量,BEA 州 GDP 收入面板; WDI 全球面板,bea_us_state_gdp_income_panel_1997_2025.csv; wdi_global_selected_indicators_wide.csv,A,州级收入/GDP/人口多元回归；跨国寿命或增长回归
+CH7 非线性函数形式,对数/平方项/交互项,OWID CO2 + WDI; EPA AirData,owid_global_annual_co2.csv; epa_airdata_county_annual_aqi_2015_2024.csv,A,环境库兹涅茨曲线、污染分布和非线性关系
+CH8 相关误差/聚类/面板,固定效应/聚类稳健标准误,BEA 州面板; EPA 县年度 AQI; FAOSTAT 国家年度面板,bea_us_state_gdp_income_panel_1997_2025.csv; epa_airdata_county_annual_aqi_2015_2024.csv; faostat_crops_livestock_selected_1990_2024.csv,A,州/县/国家年度面板，适合双向 FE 和按地区聚类
+CH9 二元因变量,LPM/logit/probit,UCI 信用卡违约; ACS PUMS,uci_credit_default_clients.csv; acs_pums_california_persons_2023_selected.csv,A,违约、就业、是否有雇主医保、是否本科及以上
+CH10 预测,训练测试/交叉验证/LASSO/树模型,UCI 信用卡违约; ACS PUMS; EPA AirData; NBS 70 城房价,uci_credit_default_clients.csv; acs_pums_california_persons_2023_selected.csv; epa_airdata_county_annual_aqi_2015_2024.csv; nbs_70city_house_price_2025.csv,A,分类预测、污染/收入预测和中国房价预测
+非参数章,核回归/局部多项式/平滑,ACS PUMS; WDI/OWID,acs_pums_california_persons_2023_selected.csv; wdi_global_selected_indicators_wide.csv; owid_global_annual_co2.csv,A,年龄-收入、收入-寿命、收入-排放的非参数关系
+CH11 时间序列,趋势/季节性/ACF/AR,BLS 月度 CPI/失业率; WDI 中国年度宏观; OWID 中国 CO2,bls_state_unemployment_cpi_monthly_2015_2025.csv; wdi_china_macro_1960_2024.csv; owid_china_co2_1907_2024.csv,A,月度 CPI/失业率时间序列；中国宏观年度趋势
+CH12 因果分析,RD/DID/IV,NHTSA FARS; EPA AirData; BLS/BEA,nhtsa_fars_rd_age18_24_2018_2023.csv; epa_airdata_county_annual_aqi_2015_2024.csv; bls_state_unemployment_cpi_monthly_2015_2025.csv,A,FARS 21 岁饮酒年龄 RD；EPA 非达标区 DID 可后续补政策处理变量

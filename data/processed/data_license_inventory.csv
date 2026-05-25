@@ -1,0 +1,11 @@
+﻿dataset,risk_level,license_or_terms,license_url,source_url,redistribution_note
+World Bank WDI,A,CC BY 4.0 for World Bank Open Data unless otherwise specified,https://datacatalog.worldbank.org/public-licenses,https://api.worldbank.org/v2/,整理版 CSV 可随教材发布，需署名并保留来源说明。
+Our World in Data Grapher CO2,A,OWID data and charts generally CC BY,https://ourworldindata.org/faqs,https://ourworldindata.org/grapher/annual-co2-emissions-per-country.csv,整理版 CSV 可随教材发布，需署名 OWID 和底层来源。
+FAOSTAT Crops and Livestock Products,A,FAOSTAT terms state statistical database content under CC BY 4.0,https://www.fao.org/contact-us/terms/db-terms-of-use/en/,https://fenixservices.fao.org/faostat/static/bulkdownloads/Production_Crops_Livestock_E_All_Data_(Normalized).zip,整理版 CSV 可随教材发布，需署名 FAO/FAOSTAT。
+BEA Regional GDP and Personal Income,A,BEA open data / U.S. government source; cite BEA,https://www.bea.gov/open-data,https://apps.bea.gov/regional/zip/,可作为教材公开数据，建议保留下载日期和 BEA 引用。
+BLS LAUS and CPI,A,U.S. BLS public data; cite BLS and access date,https://www.bls.gov/developers/termsOfService.htm,https://api.bls.gov/publicAPI/v2/timeseries/data/,可作为教材公开数据，建议保留访问日期。
+EPA AirData annual AQI by county,A,EPA AQS environmental monitoring data are public domain,https://aqs.epa.gov/aqsweb/documents/data_mart_welcome.html,https://aqs.epa.gov/aqsweb/airdata/download_files.html,可作为教材公开数据，建议说明 AQS/AirData 来源。
+ACS PUMS 2023 California,A,U.S. Census public-use microdata,https://www.census.gov/programs-surveys/acs/microdata/access.html,https://www2.census.gov/programs-surveys/acs/data/pums/2023/1-Year/,可作为教材公开数据；因是公开微观样本，仍建议只发布选列整理版。
+NHTSA FARS,A,U.S. DOT/NHTSA public data,https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars,https://static.nhtsa.gov/nhtsa/downloads/FARS/,可作为教材公开数据，适合 RD/预测案例。
+UCI Default of Credit Card Clients,A,UCI page marks dataset as CC BY 4.0,https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients,https://archive.ics.uci.edu/static/public/350/default+of+credit+card+clients.zip,可作为教材公开数据，需署名原数据来源。
+NBS 70-city house prices,A,Public statistical release from the National Bureau of Statistics of China; cite source and keep original URLs,https://www.stats.gov.cn/wzgl/202302/t20230217_1912857.html,https://www.stats.gov.cn/sj/,孙老师确认国家统计局公开发布数据可用于教材核心案例；整理版需注明数据来源并保留原网页 URL。

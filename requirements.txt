@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+matplotlib
+statsmodels
+scikit-learn
+requests
+wbgapi
+yfinance
+fredapi
+eurostatapiclient
+pandasdmx
