@@ -100,6 +100,7 @@ y <- df$co2_pc_tonnes
 grid <- seq(quantile(x, 0.02), quantile(x, 0.98), length.out = 180)
 h_values <- c(0.25, 0.45, 0.75)
 names(h_values) <- c("小带宽", "中带宽", "大带宽")
+co2_ylim <- c(0, 20)
 
 write.csv(df[, c("country", "country_code", "year",
                  "gdp_per_capita_constant_2015_usd", "log_gdp_pc",
@@ -126,6 +127,7 @@ open_png("chapter13_regression_histogram.png")
 plot(x, y, pch = 16, col = rgb(0.35, 0.35, 0.35, 0.25),
      xlab = "log(人均GDP，2015年不变美元)",
      ylab = "人均CO2排放（吨/人）",
+     ylim = co2_ylim,
      main = "回归直方图：分箱局部平均")
 for (i in seq_len(nrow(hist_table))) {
   segments(hist_table$左端点[i], hist_table$co2_pc_tonnes[i],
@@ -151,6 +153,7 @@ open_png("chapter13_nw_bandwidth_comparison.png")
 plot(x, y, pch = 16, col = rgb(0.35, 0.35, 0.35, 0.3),
      xlab = "log(人均GDP，2015年不变美元)",
      ylab = "人均CO2排放（吨/人）",
+     ylim = co2_ylim,
      main = "Nadaraya-Watson 核回归：带宽比较")
 cols <- c("#2166AC", "#D73027", "#1B7837")
 for (i in seq_along(h_values)) {
@@ -169,10 +172,13 @@ write.csv(cv_table,
 best_h <- h_grid[which.min(cv_mse)]
 
 open_png("chapter13_bandwidth_cv_curve.png")
+cv_y <- range(cv_mse, finite = TRUE)
+cv_y_pad <- diff(cv_y) * 0.18
 plot(h_grid, cv_mse, type = "b", pch = 19, col = "#2166AC", lwd = 2,
      xlab = "带宽 h",
      ylab = "留一交叉验证 MSE",
-     main = "带宽选择：留一交叉验证")
+     main = "带宽选择：留一交叉验证",
+     ylim = c(cv_y[1] - cv_y_pad * 0.15, cv_y[2] + cv_y_pad))
 abline(v = best_h, col = "#D73027", lty = 2, lwd = 2)
 legend("topright", legend = paste0("最优带宽 h=", round(best_h, 3)),
        col = "#D73027", lty = 2, lwd = 2, bty = "n")
@@ -196,6 +202,7 @@ open_png("chapter13_local_linear_vs_polynomial.png")
 plot(x, y, pch = 16, col = rgb(0.35, 0.35, 0.35, 0.3),
      xlab = "log(人均GDP，2015年不变美元)",
      ylab = "人均CO2排放（吨/人）",
+     ylim = co2_ylim,
      main = "局部线性平滑与三阶多项式比较")
 lines(grid, ll_best, col = "#2166AC", lwd = 2.5)
 lines(grid, poly_pred, col = "#D73027", lwd = 2.5, lty = 2)
@@ -257,6 +264,7 @@ open_png("chapter13_local_linear_bootstrap_ci.png")
 plot(x, y, pch = 16, col = rgb(0.35, 0.35, 0.35, 0.25),
      xlab = "log(人均GDP，2015年不变美元)",
      ylab = "人均CO2排放（吨/人）",
+     ylim = co2_ylim,
      main = "局部线性平滑与 bootstrap 点态置信带")
 polygon(c(grid, rev(grid)), c(ci_low, rev(ci_high)),
         col = rgb(0.13, 0.40, 0.67, 0.18), border = NA)

@@ -104,21 +104,52 @@ write.csv(randomization_summary,
           file.path(table_dir, "chapter12_randomization_summary.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 
-open_png("chapter12_dag_confounding.png", width = 1500, height = 1000)
+open_png("chapter12_dag_confounding.png", width = 1800, height = 1100)
+par(mar = c(1.2, 1.2, 3.2, 1.2))
 plot(0, 0, type = "n", axes = FALSE, xlab = "", ylab = "",
      xlim = c(0, 1), ylim = c(0, 1),
-     main = "遗漏变量偏误的DAG")
-points(c(0.18, 0.50, 0.82), c(0.72, 0.35, 0.72), pch = 21,
-       bg = c("#FEE08B", "#ABD9E9", "#FDAE61"), cex = 9)
-text(0.18, 0.72, "X\n混杂因素", cex = 1.15)
-text(0.50, 0.35, "D\n处理", cex = 1.15)
-text(0.82, 0.72, "Y\n结果", cex = 1.15)
-arrows(0.25, 0.67, 0.43, 0.42, length = 0.12, lwd = 2, col = "#4D4D4D")
-arrows(0.27, 0.74, 0.72, 0.74, length = 0.12, lwd = 2, col = "#4D4D4D")
-arrows(0.57, 0.42, 0.75, 0.67, length = 0.12, lwd = 2, col = "#4D4D4D")
-text(0.34, 0.50, "选择进入处理", cex = 0.95)
-text(0.50, 0.80, "同时影响结果", cex = 0.95)
-text(0.70, 0.50, "目标因果路径", cex = 0.95)
+     main = "遗漏变量偏误的 DAG", cex.main = 1.2)
+
+node_x <- c(0.18, 0.50, 0.82)
+node_y <- c(0.66, 0.28, 0.66)
+node_col <- c("#FEE08B", "#ABD9E9", "#FDAE61")
+symbols(node_x, node_y, circles = rep(0.09, 3), inches = FALSE,
+        add = TRUE, bg = node_col, fg = "black", lwd = 1.6)
+
+node_label <- function(x, y, symbol, description) {
+  text(x, y + 0.018, symbol, cex = 1.28)
+  text(x, y - 0.026, description, cex = 0.68)
+}
+node_label(0.18, 0.66, "X", "混杂因素")
+node_label(0.50, 0.28, "D", "处理")
+node_label(0.82, 0.66, "Y", "结果")
+
+draw_edge <- function(from, to, radius = 0.09, gap = 0.035) {
+  direction <- to - from
+  direction <- direction / sqrt(sum(direction^2))
+  start <- from + direction * (radius + gap)
+  end <- to - direction * (radius + gap)
+  arrows(start[1], start[2], end[1], end[2],
+         length = 0.10, lwd = 2.1, col = "#4D4D4D")
+}
+
+draw_edge(c(node_x[1], node_y[1]), c(node_x[2], node_y[2]))
+draw_edge(c(node_x[1], node_y[1]), c(node_x[3], node_y[3]))
+draw_edge(c(node_x[2], node_y[2]), c(node_x[3], node_y[3]))
+
+edge_label <- function(x, y, label) {
+  pad_x <- 0.018
+  pad_y <- 0.020
+  rect(x - strwidth(label, cex = 0.78) / 2 - pad_x,
+       y - strheight(label, cex = 0.78) / 2 - pad_y,
+       x + strwidth(label, cex = 0.78) / 2 + pad_x,
+       y + strheight(label, cex = 0.78) / 2 + pad_y,
+       col = "white", border = NA)
+  text(x, y, label, cex = 0.78)
+}
+edge_label(0.50, 0.735, "同时影响结果")
+edge_label(0.345, 0.455, "选择进入处理")
+edge_label(0.670, 0.455, "目标因果路径")
 dev.off()
 
 open_png("chapter12_randomization_distribution.png", width = 1500, height = 1100)
@@ -283,9 +314,11 @@ dev.off()
 
 open_png("chapter12_fars_rd_balance.png")
 balance <- aggregate(cbind(male, fatal_injury) ~ age, data = df_h, FUN = mean)
+balance_y <- range(balance[, c("male", "fatal_injury")], finite = TRUE)
+balance_pad <- diff(balance_y) * 0.12
 plot(balance$age, balance$male, type = "b", pch = 19,
      col = "#2166AC", lwd = 2,
-     ylim = range(balance[, c("male", "fatal_injury")]),
+     ylim = c(balance_y[1] - balance_pad * 0.4, balance_y[2] + balance_pad),
      xlab = "年龄",
      ylab = "比例",
      main = "阈值附近协变量均衡性示意")

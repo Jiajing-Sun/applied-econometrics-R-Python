@@ -285,18 +285,24 @@ dev.off()
 
 open_png("chapter05_dgp_tstat_histograms.png", width = 2000, height = 1000)
 par(mfrow = c(1, 2), family = cn_family, mar = c(5, 5, 3, 1) + 0.1)
+tstat_xlim <- range(tstat_standard, tstat_robust, -4, 4, finite = TRUE)
+tstat_ylim <- c(0, 0.45)
 hist(tstat_standard, breaks = 80, probability = TRUE,
      col = "#A6CEE3", border = "white",
+     xlim = tstat_xlim, ylim = tstat_ylim,
      xlab = "t统计量", ylab = "密度",
      main = "DGP模拟：普通标准误")
-curve(dt(x, df = n_mc - 2), add = TRUE, col = "#D95F0E", lwd = 2)
 grid(col = "gray85")
+curve(dt(x, df = n_mc - 2), from = tstat_xlim[1], to = tstat_xlim[2],
+      add = TRUE, col = "#D95F0E", lwd = 2)
 hist(tstat_robust, breaks = 80, probability = TRUE,
      col = "#B2DF8A", border = "white",
+     xlim = tstat_xlim, ylim = tstat_ylim,
      xlab = "t统计量", ylab = "密度",
      main = "DGP模拟：HC0稳健标准误")
-curve(dt(x, df = n_mc - 2), add = TRUE, col = "#D95F0E", lwd = 2)
 grid(col = "gray85")
+curve(dt(x, df = n_mc - 2), from = tstat_xlim[1], to = tstat_xlim[2],
+      add = TRUE, col = "#D95F0E", lwd = 2)
 dev.off()
 
 writeLines(c(

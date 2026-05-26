@@ -207,14 +207,16 @@ write.csv(bv_table,
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter10_bias_variance_simulation.png")
-barplot(t(as.matrix(bv_table[, c("平均偏误平方", "平均方差")])),
+bar_heights <- t(as.matrix(bv_table[, c("平均偏误平方", "平均方差")]))
+barplot(bar_heights,
         beside = FALSE,
         names.arg = paste0(bv_table$多项式次数, "阶"),
         col = c("#9ECAE1", "#FD8D3C"),
+        ylim = c(0, max(colSums(bar_heights)) * 1.12),
         xlab = "模型复杂度",
         ylab = "平均误差分解",
         main = "偏误--方差权衡的模拟说明")
-legend("topright", legend = c("平均偏误平方", "平均方差"),
+legend("topleft", legend = c("平均偏误平方", "平均方差"),
        fill = c("#9ECAE1", "#FD8D3C"), bty = "n")
 dev.off()
 
@@ -295,7 +297,7 @@ plot(ridge_cv_table$log_lambda, ridge_cv_table$cvm, type = "l",
 lines(lasso_cv_table$log_lambda, lasso_cv_table$cvm, col = "#D73027", lwd = 2)
 abline(v = log(ridge_model_cv$lambda.min), col = "#2166AC", lty = 2)
 abline(v = log(lasso_model_cv$lambda.min), col = "#D73027", lty = 2)
-legend("topright", legend = c("岭回归", "LASSO"),
+legend("bottomright", legend = c("岭回归", "LASSO"),
        col = c("#2166AC", "#D73027"), lwd = 2, bty = "n")
 dev.off()
 
@@ -314,10 +316,40 @@ write.csv(as.data.frame(cp_table),
           file.path(table_dir, "chapter10_cart_cp_table.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 
-open_png("chapter10_pruned_regression_tree.png", width = 2200, height = 1400)
-plot(pruned_tree, uniform = TRUE, branch = 0.5,
-     main = "剪枝后的回归树")
-text(pruned_tree, use.n = TRUE, cex = 0.65)
+display_df <- df_train
+display_df$`新房同比指数` <- display_df$living_area
+display_df$`二手住宅环比指数` <- display_df$monthly_fee
+display_df$`新建住宅环比指数` <- display_df$city_area
+display_df$`一线城市` <- display_df$first_tier
+display_df$`月份` <- display_df$month_numeric
+display_form <- price ~ `新房同比指数` + `二手住宅环比指数` +
+  `新建住宅环比指数` + `一线城市` + `月份`
+display_tree <- rpart(display_form, data = display_df,
+                      control = rpart.control(maxdepth = 3, minsplit = 30,
+                                              minbucket = 12, cp = 0))
+display_cp <- printcp(display_tree)
+display_min <- which.min(display_cp[, "xerror"])
+display_threshold <- display_cp[display_min, "xerror"] + display_cp[display_min, "xstd"]
+display_1se <- which(display_cp[, "xerror"] <= display_threshold)[1]
+display_tree <- prune(display_tree, cp = display_cp[display_1se, "CP"])
+
+open_png("chapter10_pruned_regression_tree.png", width = 2400, height = 1500)
+par(mar = c(1, 1, 4, 1) + 0.1, xpd = NA)
+if (requireNamespace("rpart.plot", quietly = TRUE)) {
+  rpart.plot::rpart.plot(display_tree,
+                         type = 3, extra = 101, under = TRUE,
+                         fallen.leaves = TRUE,
+                         box.palette = "GnBu",
+                         branch.col = "#555555",
+                         shadow.col = "gray85",
+                         split.cex = 1.05, cex = 0.95,
+                         tweak = 1.08,
+                         main = "剪枝后的回归树（可读展示版）")
+} else {
+  plot(display_tree, uniform = TRUE, branch = 0.5,
+       main = "剪枝后的回归树（可读展示版）")
+  text(display_tree, use.n = TRUE, cex = 0.8)
+}
 dev.off()
 
 # ------------------------------------------------------------------------------

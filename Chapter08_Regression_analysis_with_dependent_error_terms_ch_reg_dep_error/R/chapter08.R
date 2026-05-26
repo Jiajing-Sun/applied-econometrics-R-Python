@@ -191,9 +191,9 @@ barplot(se_compare$标准误, names.arg = se_compare$模型,
 dev.off()
 
 open_png("chapter08_cluster_structure_schematic.png")
-plot(NA, xlim = c(0.5, 4.5), ylim = c(0.4, 4.6),
+plot(NA, xlim = c(0.5, 4.5), ylim = c(0.4, 5.1),
      xlab = "家庭（聚类）",
-     ylab = "个人观测",
+     ylab = "",
      axes = FALSE,
      main = "聚类数据结构：同一家庭内误差可能相关")
 axis(1, at = 1:4, labels = paste0("家庭", 1:4))
@@ -207,7 +207,9 @@ for (g in 1:4) {
   rect(g - 0.35, min(y_pos) - 0.35, g + 0.35, max(y_pos) + 0.35,
        border = "#C0392B", lwd = 2)
 }
-text(2.5, 4.35, "共同家庭冲击 c_g 使同组误差相关", col = "#C0392B")
+text(2.5, 4.9,
+     expression("共同家庭冲击 " * c[g] * " 使同组误差相关"),
+     col = "#C0392B", cex = 0.95)
 dev.off()
 
 # ------------------------------------------------------------------------------
@@ -383,8 +385,11 @@ write.csv(within_demo[, c("state", "year", "income_pc_thousand",
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter08_within_transformation_schematic.png")
+x_lim <- range(within_demo$unemployment_rate)
+x_pad <- diff(x_lim) * 0.16
 plot(within_demo$unemployment_rate, within_demo$income_pc_thousand,
      pch = 19, col = "#2166AC",
+     xlim = c(x_lim[1], x_lim[2] + x_pad),
      xlab = "失业率",
      ylab = "人均个人收入（千美元）",
      main = "固定效应的组内变化：以加利福尼亚为例")
@@ -395,7 +400,7 @@ points(mean(within_demo$unemployment_rate), mean(within_demo$income_pc_thousand)
 arrows(mean(within_demo$unemployment_rate), mean(within_demo$income_pc_thousand),
        within_demo$unemployment_rate, within_demo$income_pc_thousand,
        length = 0.06, col = rgb(0.2, 0.2, 0.2, 0.45))
-legend("topleft", legend = c("年度观测", "州内均值", "去均值方向"),
+legend("topright", legend = c("年度观测", "州内均值", "去均值方向"),
        pch = c(19, 4, NA), lty = c(NA, NA, 1),
        col = c("#2166AC", "#C0392B", "gray40"), bty = "n")
 dev.off()

@@ -353,14 +353,18 @@ legend("topleft", legend = paste0("斜率 = ", round(coef(ols_model)["gdp_pc_tho
 dev.off()
 
 open_png("chapter06_prediction_interval_plot.png", width = 1600, height = 1000)
-plot(1:2, prediction_table$拟合值[1:2], ylim = range(prediction_table$下限[1:2],
-     prediction_table$上限[1:2]), pch = 16, xaxt = "n",
+x_pos <- c(1, 1.32)
+y_rng <- range(prediction_table$下限[1:2], prediction_table$上限[1:2])
+y_pad <- diff(y_rng) * 0.06
+plot(x_pos, prediction_table$拟合值[1:2], xlim = c(0.78, 1.54),
+     ylim = y_rng + c(-y_pad, y_pad), type = "n", xaxt = "n",
      xlab = "", ylab = "人均个人收入（千美元）",
      main = "条件期望置信区间与预测区间")
-axis(1, at = 1:2, labels = c("条件期望", "单个州预测"))
-arrows(1:2, prediction_table$下限[1:2], 1:2, prediction_table$上限[1:2],
+abline(h = axTicks(2), col = "gray85", lty = "dotted")
+axis(1, at = x_pos, labels = c("条件期望", "单个州预测"))
+arrows(x_pos, prediction_table$下限[1:2], x_pos, prediction_table$上限[1:2],
        angle = 90, code = 3, length = 0.08, lwd = 2)
-grid(col = "gray85")
+points(x_pos, prediction_table$拟合值[1:2], pch = 16)
 dev.off()
 
 open_png("chapter06_residual_diagnostics.png", width = 2000, height = 1000)

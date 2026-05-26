@@ -375,12 +375,22 @@ write.csv(likelihood_profile,
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter09_log_likelihood_profile.png")
+ll_range <- range(ll_grid)
+ll_span <- diff(ll_range)
+plot_ylim <- c(ll_range[1], ll_range[2] + 0.10 * ll_span)
 plot(beta_grid, ll_grid, type = "l", lwd = 2.5, col = "#2166AC",
      xlab = "还款状态系数 beta",
      ylab = "对数似然",
-     main = "单变量 logit 的对数似然剖面")
+     main = "单变量 logit 的对数似然剖面",
+     ylim = plot_ylim)
 abline(v = beta_1_hat, col = "#C0392B", lwd = 2, lty = 2)
-text(beta_1_hat, max(ll_grid), labels = "MLE", pos = 4, col = "#C0392B")
+mle_label_x <- beta_1_hat + 0.06 * diff(range(beta_grid))
+mle_label_y <- max(ll_grid) + 0.055 * ll_span
+rect(mle_label_x - 0.035, mle_label_y - 0.018 * ll_span,
+     mle_label_x + 0.205, mle_label_y + 0.018 * ll_span,
+     col = "white", border = NA)
+text(mle_label_x, mle_label_y, labels = "MLE", adj = c(0, 0.5),
+     col = "#C0392B", cex = 0.95)
 dev.off()
 
 comparison <- data.frame(

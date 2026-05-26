@@ -62,12 +62,12 @@ python -m pip install -r requirements.txt
 ## R setup
 
 The examples use base R plus common applied-econometrics packages such as
-`sandwich`, `lmtest`, `glmnet`, `rpart`, `plm`, `nlme`, `readr`, `dplyr`, and
-`ggplot2`. Install missing packages once, for example:
+`sandwich`, `lmtest`, `glmnet`, `rpart`, `rpart.plot`, `plm`, `nlme`, `readr`,
+`dplyr`, and `ggplot2`. Install missing packages once, for example:
 
 ```r
-install.packages(c("sandwich", "lmtest", "glmnet", "rpart", "plm", "nlme",
-                   "readr", "dplyr", "ggplot2"))
+install.packages(c("sandwich", "lmtest", "glmnet", "rpart", "rpart.plot",
+                   "plm", "nlme", "readr", "dplyr", "ggplot2"))
 ```
 
 Some appendix examples demonstrate API access and may require an internet

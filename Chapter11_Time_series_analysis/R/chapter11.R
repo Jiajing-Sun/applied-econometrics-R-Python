@@ -283,8 +283,16 @@ write.csv(forecast_table,
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter11_forecast_backtransform.png")
-plot(years, df$gdp_constant_2015_usd / 1e12, type = "l",
+hist_gdp_trillion <- df$gdp_constant_2015_usd / 1e12
+forecast_y_trillion <- c(forecast_lower, forecast_level_naive, forecast_upper) / 1e12
+y_lim <- range(c(hist_gdp_trillion, forecast_y_trillion), finite = TRUE)
+y_pad <- diff(y_lim) * 0.08
+x_lim <- range(c(years, last_year + 1), finite = TRUE)
+x_pad <- max(1, diff(x_lim) * 0.04)
+plot(years, hist_gdp_trillion, type = "l",
      col = "#2166AC", lwd = 2.5,
+     xlim = c(x_lim[1], x_lim[2] + x_pad),
+     ylim = c(max(0, y_lim[1] - y_pad), y_lim[2] + y_pad),
      xlab = "年份",
      ylab = "实际GDP（万亿美元，2015年不变价）",
      main = "从增长率预测回到GDP水平")
