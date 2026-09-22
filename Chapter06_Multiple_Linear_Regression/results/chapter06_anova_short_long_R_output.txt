@@ -1,0 +1,8 @@
+Analysis of Variance Table
+
+Model 1: income_pc_thousand ~ gdp_pc_thousand + unemployment_rate
+Model 2: income_pc_thousand ~ gdp_pc_thousand + unemployment_rate + large_state + 
+    log_population
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1     48 2341.5                           
+2     46 2274.0  2    67.469 0.6824 0.5104

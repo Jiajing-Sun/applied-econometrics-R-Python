@@ -1,0 +1,104 @@
+[
+  {
+    "check": "prediction yhat_ols_linear",
+    "max_absolute_difference": 4.973799150320701e-13,
+    "tolerance": 1e-05,
+    "passed": true
+  },
+  {
+    "check": "prediction yhat_ols_poly",
+    "max_absolute_difference": 1.7337242752546445e-12,
+    "tolerance": 1e-05,
+    "passed": true
+  },
+  {
+    "check": "prediction yhat_ridge",
+    "max_absolute_difference": 7.105427357601002e-14,
+    "tolerance": 1e-05,
+    "passed": true
+  },
+  {
+    "check": "prediction yhat_lasso",
+    "max_absolute_difference": 7.105427357601002e-14,
+    "tolerance": 1e-05,
+    "passed": true
+  },
+  {
+    "check": "chapter05_city_cluster_CR1",
+    "max_absolute_difference": 2.6503244043851737e-12,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "chapter02_quantile_bins",
+    "max_absolute_difference": 5.684341886080802e-14,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "chapter09_credit_lpm_table",
+    "max_absolute_difference": 8.846257060213247e-12,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "chapter12_iv_simulated_table",
+    "max_absolute_difference": 4.440892098500626e-15,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "chapter12_did_simulated_regression",
+    "max_absolute_difference": 8.881784197001252e-14,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "chapter12_fars_accident_cluster",
+    "max_absolute_difference": 1.0647482895365101e-11,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "2SLS independent linearmodels implementation",
+    "max_absolute_difference": 3.3861802251067274e-15,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "DiD CR1 independent grouped-score matrix",
+    "max_absolute_difference": 3.9968028886505635e-15,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "VOT analytical vs numerical Jacobian",
+    "max_absolute_difference": 2.0661858002313238e-07,
+    "tolerance": 1e-06,
+    "passed": true
+  },
+  {
+    "check": "VOT R/Python printed estimates",
+    "max_absolute_difference": 3.3726386627908056e-08,
+    "tolerance": 1e-07,
+    "passed": true
+  },
+  {
+    "check": "DFFITS external studentization",
+    "max_absolute_difference": 0.0,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "GLS precision-factor whitening",
+    "max_absolute_difference": 1.1102230246251565e-16,
+    "tolerance": 1e-08,
+    "passed": true
+  },
+  {
+    "check": "GLS vs whitened OLS",
+    "max_absolute_difference": 1.3322676295501878e-15,
+    "tolerance": 1e-08,
+    "passed": true
+  }
+]

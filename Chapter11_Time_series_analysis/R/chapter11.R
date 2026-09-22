@@ -12,7 +12,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -247,14 +247,16 @@ write.csv(se_compare,
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter11_se_comparison.png", width = 1500, height = 1100)
+se_ylim <- c(0, max(se_compare$滞后项标准误) * 1.28)
 bp <- barplot(se_compare$滞后项标准误,
               names.arg = se_compare$标准误类型,
               col = c("#9ECAE1", "#FCAE91"),
+              ylim = se_ylim,
               ylab = "AR(1)滞后项标准误",
               main = "普通标准误与HAC标准误的比较")
-text(x = bp, y = se_compare$滞后项标准误,
+text(x = bp, y = se_compare$滞后项标准误 + diff(se_ylim) * 0.035,
      labels = sprintf("%.3f", se_compare$滞后项标准误),
-     pos = 3)
+     adj = c(0.5, 0))
 dev.off()
 
 last_year <- max(reg_df$year)

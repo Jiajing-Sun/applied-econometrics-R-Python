@@ -14,7 +14,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -321,3 +321,10 @@ writeLines(c(
 ), con = file.path(result_dir, "chapter05_results_readme.txt"))
 
 message("Chapter 05 complete. Outputs written to: ", chapter_dir)
+
+# 2026-09-22: primary housing inference allows within-city dependence.
+V_city <- sandwich::vcovCL(ols_model, cluster=df$city, type="HC1", cadjust=TRUE)
+g <- length(unique(df$city)); se_city <- sqrt(diag(V_city)); est <- coef(ols_model)
+city_table <- data.frame(term=names(est), estimate=as.numeric(est),
+ se=se_city, df=g-1, lower=est-qt(.975,g-1)*se_city, upper=est+qt(.975,g-1)*se_city)
+write.csv(city_table,file.path(table_dir,"chapter05_city_cluster_CR1.csv"),row.names=FALSE)

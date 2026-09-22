@@ -1,12 +1,1 @@
-numpy
-pandas
-scipy
-matplotlib
-statsmodels
-scikit-learn
-requests
-wbgapi
-yfinance
-fredapi
-eurostatapiclient
-pandasdmx
+-r requirements-20260922.txt

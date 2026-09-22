@@ -1,0 +1,10 @@
+{
+  "check": "Gauss–Markov covariance gap and residual degrees of freedom",
+  "DX_max_abs": 2.3005721259268964e-15,
+  "CX_identity_max_abs": 2.8130625730743782e-15,
+  "covariance_gap_vs_sigma2_DDt_max_abs": 1.4210854715202004e-14,
+  "covariance_gap_min_eigenvalue": 46.0242524707239,
+  "trace_M": 37.0,
+  "n_minus_k": 37,
+  "passed": true
+}

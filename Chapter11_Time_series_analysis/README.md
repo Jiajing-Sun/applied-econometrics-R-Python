@@ -1,39 +1,35 @@
-# Chapter 11: 时间序列分析
+# 第12章：时间序列
 
-本章使用 WDI 中国实际 GDP 年度序列。
+教材章号为12；代码目录保留历史编号 `Chapter11`，脚本及结果文件仍使用 `chapter11`，便于保持路径兼容。
 
-## 数据说明
+## 数据与样本
 
-- 相关数据：`time_series_sweden.csv`
-- 本章数据：`../data/processed/wdi_china_macro_1960_2024.csv`
-- 当前分析区间：1978--2024 年。
+中国年度GDP本地历史快照：原表1960–2024年65行；主案例1978–2024年47个水平值，46个对数增长率，AR(1)有效样本45个。
 
-## 教学对应
+数据文件：
 
-- `gdp` -> 中国实际 GDP（2015 年不变美元）。
-- 季度频率 -> 年度频率。
+- [`wdi_china_macro_1960_2024.csv`](../data/processed/wdi_china_macro_1960_2024.csv)
 
-## 保留的方法
+| 变量 | 定义和单位 |
+|---|---|
+| `gdp`, `gdp_trillion` | `gdp_constant_2015_usd`；另除以10¹²，2015年不变价万亿美元 |
+| `dloggdp` | `100*diff(log(gdp))`，百分数尺度的对数增长率 |
+| `dloggdpL1` | 前一期对数增长率；滞后构造使首行缺失 |
+| `ma`, `dlogma` | 脚本构造的平滑序列及其对数变化，须按脚本定义解释 |
 
-- 时间序列图。
-- 中心移动平均。
-- 自相关函数 ACF。
-- 对数增长率。
-- AR(1) 回归。
-- Newey-West/HAC 标准误。
-- AR 阶数选择。
+AR(1)至AR(5)模型比较使用共同有效区间；HAC采用Bartlett权重、最大滞后5。正文ARMA代码使用未乘100的对数差分，与 `dloggdp` 相差100倍。正文VAR用GDP对数增长率和 `trade_pct_gdp` 的年度百分点变化，按共同年份对齐；此文件没有中国CPI字段。季节分解代码为独立模拟月度例子。
 
-## 运行
+预测示例使用当前冻结的历史快照做回溯练习，没有构造各历史时点实际可得的数据版本。中心移动平均会使用未来观测，不能当作当时已知的预测变量。
+
+## 运行与输出
+
+先按配套代码根目录说明准备R/Python依赖，再在本章目录执行：
 
 ```bash
 Rscript R/chapter11.R
-/Users/sunjiajing/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 python/chapter11.py
+python3 python/chapter11.py
 ```
 
-## 输出
+主要核对文件：[`results/chapter11_china_gdp_time_series_data.csv`](results/chapter11_china_gdp_time_series_data.csv)；其余数值在 `results/`、表格在 `tables/`，主脚本绘图在 `figures/`。Python结果通常以 `python_` 开头。
 
-- 图：`figures/`
-- 表：`tables/`
-- 结果：`results/`
-
-所有 R 图形的坐标轴、标题和图例均已中文化。Python 版本生成对应的数据表和数值结果；图形由 R 版本生成。
+本说明核对日期：2026-09-22。数据来源、完整文件清单、缺失值和主键核验见 [共享数据说明](../data/README.md)。运行成功说明程序能够执行；经济识别条件和数据代表性仍按正文解释。

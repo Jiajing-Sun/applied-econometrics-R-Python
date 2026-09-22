@@ -1,0 +1,8 @@
+"stat","value"
+"spearman",0.86922523939994
+"partial_log_population",0.865418705737642
+"semipartial",0.859531796924164
+"delta_r2",0.738794909923682
+"permutation_p",1e-04
+"bootstrap_lower",0.820452237043081
+"bootstrap_upper",0.8909535106474

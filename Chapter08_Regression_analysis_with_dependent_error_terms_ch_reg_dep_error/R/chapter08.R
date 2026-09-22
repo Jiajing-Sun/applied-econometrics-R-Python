@@ -8,7 +8,7 @@
 #   outcome_income           -> log(个人收入+1)
 #   bachelor_or_above        -> 是否本科及以上学历
 #   age                      -> 年龄
-#   household_id             -> 家庭编号 serialno
+#   household_id             -> 住房单元／集体住所个人记录编号 serialno
 #   state_income_pc_k         -> 人均个人收入（千美元）
 #   state_unemployment_rate   -> 州失业率
 #
@@ -20,7 +20,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -172,8 +172,8 @@ write.csv(se_compare,
 household_size <- as.data.frame(table(acs$household_id), stringsAsFactors = FALSE)
 names(household_size) <- c("household_id", "household_size")
 household_size_summary <- data.frame(
-  指标 = c("家庭数", "平均家庭样本人数", "中位数家庭样本人数", "最大家庭样本人数",
-         "单人家庭占比"),
+  指标 = c("编号组数", "平均编号组样本人数", "中位数编号组样本人数", "最大编号组样本人数",
+         "单样本成员编号组占比"),
   数值 = c(nrow(household_size), mean(household_size$household_size),
          median(household_size$household_size), max(household_size$household_size),
          mean(household_size$household_size == 1))
@@ -364,13 +364,17 @@ dev.off()
 coef_compare <- panel_tables[panel_tables$项 == "unemployment_rate",
                              c("模型", "估计值", "标准误")]
 open_png("chapter08_fixed_effect_estimates.png")
+coef_ci_lower <- coef_compare$估计值 - 1.96 * coef_compare$标准误
+coef_ci_upper <- coef_compare$估计值 + 1.96 * coef_compare$标准误
+coef_plot_range <- range(c(0, coef_ci_lower, coef_ci_upper))
+coef_plot_range <- coef_plot_range + c(-1, 1) * 0.05 * diff(coef_plot_range)
 bar_mid <- barplot(coef_compare$估计值, names.arg = coef_compare$模型,
                    col = c("#9ECAE1", "#74C476", "#FD8D3C"),
+                   ylim = coef_plot_range,
                    xlab = "模型",
                    ylab = "失业率系数",
                    main = "合并OLS、州固定效应与双向固定效应")
-arrows(bar_mid, coef_compare$估计值 - 1.96 * coef_compare$标准误,
-       bar_mid, coef_compare$估计值 + 1.96 * coef_compare$标准误,
+arrows(bar_mid, coef_ci_lower, bar_mid, coef_ci_upper,
        angle = 90, code = 3, length = 0.06)
 abline(h = 0, lty = 2, col = "gray40")
 dev.off()
@@ -406,7 +410,7 @@ legend("topright", legend = c("年度观测", "州内均值", "去均值方向")
 dev.off()
 
 summary_table <- data.frame(
-  指标 = c("ACS样本量", "ACS家庭数", "本科及以上普通OLS系数",
+  指标 = c("ACS样本量", "ACS编号组数", "本科及以上普通OLS系数",
          "本科及以上标准化系数", "LME样本量", "面板州数",
          "面板年份起点", "面板年份终点", "双向FE失业率系数"),
   数值 = c(nrow(acs), length(unique(acs$household_id)), beta_bachelor,

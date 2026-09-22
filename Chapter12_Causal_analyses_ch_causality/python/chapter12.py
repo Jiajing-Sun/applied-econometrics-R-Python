@@ -20,6 +20,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.stats import t as student_t
+import statsmodels.formula.api as smf
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -62,7 +64,7 @@ def coefficient_table(fit: dict[str, object], vcov_key: str, model_label: str) -
     beta = np.asarray(fit["beta"], dtype=float)
     se = np.sqrt(np.diag(fit[vcov_key]))
     stat = beta / se
-    p = np.maximum(0.0, 2 * (1 - normal_cdf(np.abs(stat))))
+    p = 2 * student_t.sf(np.abs(stat), df=fit.get("df_inference",fit["df_resid"]))
     return pd.DataFrame(
         {"模型": model_label, "项": fit["names"], "估计值": beta, "标准误": se, "t统计量": stat, "p值": p}
     )
@@ -118,44 +120,27 @@ randomization_summary = pd.DataFrame(
 )
 randomization_summary.to_csv(TABLE_DIR / "python_chapter12_randomization_summary.csv", index=False)
 
-rng = np.random.default_rng(20260412)
-did_units = 40
-did_times = np.arange(-3, 4)
-rows = []
-unit_fe = rng.normal(0, 0.7, did_units)
-for unit in range(1, did_units + 1):
-    treated = int(unit > did_units / 2)
-    for period in did_times:
-        post = int(period >= 0)
-        y_sim = 5 + unit_fe[unit - 1] + 0.35 * period + 1.8 * treated * post + rng.normal(0, 0.5)
-        rows.append({"unit": unit, "period": period, "treated": treated, "post": post, "y": y_sim})
-did_df = pd.DataFrame(rows)
+did_df = pd.read_csv(REPO_DIR / "data/processed/chapter13_did_simulated.csv")
 did_cells = did_df.groupby(["treated", "period"], as_index=False)["y"].mean()
 did_cells.to_csv(TABLE_DIR / "python_chapter12_did_simulated_cell_means.csv", index=False)
-X_did = np.column_stack(
-    [
-        np.ones(len(did_df)),
-        did_df["treated"].to_numpy(float),
-        did_df["post"].to_numpy(float),
-        (did_df["treated"] * did_df["post"]).to_numpy(float),
-    ]
-)
-did_fit = fit_ols(did_df["y"].to_numpy(float), X_did, ["截距", "处理组", "政策后", "处理组×政策后"])
-coefficient_table(did_fit, "vcov_hc0", "模拟DID").to_csv(
-    TABLE_DIR / "python_chapter12_did_simulated_regression.csv", index=False
-)
+did_model = smf.ols("y ~ treated:post + C(unit) + C(period)",data=did_df).fit(
+    cov_type="cluster",cov_kwds={"groups":did_df["unit"],"use_correction":True,"df_correction":True},use_t=True)
+pd.DataFrame({"模型":"模拟DID：双向固定效应，单位聚类CR1","项":did_model.params.index,
+              "估计值":did_model.params.values,"标准误":did_model.bse.values,
+              "t统计量":did_model.tvalues.values,"p值":did_model.pvalues.values}).loc[
+                  lambda tab: tab["项"] == "treated:post"].to_csv(
+    TABLE_DIR / "python_chapter12_did_simulated_regression.csv",index=False)
 
-iv_n = 800
-z = rng.binomial(1, 0.5, iv_n)
-u = rng.normal(size=iv_n)
-d = 0.7 * z + 0.9 * u + rng.normal(size=iv_n)
-y_iv = 1 + 2.0 * d + u + rng.normal(size=iv_n)
-iv_df = pd.DataFrame({"y": y_iv, "d": d, "z": z, "u": u})
+iv_df = pd.read_csv(REPO_DIR / "data/processed/chapter13_iv_simulated.csv")
 ols_fit = fit_ols(iv_df["y"].to_numpy(float), design(iv_df, ["d"]), ["截距", "D"])
 fs_fit = fit_ols(iv_df["d"].to_numpy(float), design(iv_df, ["z"]), ["截距", "Z"])
 rf_fit = fit_ols(iv_df["y"].to_numpy(float), design(iv_df, ["z"]), ["截距", "Z"])
 iv_df["dhat"] = np.asarray(fs_fit["fitted"], dtype=float)
 tsls_fit = fit_ols(iv_df["y"].to_numpy(float), design(iv_df, ["dhat"]), ["截距", "Dhat"])
+X_iv=design(iv_df,["d"]); Xhat_iv=design(iv_df,["dhat"])
+u_iv=iv_df["y"].to_numpy()-X_iv @ tsls_fit["beta"]
+A_iv=np.linalg.inv(Xhat_iv.T@Xhat_iv)
+tsls_fit["vcov_hc0"]=A_iv @ (Xhat_iv.T @ (Xhat_iv*u_iv[:,None]**2)) @ A_iv
 iv_rows = []
 for equation, variable, fit_obj in [
     ("OLS结构式", "D", ols_fit),
@@ -168,7 +153,7 @@ for equation, variable, fit_obj in [
     iv_rows.append({"方程": equation, "关键变量": variable, "估计值": beta, "标准误": se})
 pd.DataFrame(iv_rows).to_csv(TABLE_DIR / "python_chapter12_iv_simulated_table.csv", index=False)
 fs_beta = np.asarray(fs_fit["beta"], dtype=float)[1]
-fs_se = float(np.sqrt(np.diag(fs_fit["vcov_hc0"]))[1])
+fs_se = float(np.sqrt(np.diag(fs_fit["vcov"]))[1])
 pd.DataFrame(
     {"指标": ["第一阶段F统计量", "真实处理效应"], "数值": [(fs_beta / fs_se) ** 2, 2.0]}
 ).to_csv(TABLE_DIR / "python_chapter12_iv_simulated_diagnostics.csv", index=False)
@@ -187,7 +172,7 @@ df["fatal_injury"] = (df["inj_sev"] == 4).astype(int)
 h = 3
 df_h = df.loc[df["rv"].abs() <= h].copy()
 df_h[
-    ["year", "state", "statename", "age", "rv", "Z", "alcohol_involved", "male", "fatal_injury"]
+    ["year", "st_case", "state", "statename", "age", "rv", "Z", "alcohol_involved", "male", "fatal_injury"]
 ].to_csv(RESULT_DIR / "python_chapter12_fars_rd_analysis_data.csv", index=False)
 
 y = df_h["alcohol_involved"].to_numpy(float)
@@ -199,9 +184,9 @@ X_2sls = design(df_h, ["Dhat", "rv", "Zrv"])
 rd_2sls = fit_ols(y, X_2sls, ["截距", "Dhat", "年龄差", "21岁及以上×年龄差"])
 
 year_dummies = pd.get_dummies(df_h["year"].astype(int), prefix="year", drop_first=True, dtype=float)
-control_df = pd.concat([df_h[["Z", "rv", "Zrv", "male", "fatal_injury"]], year_dummies], axis=1)
+control_df = pd.concat([df_h[["Z", "rv", "Zrv", "male"]], year_dummies], axis=1)
 X_controls = np.column_stack([np.ones(len(control_df)), control_df.to_numpy(float)])
-names_controls = ["截距", "21岁及以上", "年龄差", "21岁及以上×年龄差", "男性", "致命伤"] + list(year_dummies.columns)
+names_controls = ["截距", "21岁及以上", "年龄差", "21岁及以上×年龄差", "男性"] + list(year_dummies.columns)
 rd_controls = fit_ols(y, X_controls, names_controls)
 
 rd_bw_rows = []
@@ -228,11 +213,28 @@ rd_tables = pd.concat(
     [
         coefficient_table(rd_rf, "vcov_hc0", "局部线性RD"),
         coefficient_table(rd_2sls, "vcov_hc0", "sharp RD的2SLS等价写法"),
-        coefficient_table(rd_controls, "vcov_hc0", "加入性别、伤害严重程度和年份控制"),
+        coefficient_table(rd_controls, "vcov_hc0", "加入性别和年份控制"),
     ],
     ignore_index=True,
 )
 rd_tables.to_csv(TABLE_DIR / "python_chapter12_fars_rd_hc0_tables.csv", index=False)
+
+
+# CR1 accident-level covariance, shared accident key year + st_case.
+def accident_covariance(fit, X, group):
+    _, inv=np.unique(np.asarray(group),return_inverse=True)
+    G=int(inv.max()+1); n,p=X.shape
+    score=np.zeros((G,p)); np.add.at(score,inv,X*np.asarray(fit["resid"])[:,None])
+    bread=np.linalg.inv(X.T@X)
+    return (G/(G-1))*((n-1)/(n-p))*bread@(score.T@score)@bread
+accident=(df_h["year"].astype(str)+":"+df_h["st_case"].astype(str)).to_numpy()
+G_accident=len(np.unique(accident)); cluster_rows=[]
+for fit,X,label in [(rd_rf,X_rd,"未加控制：事故聚类CR1"),(rd_controls,X_controls,"性别年份控制：事故聚类CR1")]:
+    fit=dict(fit); fit["vcov_cluster"]=accident_covariance(fit,X,accident);fit["df_inference"]=G_accident-1
+    cluster_rows.append(coefficient_table(fit,"vcov_cluster",label))
+pd.concat(cluster_rows).to_csv(TABLE_DIR/"python_chapter12_fars_accident_cluster.csv",index=False)
+pd.DataFrame({"指标":["事故聚类数","人员数"],"数值":[G_accident,len(df_h)]}).to_csv(
+    RESULT_DIR/"python_chapter12_fars_accident_cluster_counts.csv",index=False)
 
 age_bins = (
     df_h.groupby("age", as_index=False)["alcohol_involved"]

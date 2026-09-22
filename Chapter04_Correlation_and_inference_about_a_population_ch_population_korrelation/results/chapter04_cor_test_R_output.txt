@@ -1,0 +1,12 @@
+
+	Pearson's product-moment correlation
+
+data:  df$log_gdp_per_capita and df$life_expectancy
+t = 23.029, df = 190, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8155257 0.8913471
+sample estimates:
+      cor 
+0.8580428 
+

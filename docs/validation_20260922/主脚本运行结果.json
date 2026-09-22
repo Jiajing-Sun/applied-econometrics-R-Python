@@ -1,0 +1,196 @@
+[
+  {
+    "script": "Chapter12_Causal_analyses_ch_causality/R/chapter12.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "88e87aba087fa16f2e91f9f8f492f09d30949f7ea39865a554649cfd4a755c78",
+    "seconds": 1.48,
+    "log": "核验记录/主脚本/chapter12_R.log",
+    "note": "末次重跑成功：仅导出DiD目标交互项，避免给单位固定效应报告退化聚类检验。"
+  },
+  {
+    "script": "Chapter12_Causal_analyses_ch_causality/python/chapter12.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "b8f0ec8b45b63920141d8eec34c10b30c1ccdbfede209ce1ace595b7e8524428",
+    "seconds": 1.75,
+    "log": "核验记录/主脚本/chapter12_Python.log",
+    "note": "末次重跑成功：仅导出DiD目标交互项，避免给单位固定效应报告退化聚类检验。"
+  },
+  {
+    "script": "Chapter02_Covariation_in_data/python/chapter02.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "80bc37a930f9af1c1ba19317e1bbe98f9eb76d30c6a9c68ccf81f7c28842d7d3",
+    "seconds": 0.5,
+    "log": "核验记录/主脚本/chapter02_Python.log"
+  },
+  {
+    "script": "Chapter03_Basic_probability_theory_and_statistical_inference_ch_probability_theory/R/chapter03.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "852c44c1e5944a191e5a3089b3790219812f5d4c5f7c91f42b1c79181deb18d6",
+    "seconds": 2.99,
+    "log": "核验记录/主脚本/chapter03_R.log"
+  },
+  {
+    "script": "Chapter03_Basic_probability_theory_and_statistical_inference_ch_probability_theory/python/chapter03.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "7a769c89c8cae35b26b939c48bb3e54ddd72ea93fc5de1fd2f3d7f1001489dbb",
+    "seconds": 1.15,
+    "log": "核验记录/主脚本/chapter03_Python.log"
+  },
+  {
+    "script": "Chapter04_Correlation_and_inference_about_a_population_ch_population_korrelation/python/chapter04.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "13189f7a1cf4c41d853c54aaf52e5b3818e30e2e8f7565d7a225860dc7790e5d",
+    "seconds": 1.8,
+    "log": "核验记录/主脚本/chapter04_Python.log"
+  },
+  {
+    "script": "Chapter05_The_simple_linear_regression_model/R/chapter05.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "97550add5cdd8f2f436ba1d4074c32189f9fea0d4b2de3b3ef3950ee268cc05d",
+    "seconds": 0.61,
+    "log": "核验记录/主脚本/chapter05_R.log"
+  },
+  {
+    "script": "Chapter05_The_simple_linear_regression_model/python/chapter05.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "03ff0f8478965a1ca0ddbea54e2e0fe058842a9ba21bc1c8e7c2966dabaf6c58",
+    "seconds": 2.03,
+    "log": "核验记录/主脚本/chapter05_Python.log"
+  },
+  {
+    "script": "Chapter06_Multiple_Linear_Regression/R/chapter06.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "ac8bd32c72ffa332d403239a00924f23dad1503608c9a946589e9a23c228ba4a",
+    "seconds": 0.46,
+    "log": "核验记录/主脚本/chapter06_R.log"
+  },
+  {
+    "script": "Chapter06_Multiple_Linear_Regression/python/chapter06.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "38e05c971f4741a7cc32bc370fda74dc059af7583bcf0157043d8d14d40c9b5f",
+    "seconds": 1.26,
+    "log": "核验记录/主脚本/chapter06_Python.log"
+  },
+  {
+    "script": "Chapter07_Nonlinear_functional_form/R/chapter07.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "e0f654284fff8c41b9f5b4525ae49469a867170fefb253823fc76c1a1bed5093",
+    "seconds": 0.51,
+    "log": "核验记录/主脚本/chapter07_R.log"
+  },
+  {
+    "script": "Chapter07_Nonlinear_functional_form/python/chapter07.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "3c728e0490209e1ed2d9b0a321af5847ad0f1c0dbe85b8cef268a645ac10de52",
+    "seconds": 2.07,
+    "log": "核验记录/主脚本/chapter07_Python.log"
+  },
+  {
+    "script": "Chapter09_Binary_dependent_variable_ch_logit/R/chapter09.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "f5d3cdf4c8547692b4141b15798b688bbe176d0f0fd2dc4806691e624c9fcf39",
+    "seconds": 3.15,
+    "log": "核验记录/主脚本/chapter09_R.log"
+  },
+  {
+    "script": "Chapter09_Binary_dependent_variable_ch_logit/python/chapter09.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "e90bb20a290add4bf4ef06c04873812247eaf781cbe942ee93132853990880f7",
+    "seconds": 1.35,
+    "log": "核验记录/主脚本/chapter09_Python.log"
+  },
+  {
+    "script": "Chapter11_Time_series_analysis/R/chapter11.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "6de3feb558bc595ab8ea89f503db8d04a147a16c3375553b2da8d356ba12877a",
+    "seconds": 0.5,
+    "log": "核验记录/主脚本/chapter11_R.log"
+  },
+  {
+    "script": "Chapter11_Time_series_analysis/python/chapter11.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "cc41be752ec4798ec71c61782e778652dc7f9bf13a84be2cbb810239abf81338",
+    "seconds": 0.56,
+    "log": "核验记录/主脚本/chapter11_Python.log"
+  },
+  {
+    "script": "Chapter13_Nonparametric_Regression_chapter_nonparametric/R/chapter13.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "80bf46e1531d0a33afe79d443cba5ea15fe71e973dae58be172052d27389d945",
+    "seconds": 1.41,
+    "log": "核验记录/主脚本/chapter13_R.log"
+  },
+  {
+    "script": "Chapter13_Nonparametric_Regression_chapter_nonparametric/python/chapter13.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "3b598f01b70956a7bc94cb4d365e71c83da904843da368c9feca5fcb45ecfd5f",
+    "seconds": 1.44,
+    "log": "核验记录/主脚本/chapter13_Python.log"
+  },
+  {
+    "script": "Chapter10_Prediction_ch_prediction/R/chapter10.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "389e46e243dd09f2f1c55025d43ad6e529d2dae1bc2fe6ef066a19fb3d03080e",
+    "seconds": 22.4,
+    "log": "核验记录/主脚本/chapter10_R.log"
+  },
+  {
+    "script": "Chapter10_Prediction_ch_prediction/python/chapter10.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "d08f07454bc2e9bed1a45bdf19abc2b7c145118761d35ed1cf58d27605bfb18b",
+    "seconds": 5.76,
+    "log": "核验记录/主脚本/chapter10_Python.log"
+  },
+  {
+    "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/python/chapter08.py",
+    "language": "Python",
+    "returncode": 0,
+    "sha256": "f82905747c4f2ac24c1e83a150663bd4a1c65eae23f2ee494496bf0ab2e5e5e1",
+    "seconds": 1.91,
+    "log": "核验记录/主脚本/chapter08_Python.log"
+  },
+  {
+    "script": "Chapter02_Covariation_in_data/R/chapter02.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "92ecc9ab58ea09dcfa3bc3bcf442ef5e98291b9f228db3e91ea5ef97a11e7db0",
+    "seconds": 0.45,
+    "log": "核验记录/主脚本/chapter02_R.log"
+  },
+  {
+    "script": "Chapter04_Correlation_and_inference_about_a_population_ch_population_korrelation/R/chapter04.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "717b96d17b9591636fb174cb6f4ca685f76a2c8760f94b04add705992ae8080d",
+    "seconds": 0.72,
+    "log": "核验记录/主脚本/chapter04_R.log"
+  },
+  {
+    "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/R/chapter08.R",
+    "language": "R",
+    "returncode": 0,
+    "sha256": "da8bf5ced5f92f4d8c3887bab3190da250f3b6435e2df5311c11910f5c7acc6a",
+    "seconds": 4.44,
+    "log": "核验记录/主脚本/chapter08_R.log"
+  }
+]

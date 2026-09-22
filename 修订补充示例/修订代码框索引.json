@@ -1,0 +1,140 @@
+[
+  {
+    "source": "Appendix Python.tex",
+    "number": 1,
+    "code": "import numpy as np\n\nx = np.arange(1, 7)          # array([1, 2, 3, 4, 5, 6])\n\n# 标量可以广播到每个元素\nprint(x + 1)\n# 明确需要循环重复时，显式构造长度为 6 的数组\nprint(x + np.tile([1, 2], 3))\n# 不兼容形状：捕获异常以便脚本继续运行\ntry:\n    x + np.array([1, 2])\nexcept ValueError as exc:\n    print(\"形状不兼容：\", exc)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "Appendix R program.tex",
+    "number": 1,
+    "code": "# install.packages(\"WDI\")\nlibrary(WDI)\n\n# 搜索指标名称（返回匹配项数据框）\nhead(WDIsearch(\"life expectancy\"))\n\n# 下载预期寿命和不变价人均 GDP\nwb <- WDI(\n  country   = c(\"CHN\", \"DEU\", \"USA\"),\n  indicator = c(le = \"SP.DYN.LE00.IN\", gdppc = \"NY.GDP.PCAP.KD\"),\n  start     = 1995,\n  end       = 2022,\n  extra     = TRUE\n)\n\n# 基本检查\nhead(wb)\nstr(wb)\n\n# 用 base R 排序，并快速绘制单个国家的图\nwb <- wb[order(wb$country, wb$year), ]\nchina <- wb[wb$iso3c == \"CHN\", ]\nstopifnot(nrow(china)>0, any(is.finite(china$gdppc)))\n\nplot(china$year, china$gdppc, type = \"l\",\n     xlab = \"Year\", ylab = \"GDP per capita (constant prices)\",\n     main = \"China: GDP per capita over time\")\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch02_covariation.tex",
+    "number": 1,
+    "code": "# 按五分位切分新房同比指数\nwide$x_bin <- cut(wide$yoy_index_new,\n                  breaks = quantile(wide$yoy_index_new, probs = 0:5/5),\n                  include.lowest = TRUE, labels = paste0(\"Q\", 1:5))\nbin_means <- aggregate(yoy_index_second ~ x_bin, data = wide, FUN = mean)\nbin_means$n <- as.integer(table(wide$x_bin))\nstopifnot(sum(bin_means$n) == nrow(wide))\nprint(bin_means)\n\n# OLS 拟合线 + 分箱均值图\nlibrary(ggplot2)\nols_m <- lm(yoy_index_second ~ yoy_index_new, data = wide)\nggplot(wide, aes(x = yoy_index_new, y = yoy_index_second)) +\n  geom_point(alpha = 0.3) +\n  geom_smooth(method = \"lm\", se = TRUE, color = \"blue\") +\n  geom_point(data = bin_means,\n             aes(x = tapply(wide$yoy_index_new, wide$x_bin, mean),\n                 y = yoy_index_second),\n             color = \"red\", size = 3, shape = 18)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch11_timeseries.tex",
+    "number": 1,
+    "code": "library(forecast)\nlibrary(tseries)\n\n# 在配套代码根目录运行；使用与正文相同的历史快照\nmacro <- read.csv(\"data/processed/wdi_china_macro_1960_2024.csv\",\n                  fileEncoding=\"UTF-8-BOM\")\nmacro <- macro[macro$year>=1978 & macro$gdp_constant_2015_usd>0, ]\nmacro <- macro[order(macro$year), ]\ngdp_growth <- diff(log(macro$gdp_constant_2015_usd))\nts_growth <- ts(gdp_growth, start=1979, frequency=1)\n\n# 手动估计 ARMA(1,0), ARMA(1,1), ARMA(2,1)\nm10 <- Arima(ts_growth, order = c(1, 0, 0))\nm11 <- Arima(ts_growth, order = c(1, 0, 1))\nm21 <- Arima(ts_growth, order = c(2, 0, 1))\ncat(\"AIC: AR(1)=\", AIC(m10), \" ARMA(1,1)=\", AIC(m11),\n    \" ARMA(2,1)=\", AIC(m21), \"\\n\")\n\n# 自动选择\nfits <- list()\nfor (p in 0:2) for (q in 0:2) {\n  fits[[paste(p,q)]] <- Arima(ts_growth, order=c(p,0,q),\n                             include.mean=TRUE, method=\"ML\")\n}\nstopifnot(all(sapply(fits, function(m) m$code == 0)))\nm_auto <- fits[[which.min(sapply(fits, function(m) m$aicc))]]\nsummary(m_auto)\n\n# 柳恩--博克斯（Ljung-Box）残差检验（前 10 滞后）\nBox.test(residuals(m_auto), lag=10, type=\"Ljung-Box\",\n         fitdf=sum(arimaorder(m_auto)[c(1,3)]))\n# 残差 ACF 图\nacf(residuals(m_auto), main = \"ARMA 残差 ACF\")\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch11_timeseries.tex",
+    "number": 2,
+    "code": "from statsmodels.tsa.arima.model import ARIMA\nfrom statsmodels.stats.diagnostic import acorr_ljungbox\nimport pandas as pd, numpy as np\n\n# 在配套代码根目录运行；对数差分，不乘100\nmacro = pd.read_csv(\"data/processed/wdi_china_macro_1960_2024.csv\")\nmacro = macro[(macro.year>=1978) & (macro.gdp_constant_2015_usd>0)]\nmacro = macro.sort_values(\"year\")\ngdp_growth = np.diff(np.log(macro.gdp_constant_2015_usd.to_numpy()))\n# 比较三个规格的 AIC\nresults = {}\nfor p, q in [(1,0),(1,1),(2,1)]:\n    res = ARIMA(gdp_growth, order=(p,0,q)).fit(\n        method_kwargs={\"maxiter\":1000})\n    assert res.mle_retvals[\"converged\"]\n    results[(p,q)] = res.aic\nprint(pd.Series(results, name=\"AIC\"))\n\n# 固定 d=0，在相同候选范围内按 AICc 选择\nfits = {}\nfor p in range(3):\n    for q in range(3):\n        m = ARIMA(gdp_growth, order=(p,0,q), trend=\"c\").fit(\n            method_kwargs={\"maxiter\":1000})\n        if not m.mle_retvals[\"converged\"]:\n            raise RuntimeError(f\"ARMA({p},{q}) 未收敛，需检查优化\")\n        fits[(p,q)] = m\norder = min(fits, key=lambda k: fits[k].aicc)\nm_auto = fits[order]\nprint(order, m_auto.summary())\n\n# 柳恩--博克斯（Ljung-Box）残差检验\nlb = acorr_ljungbox(m_auto.resid, lags=[10],\n                   model_df=sum(order), return_df=True)\nprint(lb)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 1,
+    "code": "library(readr); library(dplyr)\ndf <- read_csv(\"data/processed/chapter04_wdi_life_gdp_2024_economies.csv\")\nstopifnot(nrow(df) == 192, !anyDuplicated(df$country_code))\n\n# Pearson 相关检验（默认 H0: rho = 0）\nres <- cor.test(df$log_gdp_pc, df$life_expectancy,\n                method = \"pearson\", conf.level = 0.95)\nres$statistic   # t 统计量\nres$p.value     # 参考模型下的 p 值\nres$conf.int    # Fisher 变换 95% 置信区间\n\n# 手工验证 Fisher 变换\nr <- res$estimate; n <- nrow(df)\nz  <- 0.5 * log((1 + r)/(1 - r))\nse_z <- 1/sqrt(n - 3)\nci_z <- z + c(-1, 1) * qnorm(0.975) * se_z\nci_r <- (exp(2 * ci_z) - 1)/(exp(2 * ci_z) + 1)\nround(ci_r, 3)   # 应与 res$conf.int 一致\n\n# 按洲（大洲）分组报告相关\nlibrary(purrr)\ndf %>% group_by(region) %>%\n  summarise(r    = cor(log_gdp_pc, life_expectancy),\n            n    = n(),\n            p    = cor.test(log_gdp_pc, life_expectancy)$p.value)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 2,
+    "code": "import pandas as pd, numpy as np\nfrom scipy import stats\n\ndf = pd.read_csv(\"data/processed/chapter04_wdi_life_gdp_2024_economies.csv\")\nassert len(df) == 192 and df[\"country_code\"].is_unique\n\n# Pearson 相关检验\nr, pval = stats.pearsonr(df[\"log_gdp_pc\"], df[\"life_expectancy\"])\nprint(f\"r = {r:.4f}, p = {pval:.2e}\")\n\n# 手工 Fisher 变换置信区间\nn = len(df)\nz  = np.arctanh(r)            # = 0.5 * log((1+r)/(1-r))\nse = 1 / np.sqrt(n - 3)\nci_z = z + np.array([-1, 1]) * stats.norm.ppf(0.975) * se\nci_r = np.tanh(ci_z)          # 反变换回相关系数尺度\nprint(f\"95% CI: [{ci_r[0]:.3f}, {ci_r[1]:.3f}]\")\n\n# 按地区分组\ndef corr_row(g):\n    r2, p2 = stats.pearsonr(g[\"log_gdp_pc\"], g[\"life_expectancy\"])\n    return pd.Series({\"r\": round(r2, 3), \"n\": len(g), \"p\": round(p2, 4)})\n\ndf.groupby(\"region\").apply(corr_row)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 3,
+    "code": "x <- df$log_gdp_pc; y <- df$life_expectancy\nz <- log(df$population)\nex <- resid(lm(x ~ z)); ey <- resid(lm(y ~ z))\npartial <- cor(ex, ey)\nsemipartial <- cor(y, ex)\ndelta_r2 <- summary(lm(y ~ z + x))$r.squared -\n            summary(lm(y ~ z))$r.squared\nstopifnot(abs(semipartial^2 - delta_r2) < 1e-10)\nc(partial = partial, semipartial = semipartial)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 4,
+    "code": "x = df[\"log_gdp_pc\"].to_numpy()\ny = df[\"life_expectancy\"].to_numpy()\nZ = np.column_stack([np.ones(len(df)), np.log(df[\"population\"])])\nex = x - Z @ np.linalg.lstsq(Z, x, rcond=None)[0]\ney = y - Z @ np.linalg.lstsq(Z, y, rcond=None)[0]\npartial = np.corrcoef(ex, ey)[0, 1]\nsemipartial = np.corrcoef(y, ex)[0, 1]\nZX = np.column_stack([Z, x])\ne_full = y - ZX @ np.linalg.lstsq(ZX, y, rcond=None)[0]\ndelta_r2 = (ey @ ey - e_full @ e_full) / np.sum((y - y.mean())**2)\nassert np.isclose(semipartial**2, delta_r2)\nprint(partial, semipartial)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 5,
+    "code": "set.seed(42)\nT_obs <- cor(df$log_gdp_pc, df$life_expectancy)\nB <- 9999\nT_perm <- replicate(B, cor(sample(df$log_gdp_pc),\n                           df$life_expectancy))\np_perm <- (1 + sum(abs(T_perm) >= abs(T_obs))) / (B + 1)\np_perm  # 置换 p 值\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "number": 6,
+    "code": "import numpy as np\nrng = np.random.default_rng(42)\nx = df[\"log_gdp_pc\"].to_numpy()\ny = df[\"life_expectancy\"].to_numpy()\nB = 9999\nt_obs = np.corrcoef(x, y)[0, 1]\nt_perm = np.array([np.corrcoef(x, rng.permutation(y))[0, 1]\n                   for _ in range(B)])\np_perm = (1 + np.sum(np.abs(t_perm) >= abs(t_obs))) / (B + 1)\nprint(p_perm)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch_nonparametric.tex",
+    "number": 1,
+    "code": "pred <- sapply(grid, function(x0) {\n  z <- df$log_gdp_pc - x0\n  w <- exp(-0.5 * (z / 0.64)^2)\n  coef(lm(df$co2_pc ~ z, weights = w))[1]\n})\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch_nonparametric.tex",
+    "number": 2,
+    "code": "import numpy as np\npred = []\nfor x0 in grid:\n    z = df[\"log_gdp_pc\"].to_numpy() - x0\n    Z = np.column_stack([np.ones(len(z)), z])\n    root_w = np.exp(-0.25 * (z / 0.64)**2)\n    beta = np.linalg.lstsq(Z * root_w[:, None],\n        df[\"co2_pc\"].to_numpy() * root_w, rcond=None)[0]\n    pred.append(beta[0])\npred = np.asarray(pred)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch_nonparametric.tex",
+    "number": 3,
+    "code": "# 高斯核，默认 bw=\"nrd0\"（0.9 稳健规则）\ndens <- density(df$log_gdp_pc)\nplot(dens, main = \"log GDP 的核密度估计\")\n# 自定义带宽\ndensity(df$log_gdp_pc, bw = \"SJ\")  # Sheather-Jones 方法\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch10_prediction.tex",
+    "number": 1,
+    "code": "from sklearn.ensemble import RandomForestRegressor\nrf = RandomForestRegressor(n_estimators=500, max_features=\"sqrt\",\n                           oob_score=True, random_state=42)\nrf.fit(X_train, y_train)\nrf.oob_score_  # OOB R²（sklearn 默认口径，越大越好）\nrf.feature_importances_  # 回归树的加权平方误差下降重要性\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "number": 1,
+    "code": "library(sandwich)\nlibrary(lmtest)\ncoeftest(mod, vcov = vcovHC(mod, type = \"HC0\"))\nG <- length(unique(df$city))\nV_city <- vcovCL(mod, cluster = df$city, type = \"HC1\", cadjust = TRUE)\ncoeftest(mod, vcov. = V_city, df = G - 1)\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "number": 2,
+    "code": "robust_mod = mod.get_robustcov_results(cov_type=\"HC0\")\nprint(robust_mod.summary())\ncity_mod = mod.get_robustcov_results(\n    cov_type=\"cluster\", groups=df[\"city\"], use_correction=True,\n    df_correction=True, use_t=True)\nprint(city_mod.summary())\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch12_causal.tex",
+    "number": 1,
+    "code": "library(sandwich)\ndf <- read.csv(\"data/processed/chapter13_event_common_timing_simulated.csv\")\nlags <- c(-4,-3,-2,0,1,2,3)\ncols <- ifelse(lags<0,paste0(\"D_n\",abs(lags)),paste0(\"D_\",lags))\nfor (j in seq_along(lags))\n  df[[cols[j]]] <- as.integer(df$treated==1 & df$rel_time==lags[j])\nf <- as.formula(paste(\"Y ~\",paste(cols,collapse=\" + \"),\"+ factor(id)+factor(year)\"))\nfit_es <- lm(f,data=df)\nV <- vcovCL(fit_es,cluster=df$id,type=\"HC1\",cadjust=TRUE)\nse <- sqrt(diag(V))[cols]; est <- coef(fit_es)[cols]\ncrit <- qt(.975,length(unique(df$id))-1)\nplot(lags,est,ylim=range(est-crit*se,est+crit*se),\n     xlab=\"相对处理时间\",ylab=\"估计值\")\narrows(lags,est-crit*se,lags,est+crit*se,angle=90,code=3,length=.04)\nabline(h=0,lty=2)\npre <- cols[lags<0]; z <- coef(fit_es)[pre]\nFpre <- as.numeric(t(z)%*%solve(V[pre,pre],z))/length(pre)\nprint(pf(Fpre,length(pre),length(unique(df$id))-1,lower.tail=FALSE))\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch12_causal.tex",
+    "number": 2,
+    "code": "import numpy as np, pandas as pd\nimport statsmodels.formula.api as smf\nimport matplotlib.pyplot as plt\ndf = pd.read_csv(\"data/processed/chapter13_event_common_timing_simulated.csv\")\nlags = [-4,-3,-2,0,1,2,3]\ncols = [f\"D_n{-l}\" if l<0 else f\"D_{l}\" for l in lags]\nfor l, col in zip(lags,cols):\n    df[col] = ((df.treated==1) & (df.rel_time==l)).astype(int)\nfit_es = smf.ols(\"Y ~ \"+\" + \".join(cols)+\" + C(id)+C(year)\",df).fit(\n    cov_type=\"cluster\",cov_kwds={\"groups\":df.id},use_t=True)\nci = fit_es.conf_int().loc[cols]\nplt.errorbar(lags,fit_es.params[cols],\n    yerr=[fit_es.params[cols]-ci[0],ci[1]-fit_es.params[cols]],fmt=\"o\")\nplt.axhline(0,color=\"gray\"); plt.xlabel(\"相对处理时间\")\nprint(fit_es.wald_test(\"D_n4=0,D_n3=0,D_n2=0\",scalar=True))\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch12_causal.tex",
+    "number": 3,
+    "code": "library(mediation)\n\n# step 1: 处理对中介\nfit.m <- lm(M ~ D + X, data = df)\n# step 2: 含中介的结果方程\nfit.y <- lm(Y ~ D + M + X, data = df)\n\n# 估计 ACME 和 ADE（500 次自举）\nset.seed(42)\nmed.out <- mediate(fit.m, fit.y, treat = \"D\", mediator = \"M\",\n                   boot = TRUE, sims = 1999)\nsummary(med.out)\n# ACME = 间接效应; ADE = 直接效应; Total Effect; Prop. Mediated\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch12_causal.tex",
+    "number": 4,
+    "code": "library(quadprog)\ndf <- read.csv(\"data/processed/chapter13_scm_cities_simulated.csv\")\nY <- xtabs(outcome ~ year + city, data=df)\npre <- as.integer(rownames(Y)) < 2016\nA <- Y[pre,-1]; y <- Y[pre,1]; J <- ncol(A)\nfit <- solve.QP(2*(crossprod(A)+1e-10*diag(J)),\n  2*as.vector(crossprod(A,y)), cbind(rep(1,J),diag(J)),\n  c(1,rep(0,J)), meq=1)\nw <- fit$solution\nstopifnot(min(w)>-1e-8,abs(sum(w)-1)<1e-8)\ngap <- Y[,1]-Y[,-1] %*% w\nprint(w); print(mean(gap[pre]^2)); print(mean(gap[!pre]))\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "book_chapters/ch12_causal.tex",
+    "number": 5,
+    "code": "import numpy as np, pandas as pd\nfrom scipy.optimize import minimize\ndf = pd.read_csv(\"data/processed/chapter13_scm_cities_simulated.csv\")\nY = df.pivot(index=\"year\",columns=\"city\",values=\"outcome\").sort_index()\npre = Y.index < 2016\nA = Y.loc[pre].iloc[:,1:].to_numpy(); y = Y.loc[pre,0].to_numpy()\nJ = A.shape[1]\nres = minimize(lambda w: np.sum((y-A@w)**2)+1e-10*(w@w),\n    np.ones(J)/J, jac=lambda w: 2*A.T@(A@w-y)+2e-10*w,\n    bounds=[(0,1)]*J, constraints={\"type\":\"eq\",\"fun\":lambda w: w.sum()-1},\n    method=\"SLSQP\", options={\"ftol\":1e-12,\"maxiter\":10000})\nif not res.success: raise RuntimeError(res.message)\nw = res.x\ngap = Y[0].to_numpy()-Y.iloc[:,1:].to_numpy()@w\nprint(w, np.mean(gap[pre]**2), np.mean(gap[~pre]))\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  },
+  {
+    "source": "technical_supplements/tech_ols_design_ch12.tex",
+    "number": 1,
+    "code": "# 完全随机实验数据，d 为二元处理变量\nm0 <- lm(y ~ d, data = df)\n# 必须使用稳健标准误 (HC2 对应 Neyman 保守估计)\nlibrary(sandwich); library(lmtest)\ncoeftest(m0, vcov = vcovHC(m0, type = \"HC2\"))\n\n# 加入基线协变量（Lin 2013 规范）\ndf$x_c <- df$x - mean(df$x)     # 去均值\nm1 <- lm(y ~ d * x_c, data = df)\ncoeftest(m1, vcov = vcovHC(m1, type = \"HC2\"))\n# 完全交互调整的主要保证是渐近性质；同时报告未调整结果\n",
+    "prerequisites": "按所在小节先准备数据与上文对象；代码框不一定是独立脚本。"
+  }
+]

@@ -2,10 +2,10 @@
 #
 # 本章数据：国家统计局 70 个大中城市商品住宅销售价格指数（2025）。
 # 教学对应关系：
-#   教材变量 price       -> 二手住宅同比价格指数
-#   教材变量 living_area -> 新建商品住宅同比价格指数
-#   教材变量 monthly_fee -> 二手住宅环比价格指数
-#   教材变量 city_area   -> 新建住宅环比价格指数
+#   教材变量 second_hand_yoy       -> 二手住宅同比价格指数
+#   教材变量 new_house_yoy -> 新建商品住宅同比价格指数
+#   教材变量 second_hand_mom -> 二手住宅环比价格指数
+#   教材变量 new_house_mom   -> 新建住宅环比价格指数
 #
 # 本脚本保留原章方法：训练/测试划分、多项式复杂度比较、5 折交叉验证、
 # 岭回归、LASSO、回归树和不同预测模型的测试误差比较。
@@ -15,7 +15,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -63,25 +63,27 @@ names(second_hand)[names(second_hand) == "ytd_average_index"] <- "second_hand_yt
 
 df <- merge(new_house, second_hand,
             by = c("year", "month", "date", "city"))
+Encoding(df$city) <- "UTF-8"
 df$month_factor <- factor(df$month)
-df$city_factor <- factor(df$city)
+df$city_factor <- factor(df$city, levels = sort(unique(df$city), method="radix"))
 df$first_tier <- ifelse(df$city %in% c("北京", "上海", "广州", "深圳"), 1, 0)
 df$month_numeric <- df$month
-df$price <- df$second_hand_yoy
-df$living_area <- df$new_house_yoy
-df$monthly_fee <- df$second_hand_mom
-df$city_area <- df$new_house_mom
-df <- df[complete.cases(df[, c("price", "living_area", "monthly_fee",
-                               "city_area", "first_tier")]), ]
+df$second_hand_yoy <- df$second_hand_yoy
+df$new_house_yoy <- df$new_house_yoy
+df$second_hand_mom <- df$second_hand_mom
+df$new_house_mom <- df$new_house_mom
+df <- df[complete.cases(df[, c("second_hand_yoy", "new_house_yoy", "second_hand_mom",
+                               "new_house_mom", "first_tier")]), ]
 df <- df[order(df$city, df$month), ]
 row.names(df) <- NULL
 
+df$poly_x <- (df$new_house_yoy-mean(df$new_house_yoy[df$month<=9])) / sd(df$new_house_yoy[df$month<=9])
 for (i in 2:10) {
-  df[, paste0("living_area", i)] <- df$living_area^i
+  df[, paste0("new_house_yoy", i)] <- df$poly_x^i
 }
 
-write.csv(df[, c("year", "month", "date", "city", "price", "living_area",
-                 "monthly_fee", "city_area", "first_tier")],
+write.csv(df[, c("year", "month", "date", "city", "second_hand_yoy", "new_house_yoy",
+                 "second_hand_mom", "new_house_mom", "first_tier")],
           file.path(result_dir, "chapter10_nbs_70city_prediction_data.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 
@@ -114,17 +116,17 @@ dev.off()
 set.seed(12)
 random_train_ind <- sample(1:n, length(train_ind), replace = FALSE)
 random_test_ind <- setdiff(1:n, random_train_ind)
-ols_time <- lm(price ~ living_area + monthly_fee + city_area + first_tier,
+ols_time <- lm(second_hand_yoy ~ new_house_yoy + second_hand_mom + new_house_mom + first_tier,
                data = df_train)
-ols_random <- lm(price ~ living_area + monthly_fee + city_area + first_tier,
+ols_random <- lm(second_hand_yoy ~ new_house_yoy + second_hand_mom + new_house_mom + first_tier,
                  data = df[random_train_ind, ])
 split_compare <- data.frame(
   划分方式 = c("时间顺序切分", "随机切分"),
   训练样本量 = c(length(train_ind), length(random_train_ind)),
   测试样本量 = c(length(test_ind), length(random_test_ind)),
   `测试集 MSE` = c(
-    mse(df$price[test_ind], predict(ols_time, newdata = df[test_ind, ])),
-    mse(df$price[random_test_ind], predict(ols_random, newdata = df[random_test_ind, ]))
+    mse(df$second_hand_yoy[test_ind], predict(ols_time, newdata = df[test_ind, ])),
+    mse(df$second_hand_yoy[random_test_ind], predict(ols_random, newdata = df[random_test_ind, ]))
   ),
   check.names = FALSE
 )
@@ -132,21 +134,21 @@ write.csv(split_compare,
           file.path(table_dir, "chapter10_split_comparison_mse.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 
-f <- "price ~ living_area"
+f <- "second_hand_yoy ~ new_house_yoy"
 mse_train_list <- c()
 mse_test_list <- c()
 for (degree in 1:10) {
   if (degree == 1) {
-    f_degree <- "price ~ living_area"
+    f_degree <- "second_hand_yoy ~ new_house_yoy"
   } else {
-    terms <- c("living_area", paste0("living_area", 2:degree))
-    f_degree <- paste("price ~", paste(terms, collapse = " + "))
+    terms <- c("new_house_yoy", paste0("new_house_yoy", 2:degree))
+    f_degree <- paste("second_hand_yoy ~", paste(terms, collapse = " + "))
   }
   ols_model <- lm(as.formula(f_degree), data = df_train)
   yhat_train <- predict(ols_model, newdata = df_train)
   yhat_test <- predict(ols_model, newdata = df_test)
-  mse_train_list <- c(mse_train_list, mse(df_train$price, yhat_train))
-  mse_test_list <- c(mse_test_list, mse(df_test$price, yhat_test))
+  mse_train_list <- c(mse_train_list, mse(df_train$second_hand_yoy, yhat_train))
+  mse_test_list <- c(mse_test_list, mse(df_test$second_hand_yoy, yhat_test))
 }
 
 poly_mse_table <- data.frame(
@@ -224,23 +226,13 @@ dev.off()
 # Box 06: 5 折交叉验证
 # ------------------------------------------------------------------------------
 
-set.seed(12)
 m <- 5
-shuffle_ind <- sample(train_ind, length(train_ind), replace = FALSE)
-fold_indexes <- cut(seq_along(shuffle_ind), breaks = m, labels = FALSE)
-fold_id <- setNames(fold_indexes, shuffle_ind)
-
-MSE_hat <- rep(NA, m)
-for (i in 1:m) {
-  leave_out_ind <- as.integer(names(fold_id)[fold_id == i])
-  leave_in_ind <- setdiff(train_ind, leave_out_ind)
-  train_df <- df[leave_in_ind, ]
-  test_df <- df[leave_out_ind, ]
-  ols_train <- lm(price ~ living_area, data = train_df)
-  pred <- predict(ols_train, test_df)
-  MSE_hat[i] <- mse(test_df$price, pred)
-}
-cv_table <- data.frame(折 = 1:m, MSE = MSE_hat)
+validation_months <- 5:9
+MSE_hat <- sapply(validation_months, function(v) {
+  fit <- lm(second_hand_yoy ~ new_house_yoy, data=df[df$month < v, ])
+  mse(df$second_hand_yoy[df$month == v], predict(fit, newdata=df[df$month == v, ]))
+})
+cv_table <- data.frame(折 = 1:m, 验证月份=validation_months, MSE = MSE_hat)
 write.csv(cv_table,
           file.path(table_dir, "chapter10_five_fold_cv_mse.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
@@ -250,7 +242,7 @@ barplot(cv_table$MSE, names.arg = paste0("第", cv_table$折, "折"),
         col = "#9ECAE1", border = NA,
         xlab = "交叉验证折",
         ylab = "验证集MSE",
-        main = "5折交叉验证误差")
+        main = "扩展窗口验证误差（验证月5—9月）")
 abline(h = mean(cv_table$MSE), col = "#D73027", lwd = 2, lty = 2)
 legend("topright", legend = "平均MSE", col = "#D73027", lty = 2, lwd = 2, bty = "n")
 dev.off()
@@ -259,20 +251,54 @@ dev.off()
 # Box 07--17: 岭回归和 LASSO
 # ------------------------------------------------------------------------------
 
+Encoding(df$city) <- "UTF-8"
 df$month_factor <- factor(df$month)
-df$city_factor <- factor(df$city)
+df$city_factor <- factor(df$city, levels = sort(unique(df$city), method="radix"))
 X <- model.matrix(
-  price ~ living_area + monthly_fee + city_area + first_tier +
+  second_hand_yoy ~ new_house_yoy + second_hand_mom + new_house_mom + first_tier +
     month_numeric + city_factor,
   data = df
 )[, -1]
-Y <- df$price
+Y <- df$second_hand_yoy
 
-ridge_model_cv <- cv.glmnet(X[train_ind, ], Y[train_ind], alpha = 0,
-                            standardize = TRUE)
-lasso_model_cv <- cv.glmnet(X[train_ind, ], Y[train_ind], alpha = 1,
-                            standardize = TRUE)
-
+# Shared objective with Python: RSS/(2*n) + lambda*penalty;
+# ridge penalty is sum(beta^2)/2; LASSO penalty is sum(abs(beta)).
+pen_predict <- function(xt, yt, xa, lambda, method) {
+  center <- colMeans(xt); scale <- sqrt(colMeans(sweep(xt,2,center)^2))
+  scale[scale == 0] <- 1
+  xs <- sweep(sweep(xt,2,center),2,scale,"/")
+  za <- sweep(sweep(xa,2,center),2,scale,"/")
+  ym <- mean(yt); yc <- yt-ym; nn <- length(yt)
+  if (method == "ridge") {
+    beta <- solve(crossprod(xs)+nn*lambda*diag(ncol(xs)), crossprod(xs,yc))
+  } else {
+    beta <- rep(0,ncol(xs)); norms <- colSums(xs^2)
+    for (iter in 1:10000) {
+      old <- beta; residual <- yc-as.vector(xs %*% beta)
+      for (j in seq_along(beta)) {
+        residual <- residual+xs[,j]*beta[j]
+        rho <- sum(xs[,j]*residual)
+        beta[j] <- if(norms[j] > 0) sign(rho)*max(abs(rho)-nn*lambda,0)/norms[j] else 0
+        residual <- residual-xs[,j]*beta[j]
+      }
+      if(max(abs(beta-old)) < 1e-7) break
+      if(iter == 10000) stop("LASSO did not converge")
+    }
+  }
+  as.vector(ym+za %*% beta)
+}
+lambda_grid <- exp(seq(log(0.001), log(10), length.out=20))
+time_cv <- function(method) {
+  errors <- sapply(lambda_grid, function(lam) sapply(5:9, function(v) {
+    tr <- which(df$month < v); va <- which(df$month == v)
+    mse(Y[va],pen_predict(X[tr,],Y[tr],X[va,],lam,method))
+  }))
+  means <- colMeans(errors)
+  list(lambda=lambda_grid, cvm=means, cvsd=apply(errors,2,sd),
+       lambda.min=lambda_grid[which.min(means)])
+}
+ridge_model_cv <- time_cv("ridge")
+lasso_model_cv <- time_cv("lasso")
 ridge_cv_table <- data.frame(
   log_lambda = log(ridge_model_cv$lambda),
   cvm = ridge_model_cv$cvm,
@@ -305,34 +331,31 @@ dev.off()
 # Box 18--24: 回归树
 # ------------------------------------------------------------------------------
 
-formCART <- price ~ living_area + monthly_fee + city_area +
+formCART <- second_hand_yoy ~ new_house_yoy + second_hand_mom + new_house_mom +
   first_tier + month_numeric + city_factor
-CART_model <- rpart(formCART, data = df_train,
-                    control = rpart.control(minsplit = 20, minbucket = 5, cp = 0))
-cp_table <- printcp(CART_model)
-best_cp <- cp_table[which.min(cp_table[, "xerror"]), "CP"]
-pruned_tree <- prune(CART_model, cp = best_cp)
-write.csv(as.data.frame(cp_table),
-          file.path(table_dir, "chapter10_cart_cp_table.csv"),
-          row.names = FALSE, fileEncoding = "UTF-8")
+cp_grid <- c(0,0.001,0.003,0.01,0.03,0.1)
+cp_errors <- sapply(cp_grid, function(cp) mean(sapply(5:9,function(v) {
+  fit <- rpart(formCART, data=df[df$month < v, ],
+    control=rpart.control(minsplit=20,minbucket=5,cp=cp,xval=0))
+  mse(df$second_hand_yoy[df$month == v],predict(fit,newdata=df[df$month == v, ]))
+})))
+best_cp <- cp_grid[which.min(cp_errors)]
+pruned_tree <- rpart(formCART, data=df_train,
+  control=rpart.control(minsplit=20,minbucket=5,cp=best_cp,xval=0))
+cp_table <- data.frame(CP=cp_grid, time_cv_mse=cp_errors)
+write.csv(cp_table,file.path(table_dir,"chapter10_cart_cp_table.csv"),row.names=FALSE)
 
 display_df <- df_train
-display_df$`新房同比指数` <- display_df$living_area
-display_df$`二手住宅环比指数` <- display_df$monthly_fee
-display_df$`新建住宅环比指数` <- display_df$city_area
+display_df$`新房同比指数` <- display_df$new_house_yoy
+display_df$`二手住宅环比指数` <- display_df$second_hand_mom
+display_df$`新建住宅环比指数` <- display_df$new_house_mom
 display_df$`一线城市` <- display_df$first_tier
 display_df$`月份` <- display_df$month_numeric
-display_form <- price ~ `新房同比指数` + `二手住宅环比指数` +
+display_form <- second_hand_yoy ~ `新房同比指数` + `二手住宅环比指数` +
   `新建住宅环比指数` + `一线城市` + `月份`
 display_tree <- rpart(display_form, data = display_df,
                       control = rpart.control(maxdepth = 3, minsplit = 30,
-                                              minbucket = 12, cp = 0))
-display_cp <- printcp(display_tree)
-display_min <- which.min(display_cp[, "xerror"])
-display_threshold <- display_cp[display_min, "xerror"] + display_cp[display_min, "xstd"]
-display_1se <- which(display_cp[, "xerror"] <= display_threshold)[1]
-display_tree <- prune(display_tree, cp = display_cp[display_1se, "CP"])
-
+                                              minbucket = 12, cp = best_cp, xval=0))
 open_png("chapter10_pruned_regression_tree.png", width = 2400, height = 1500)
 par(mar = c(1, 1, 4, 1) + 0.1, xpd = NA)
 if (requireNamespace("rpart.plot", quietly = TRUE)) {
@@ -356,17 +379,17 @@ dev.off()
 # Box 25--42: 不同预测模型的比较
 # ------------------------------------------------------------------------------
 
-ols_linear <- lm(price ~ living_area + monthly_fee + city_area + first_tier,
+ols_linear <- lm(second_hand_yoy ~ new_house_yoy + second_hand_mom + new_house_mom + first_tier,
                  data = df_train)
-ols_poly <- lm(price ~ living_area + living_area2 + living_area3 +
-                 living_area4 + living_area5 +
-                 monthly_fee + city_area + first_tier + month_numeric + city_factor,
+ols_poly <- lm(second_hand_yoy ~ new_house_yoy + new_house_yoy2 + new_house_yoy3 +
+                 new_house_yoy4 + new_house_yoy5 +
+                 second_hand_mom + new_house_mom + first_tier + month_numeric + city_factor,
                data = df_train)
 
 yhat_ols_linear <- predict(ols_linear, newdata = df)
 yhat_ols_poly <- predict(ols_poly, newdata = df)
-yhat_ridge <- as.numeric(predict(ridge_model_cv, newx = X, s = "lambda.min"))
-yhat_lasso <- as.numeric(predict(lasso_model_cv, newx = X, s = "lambda.min"))
+yhat_ridge <- pen_predict(X[train_ind,],Y[train_ind],X,ridge_model_cv$lambda.min,"ridge")
+yhat_lasso <- pen_predict(X[train_ind,],Y[train_ind],X,lasso_model_cv$lambda.min,"lasso")
 yhat_tree <- predict(pruned_tree, newdata = df)
 
 YHAT_models <- list(yhat_ols_linear, yhat_ols_poly, yhat_ridge,
@@ -417,24 +440,24 @@ legend("topright", legend = c("训练集 MSE", "测试集 MSE"),
 dev.off()
 
 open_png("chapter10_test_actual_vs_predicted.png")
-best_yhat <- YHAT_models[[which.min(model_compare$`测试集 MSE`)]]
-plot(Y[test_ind], best_yhat[test_ind],
+display_yhat <- yhat_ols_linear  # Prespecified baseline; never select on test MSE.
+plot(Y[test_ind], display_yhat[test_ind],
      pch = 16, col = rgb(0.13, 0.40, 0.67, 0.55),
      xlab = "实际二手住宅同比价格指数",
-     ylab = "最佳模型预测值",
+     ylab = "OLS线性基准预测值",
      main = "测试集：实际值与预测值")
 abline(0, 1, col = "#D73027", lwd = 2, lty = 2)
 dev.off()
 
 summary_table <- data.frame(
   指标 = c("样本量", "训练集样本量", "测试集样本量",
-         "简单 OLS 5 折 CV 平均 MSE", "岭回归 lambda.min",
-         "LASSO lambda.min", "测试集最小 MSE", "测试集最优模型"),
+         "简单 OLS 扩展窗口 CV 平均 MSE", "岭回归 lambda.min",
+         "LASSO lambda.min", "固定展示模型测试集 MSE", "固定展示模型"),
   数值 = c(n, length(train_ind), length(test_ind),
          mean(MSE_hat), ridge_model_cv$lambda.min,
          lasso_model_cv$lambda.min,
-         min(model_compare$`测试集 MSE`),
-         model_compare$模型[which.min(model_compare$`测试集 MSE`)])
+         model_compare$`测试集 MSE`[1],
+         model_compare$模型[1])
 )
 write.csv(summary_table,
           file.path(result_dir, "chapter10_summary.csv"),
@@ -442,5 +465,5 @@ write.csv(summary_table,
 
 cat("Chapter 10 finished.\n")
 cat("Sample size:", n, "\n")
-cat("Best test model:", model_compare$模型[which.min(model_compare$`测试集 MSE`)], "\n")
-cat("Best test MSE:", round(min(model_compare$`测试集 MSE`), 4), "\n")
+cat("Prespecified display model:", model_compare$模型[1], "\n")
+cat("Prespecified baseline test MSE:", round(model_compare$`测试集 MSE`[1], 4), "\n")

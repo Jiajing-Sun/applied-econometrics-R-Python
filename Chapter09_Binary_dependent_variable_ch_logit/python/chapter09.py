@@ -6,10 +6,10 @@ Textbook data:
 
 教学对应关系：
     high_income                   -> ACS 个人收入是否处于最高四分位
-    share_tertiary_school         -> 是否本科及以上学历
-    lnpop                         -> log(年龄)
+    bachelor         -> 是否本科及以上学历
+    ln_age                         -> log(年龄)
     default_next_month            -> 下月是否信用卡违约
-    blood_pressure                -> 过去还款状态 pay_0
+    pay_delay                -> 过去还款状态 pay_0
     male                          -> 男性
     age                           -> 年龄
 
@@ -48,8 +48,8 @@ def normal_pdf(x: np.ndarray | float) -> np.ndarray | float:
 
 
 def normal_pvalue(z: np.ndarray) -> np.ndarray:
-    cdf = normal_cdf(np.abs(z))
-    return np.maximum(0.0, 2 * (1 - cdf))
+    # erfc evaluates the tail directly, avoiding cancellation from 1-CDF.
+    return np.vectorize(math.erfc)(np.abs(z)/math.sqrt(2))
 
 
 def sigmoid(x: np.ndarray) -> np.ndarray:
@@ -72,7 +72,9 @@ def fit_ols(y: np.ndarray, X: np.ndarray, names: list[str]) -> dict[str, object]
     resid = y - fitted
     rss = float((resid**2).sum())
     sigma2 = rss / (n - p)
-    vcov = sigma2 * xtx_inv
+    # HC1 robust covariance for the linear probability model.
+    meat = X.T @ (X * (resid**2)[:, None])
+    vcov = (n/(n-p)) * xtx_inv @ meat @ xtx_inv
     se = np.sqrt(np.diag(vcov))
     tval = beta / se
     return {

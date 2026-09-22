@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = second_hand_yoy ~ first_tier_city, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.7813 -1.2818  0.2182  1.4182  6.1182 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     93.58182    0.07038 1329.65  < 2e-16 ***
+first_tier_city  2.19943    0.29442    7.47 2.01e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.981 on 838 degrees of freedom
+Multiple R-squared:  0.06244,	Adjusted R-squared:  0.06132 
+F-statistic: 55.81 on 1 and 838 DF,  p-value: 2.011e-13
+

@@ -13,7 +13,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -313,14 +313,22 @@ fit_low <- lm(y_low ~ x_r2)
 fit_high <- lm(y_high ~ x_r2)
 plot(x_r2, y_low, pch = 16, col = adjustcolor("#2C7FB8", alpha.f = 0.65),
      xlab = "解释变量X", ylab = "被解释变量Y",
-     main = sprintf("解释度较低：R² = %.2f", summary(fit_low)$r.squared))
+     main = sprintf("解释度较低：R^2 = %.2f", summary(fit_low)$r.squared))
 abline(fit_low, col = "#D95F0E", lwd = 2)
 grid(col = "gray85")
 plot(x_r2, y_high, pch = 16, col = adjustcolor("#2C7FB8", alpha.f = 0.65),
      xlab = "解释变量X", ylab = "被解释变量Y",
-     main = sprintf("解释度较高：R² = %.2f", summary(fit_high)$r.squared))
+     main = sprintf("解释度较高：R^2 = %.2f", summary(fit_high)$r.squared))
 abline(fit_high, col = "#D95F0E", lwd = 2)
 grid(col = "gray85")
 dev.off()
 
 message("Chapter 02 complete. Outputs written to: ", chapter_dir)
+
+# Exact quantile bins, retaining tied X values in one interval.
+breaks <- quantile(df$new_house_yoy,probs=seq(0,1,.2),type=7)
+bin <- cut(df$new_house_yoy,breaks=breaks,include.lowest=TRUE,dig.lab=6)
+bins <- data.frame(interval=levels(bin),n=as.integer(table(bin)),
+ mean_y=as.numeric(tapply(df$second_hand_yoy,bin,mean)))
+stopifnot(sum(bins$n)==840)
+write.csv(bins,file.path(table_dir,"chapter02_quantile_bins.csv"),row.names=FALSE)

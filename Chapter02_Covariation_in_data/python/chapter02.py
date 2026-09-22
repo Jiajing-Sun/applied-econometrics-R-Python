@@ -240,3 +240,9 @@ lm_lines = [
 (RESULT_DIR / "python_chapter02_lm_summary.txt").write_text("\n".join(lm_lines), encoding="utf-8")
 
 print("\n".join(lm_lines))
+
+# Same linear quantiles and right-closed intervals as R type=7.
+bin = pd.qcut(df["new_house_yoy"],5,duplicates="raise")
+bins=df.assign(bin=bin).groupby("bin",observed=True)["second_hand_yoy"].agg(n="size",mean_y="mean")
+assert int(bins.n.sum())==840
+bins.to_csv(TABLE_DIR/"python_chapter02_quantile_bins.csv")

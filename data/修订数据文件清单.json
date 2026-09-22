@@ -1,0 +1,187 @@
+[
+  {
+    "path": "data/README.md",
+    "bytes": 2942,
+    "sha256": "81d98d2414b1250f894a1b85be494f899789f17891f6db8c26dd49a02a3a78c9"
+  },
+  {
+    "path": "data/chapter_dataset_map.csv",
+    "bytes": 4902,
+    "sha256": "bbcc5bbb456a998289e44950c684b3b20e85d00ad09f6bf68b6c5a40712cb6fa"
+  },
+  {
+    "path": "data/data_license_inventory.csv",
+    "bytes": 2758,
+    "sha256": "64b3fe44b1cbfa2cb6d1988f6bb4b0b61a56f65aa41b60d1328f7d18797c537a"
+  },
+  {
+    "path": "data/metadata/appendix_vot_simulated.json",
+    "bytes": 296,
+    "sha256": "8fe2f4849b3f89e92ace32d65f6ab7e9dc39d4eb427e47587b5a3fe39ab16395"
+  },
+  {
+    "path": "data/metadata/chapter04_excluded_aggregates.csv",
+    "bytes": 2638,
+    "sha256": "1755a47697d821c6f438eef502658549e2332b813cdeb45e34b4da40a019e85d"
+  },
+  {
+    "path": "data/metadata/round2_simulated_data.json",
+    "bytes": 855,
+    "sha256": "70a21aa2b8a248f3612114f2c7cc8e34e9adda419a447d8b99693e9dd4b38d89"
+  },
+  {
+    "path": "data/metadata/wb_country_metadata_20260922.json",
+    "bytes": 113590,
+    "sha256": "d29d57f8adf954c5e2a1520a02fb2c7b45575d8db3bd327a9dff47d66914231c"
+  },
+  {
+    "path": "data/metadata/数据字典与样本规则_20260922.md",
+    "bytes": 8166,
+    "sha256": "ecc1638bcec6b74b4b8a0476c55e09c12321abfac83b7f1beb1191e224eeae8e"
+  },
+  {
+    "path": "data/metadata/数据质量核验_20260922.json",
+    "bytes": 20700,
+    "sha256": "b254338d2f11fe62860c20d615be6e0b6d55d3085dc0cd549e3df0ad209b5ce8"
+  },
+  {
+    "path": "data/processed/acs_pums_california_persons_2023_selected.csv",
+    "bytes": 20655692,
+    "sha256": "903785fefff9be8b5ad5c38f55aad039cc12cbf37feb5928a43781850ff3cab3"
+  },
+  {
+    "path": "data/processed/appendix_choice_vot_simulated.csv",
+    "bytes": 47983,
+    "sha256": "74025b9079352438304d2408db456087642557c7e5f86019c1a566044d638275"
+  },
+  {
+    "path": "data/processed/bea_us_state_gdp_income_panel_1997_2025.csv",
+    "bytes": 104131,
+    "sha256": "b58052864c87c7efa0646474c69d8590e46e685f4b69e0794fabbe51d04e695f"
+  },
+  {
+    "path": "data/processed/bls_state_unemployment_cpi_monthly_2015_2025.csv",
+    "bytes": 425976,
+    "sha256": "71f3464de07b2735fb73726f783557b153c0329f4c2cea136af431ebbeff91e4"
+  },
+  {
+    "path": "data/processed/chapter04_wdi_life_gdp_2024_economies.csv",
+    "bytes": 25240,
+    "sha256": "919f7b3be162eccc05594a5a7f23b20090e944b421f07c8aa7c1cac586ffb548"
+  },
+  {
+    "path": "data/processed/chapter13_did_simulated.csv",
+    "bytes": 14580,
+    "sha256": "4aa3284236f695786dbd5305d1eb26e85ae164c936383809ae141d59f64956e1"
+  },
+  {
+    "path": "data/processed/chapter13_event_common_timing_simulated.csv",
+    "bytes": 17135,
+    "sha256": "d94257c9b775bb246b4cf75f9728edff5d2859379838ff84702d25396e6e8368"
+  },
+  {
+    "path": "data/processed/chapter13_iv_simulated.csv",
+    "bytes": 44393,
+    "sha256": "174afb1ee3c4470e5d0e23385ebe31cad7fedcfc72977c95c3f703b797be0b93"
+  },
+  {
+    "path": "data/processed/chapter13_mediation_simulated.csv",
+    "bytes": 36381,
+    "sha256": "1eb140f900179c9685c5d75acf466ed0f2108fcddb1ddf71ba4811980ff4ec4d"
+  },
+  {
+    "path": "data/processed/chapter13_rd_continuous_simulated.csv",
+    "bytes": 119128,
+    "sha256": "363d8dca7c4e47a48201ac7ec17bbe854f189f3c7ec503002c3559febd44791c"
+  },
+  {
+    "path": "data/processed/chapter13_scm_cities_simulated.csv",
+    "bytes": 7089,
+    "sha256": "c8b83ccb517cd177e9eaff8919eea130a731e786d78efa5523271eebc80d9f6b"
+  },
+  {
+    "path": "data/processed/data_license_inventory.csv",
+    "bytes": 2758,
+    "sha256": "64b3fe44b1cbfa2cb6d1988f6bb4b0b61a56f65aa41b60d1328f7d18797c537a"
+  },
+  {
+    "path": "data/processed/epa_airdata_county_annual_aqi_2015_2024.csv",
+    "bytes": 655602,
+    "sha256": "16a50ad7e90bf98faad75b8d46384e427028977c8bb168f5d6e8cf672cde5ae5"
+  },
+  {
+    "path": "data/processed/faostat_crops_livestock_selected_1990_2024.csv",
+    "bytes": 4447831,
+    "sha256": "ca39f4f811738d3ff64fb9fbde6046b9ac6470901c2a8331cac0b5cd61e07222"
+  },
+  {
+    "path": "data/processed/nbs_70city_house_price_2025.csv",
+    "bytes": 191730,
+    "sha256": "f258dd7924f71c71f490dff4b6050f298e27639d408314f3397a29f722020e39"
+  },
+  {
+    "path": "data/processed/nhtsa_fars_rd_age18_24_2018_2023.csv",
+    "bytes": 11105975,
+    "sha256": "67e1a19522b3e18e8e1f46a0b08a9ad8d9a84a37907df120bd92939427d83854"
+  },
+  {
+    "path": "data/processed/owid_china_co2_1907_2024.csv",
+    "bytes": 3249,
+    "sha256": "3aa6a9fe777ac5a91d8a945da0c7e2fbdd88c133d188a61281286601bd0164b8"
+  },
+  {
+    "path": "data/processed/owid_global_annual_co2.csv",
+    "bytes": 890568,
+    "sha256": "cd0e0334f2f5bdd401af7e04ec949959a3bceb319b42ac1a8fd9f357b2b169da"
+  },
+  {
+    "path": "data/processed/uci_credit_default_clients.csv",
+    "bytes": 2698314,
+    "sha256": "1f3f88e833faad5c97ebc8c9a14ce1aa6063fae0e4badd06383f5097463e91df"
+  },
+  {
+    "path": "data/processed/wdi_china_macro_1960_2024.csv",
+    "bytes": 7214,
+    "sha256": "dcfa0768e941dd833066ea2c57f64467bfe9a7ddde4ec18b4508e18d92ebd8bd"
+  },
+  {
+    "path": "data/processed/wdi_global_selected_indicators_wide.csv",
+    "bytes": 1407771,
+    "sha256": "a4e7fdd74793354ba5d7af8c07105f16c939146245fee81b7bca824873c70fe9"
+  },
+  {
+    "path": "data/processed_manifest.csv",
+    "bytes": 4930,
+    "sha256": "e5c5f74e1f43cb1f4ab952de9a9e3701ad0a79bd9fdc0883ce1d53cba65d1c78"
+  },
+  {
+    "path": "data/scripts/generate_causal_simulations.py",
+    "bytes": 1171,
+    "sha256": "821c4b757ffea6259685b6d232d2517c32aa52dbc8b34d21ae862c376b592971"
+  },
+  {
+    "path": "data/scripts/generate_did_iv_simulations.R",
+    "bytes": 823,
+    "sha256": "557f6653cba0efdf39cc0a8ec22b163b3841fd2961aa2e58d4cb8f306acf6965"
+  },
+  {
+    "path": "data/scripts/generate_round2_teaching_data.py",
+    "bytes": 1632,
+    "sha256": "bbded5292f22911d9f0cdd5b61d3672b9ea8bccae6afff6dc4358353bb357a0c"
+  },
+  {
+    "path": "data/scripts/generate_vot_data.py",
+    "bytes": 795,
+    "sha256": "692f8ae5741fb87a24c40970ac389a911b3fb17d29e0d344a50efdddaf4ced8b"
+  },
+  {
+    "path": "data/scripts/prepare_chapter04.py",
+    "bytes": 2329,
+    "sha256": "014034f67cc32ae52849a3d8a63b06c298beed38791dee7bd63c43dcdfd9cdeb"
+  },
+  {
+    "path": "data/修订数据说明_20260922.md",
+    "bytes": 2084,
+    "sha256": "64f9b943e452ba7315b7552da733f36c52b394026830e29c420a62f43919555c"
+  }
+]

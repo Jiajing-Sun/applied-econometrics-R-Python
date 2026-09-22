@@ -1,0 +1,833 @@
+{
+  "checked_on": "2026-09-22",
+  "scope": "读取本地processed CSV和已运行主脚本输出；未重新下载或改写任何观测数据；统计空单元缺失与候选键，不把重复外观自动判作重复人员。",
+  "files": [
+    {
+      "file": "acs_pums_california_persons_2023_selected.csv",
+      "data_type": "observed",
+      "rows": 392318,
+      "columns": [
+        "serialno",
+        "person_order",
+        "person_weight",
+        "age",
+        "has_employer_health_insurance",
+        "education_code",
+        "sex",
+        "employment_status_code",
+        "personal_income",
+        "poverty_income_ratio",
+        "female",
+        "employed",
+        "has_bachelor_or_higher"
+      ],
+      "missing_counts": {
+        "serialno": 0,
+        "person_order": 0,
+        "person_weight": 0,
+        "age": 0,
+        "has_employer_health_insurance": 0,
+        "education_code": 9980,
+        "sex": 0,
+        "employment_status_code": 62889,
+        "personal_income": 58042,
+        "poverty_income_ratio": 14939,
+        "female": 0,
+        "employed": 0,
+        "has_bachelor_or_higher": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "serialno",
+        "person_order"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {},
+      "sha256": "903785fefff9be8b5ad5c38f55aad039cc12cbf37feb5928a43781850ff3cab3",
+      "size_bytes": 20655692
+    },
+    {
+      "file": "appendix_choice_vot_simulated.csv",
+      "data_type": "simulated",
+      "rows": 1200,
+      "columns": [
+        "choice",
+        "time_diff",
+        "cost_diff"
+      ],
+      "missing_counts": {
+        "choice": 0,
+        "time_diff": 0,
+        "cost_diff": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {},
+      "sha256": "74025b9079352438304d2408db456087642557c7e5f86019c1a566044d638275",
+      "size_bytes": 47983
+    },
+    {
+      "file": "bea_us_state_gdp_income_panel_1997_2025.csv",
+      "data_type": "observed",
+      "rows": 1827,
+      "columns": [
+        "geo_fips",
+        "state",
+        "year",
+        "real_gdp_millions_2017_usd",
+        "current_gdp_millions_usd",
+        "personal_income_millions_usd",
+        "population",
+        "per_capita_personal_income_usd"
+      ],
+      "missing_counts": {
+        "geo_fips": 0,
+        "state": 0,
+        "year": 0,
+        "real_gdp_millions_2017_usd": 87,
+        "current_gdp_millions_usd": 87,
+        "personal_income_millions_usd": 87,
+        "population": 867,
+        "per_capita_personal_income_usd": 867
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "geo_fips",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 87,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "1997",
+          "max": "2025"
+        }
+      },
+      "sha256": "b58052864c87c7efa0646474c69d8590e46e685f4b69e0794fabbe51d04e695f",
+      "size_bytes": 104131,
+      "conflicting_nonmissing_cells_after_name_cleanup": 0,
+      "note": "87个多余键记录来自Alaska/Hawaii/Far West名称星号差异；各列非缺失值无冲突，脚本先规范名称再逐列取首个非缺失值。"
+    },
+    {
+      "file": "bls_state_unemployment_cpi_monthly_2015_2025.csv",
+      "data_type": "observed",
+      "rows": 6360,
+      "columns": [
+        "series_id",
+        "year",
+        "month",
+        "date",
+        "value",
+        "series_type",
+        "state_fips"
+      ],
+      "missing_counts": {
+        "series_id": 0,
+        "year": 0,
+        "month": 0,
+        "date": 0,
+        "value": 0,
+        "series_type": 0,
+        "state_fips": 240
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "series_id",
+        "year",
+        "month"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2015",
+          "max": "2024"
+        },
+        "date": {
+          "min": "2015-01",
+          "max": "2024-12"
+        }
+      },
+      "sha256": "71f3464de07b2735fb73726f783557b153c0329f4c2cea136af431ebbeff91e4",
+      "size_bytes": 425976
+    },
+    {
+      "file": "chapter04_wdi_life_gdp_2024_economies.csv",
+      "data_type": "observed",
+      "rows": 192,
+      "columns": [
+        "country",
+        "country_code",
+        "year",
+        "gdp_per_capita_constant_2015_usd",
+        "life_expectancy",
+        "log_gdp_per_capita",
+        "population",
+        "region",
+        "income_group",
+        "log_gdp_pc"
+      ],
+      "missing_counts": {
+        "country": 0,
+        "country_code": 0,
+        "year": 0,
+        "gdp_per_capita_constant_2015_usd": 0,
+        "life_expectancy": 0,
+        "log_gdp_per_capita": 0,
+        "population": 0,
+        "region": 0,
+        "income_group": 0,
+        "log_gdp_pc": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "country_code",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2024",
+          "max": "2024"
+        }
+      },
+      "sha256": "919f7b3be162eccc05594a5a7f23b20090e944b421f07c8aa7c1cac586ffb548",
+      "size_bytes": 25240
+    },
+    {
+      "file": "chapter13_did_simulated.csv",
+      "data_type": "simulated",
+      "rows": 280,
+      "columns": [
+        "unit",
+        "period",
+        "treated",
+        "unit_fe",
+        "post",
+        "common_trend",
+        "tau",
+        "y"
+      ],
+      "missing_counts": {
+        "unit": 0,
+        "period": 0,
+        "treated": 0,
+        "unit_fe": 0,
+        "post": 0,
+        "common_trend": 0,
+        "tau": 0,
+        "y": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "unit",
+        "period"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {},
+      "sha256": "4aa3284236f695786dbd5305d1eb26e85ae164c936383809ae141d59f64956e1",
+      "size_bytes": 14580
+    },
+    {
+      "file": "chapter13_event_common_timing_simulated.csv",
+      "data_type": "simulated",
+      "rows": 480,
+      "columns": [
+        "id",
+        "year",
+        "treated",
+        "treat_year",
+        "rel_time",
+        "Y"
+      ],
+      "missing_counts": {
+        "id": 0,
+        "year": 0,
+        "treated": 0,
+        "treat_year": 0,
+        "rel_time": 0,
+        "Y": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "id",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2010",
+          "max": "2017"
+        }
+      },
+      "sha256": "d94257c9b775bb246b4cf75f9728edff5d2859379838ff84702d25396e6e8368",
+      "size_bytes": 17135
+    },
+    {
+      "file": "chapter13_iv_simulated.csv",
+      "data_type": "simulated",
+      "rows": 800,
+      "columns": [
+        "y",
+        "d",
+        "z",
+        "u"
+      ],
+      "missing_counts": {
+        "y": 0,
+        "d": 0,
+        "z": 0,
+        "u": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {},
+      "sha256": "174afb1ee3c4470e5d0e23385ebe31cad7fedcfc72977c95c3f703b797be0b93",
+      "size_bytes": 44393
+    },
+    {
+      "file": "chapter13_mediation_simulated.csv",
+      "data_type": "simulated",
+      "rows": 600,
+      "columns": [
+        "X",
+        "D",
+        "M",
+        "Y"
+      ],
+      "missing_counts": {
+        "X": 0,
+        "D": 0,
+        "M": 0,
+        "Y": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {},
+      "sha256": "1eb140f900179c9685c5d75acf466ed0f2108fcddb1ddf71ba4811980ff4ec4d",
+      "size_bytes": 36381
+    },
+    {
+      "file": "chapter13_rd_continuous_simulated.csv",
+      "data_type": "simulated",
+      "rows": 2000,
+      "columns": [
+        "X",
+        "D",
+        "Y_sharp",
+        "Y_fuzzy"
+      ],
+      "missing_counts": {
+        "X": 0,
+        "D": 0,
+        "Y_sharp": 0,
+        "Y_fuzzy": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {},
+      "sha256": "363d8dca7c4e47a48201ac7ec17bbe854f189f3c7ec503002c3559febd44791c",
+      "size_bytes": 119128
+    },
+    {
+      "file": "chapter13_scm_cities_simulated.csv",
+      "data_type": "simulated",
+      "rows": 275,
+      "columns": [
+        "city",
+        "year",
+        "outcome"
+      ],
+      "missing_counts": {
+        "city": 0,
+        "year": 0,
+        "outcome": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "city",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2001",
+          "max": "2025"
+        }
+      },
+      "sha256": "c8b83ccb517cd177e9eaff8919eea130a731e786d78efa5523271eebc80d9f6b",
+      "size_bytes": 7089
+    },
+    {
+      "file": "data_license_inventory.csv",
+      "data_type": "metadata",
+      "rows": 10,
+      "columns": [
+        "dataset",
+        "risk_level",
+        "license_or_terms",
+        "license_url",
+        "source_url",
+        "redistribution_note"
+      ],
+      "missing_counts": {
+        "dataset": 0,
+        "risk_level": 0,
+        "license_or_terms": 0,
+        "license_url": 0,
+        "source_url": 0,
+        "redistribution_note": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "dataset"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {},
+      "sha256": "64b3fe44b1cbfa2cb6d1988f6bb4b0b61a56f65aa41b60d1328f7d18797c537a",
+      "size_bytes": 2758
+    },
+    {
+      "file": "epa_airdata_county_annual_aqi_2015_2024.csv",
+      "data_type": "observed",
+      "rows": 10147,
+      "columns": [
+        "state",
+        "county",
+        "year",
+        "days_with_aqi",
+        "good_days",
+        "moderate_days",
+        "unhealthy_for_sensitive_groups_days",
+        "unhealthy_days",
+        "very_unhealthy_days",
+        "hazardous_days",
+        "max_aqi",
+        "90th_percentile_aqi",
+        "median_aqi",
+        "days_co",
+        "days_no2",
+        "days_ozone",
+        "days_pm2_5",
+        "days_pm10"
+      ],
+      "missing_counts": {
+        "state": 0,
+        "county": 0,
+        "year": 0,
+        "days_with_aqi": 0,
+        "good_days": 0,
+        "moderate_days": 0,
+        "unhealthy_for_sensitive_groups_days": 0,
+        "unhealthy_days": 0,
+        "very_unhealthy_days": 0,
+        "hazardous_days": 0,
+        "max_aqi": 0,
+        "90th_percentile_aqi": 0,
+        "median_aqi": 0,
+        "days_co": 0,
+        "days_no2": 0,
+        "days_ozone": 0,
+        "days_pm2_5": 0,
+        "days_pm10": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "state",
+        "county",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2015",
+          "max": "2024"
+        }
+      },
+      "sha256": "16a50ad7e90bf98faad75b8d46384e427028977c8bb168f5d6e8cf672cde5ae5",
+      "size_bytes": 655602
+    },
+    {
+      "file": "faostat_crops_livestock_selected_1990_2024.csv",
+      "data_type": "observed",
+      "rows": 80715,
+      "columns": [
+        "area_code_m49",
+        "country",
+        "item",
+        "element",
+        "year",
+        "unit",
+        "value",
+        "flag"
+      ],
+      "missing_counts": {
+        "area_code_m49": 0,
+        "country": 0,
+        "item": 0,
+        "element": 0,
+        "year": 0,
+        "unit": 0,
+        "value": 600,
+        "flag": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "area_code_m49",
+        "item",
+        "element",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "1990",
+          "max": "2024"
+        }
+      },
+      "sha256": "ca39f4f811738d3ff64fb9fbde6046b9ac6470901c2a8331cac0b5cd61e07222",
+      "size_bytes": 4447831
+    },
+    {
+      "file": "nbs_70city_house_price_2025.csv",
+      "data_type": "observed",
+      "rows": 1680,
+      "columns": [
+        "year",
+        "month",
+        "date",
+        "city",
+        "market",
+        "mom_index",
+        "yoy_index",
+        "ytd_average_index",
+        "source_url"
+      ],
+      "missing_counts": {
+        "year": 0,
+        "month": 0,
+        "date": 0,
+        "city": 0,
+        "market": 0,
+        "mom_index": 0,
+        "yoy_index": 0,
+        "ytd_average_index": 140,
+        "source_url": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "year",
+        "month",
+        "city",
+        "market"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "2025",
+          "max": "2025"
+        },
+        "date": {
+          "min": "2025-01",
+          "max": "2025-12"
+        }
+      },
+      "sha256": "f258dd7924f71c71f490dff4b6050f298e27639d408314f3397a29f722020e39",
+      "size_bytes": 191730
+    },
+    {
+      "file": "nhtsa_fars_rd_age18_24_2018_2023.csv",
+      "data_type": "observed",
+      "rows": 82615,
+      "columns": [
+        "st_case",
+        "state",
+        "statename",
+        "age",
+        "sex",
+        "sexname",
+        "inj_sev",
+        "inj_sevname",
+        "drinking",
+        "drinkingname",
+        "alc_status",
+        "alc_statusname",
+        "month",
+        "day",
+        "day_week",
+        "hour",
+        "latitude",
+        "longitud",
+        "year",
+        "rd_age_18_24"
+      ],
+      "missing_counts": {
+        "st_case": 0,
+        "state": 0,
+        "statename": 0,
+        "age": 0,
+        "sex": 0,
+        "sexname": 0,
+        "inj_sev": 0,
+        "inj_sevname": 0,
+        "drinking": 0,
+        "drinkingname": 0,
+        "alc_status": 0,
+        "alc_statusname": 0,
+        "month": 0,
+        "day": 0,
+        "day_week": 0,
+        "hour": 0,
+        "latitude": 0,
+        "longitud": 0,
+        "year": 0,
+        "rd_age_18_24": 0
+      },
+      "full_row_duplicate_count": 1230,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {
+        "year": {
+          "min": "2018",
+          "max": "2023"
+        }
+      },
+      "sha256": "67e1a19522b3e18e8e1f46a0b08a9ad8d9a84a37907df120bd92939427d83854",
+      "size_bytes": 11105975,
+      "note": "无人员编号，不能核验人员主键；全列相同也可能是不同人员选列相同，不删重。drinking的8/9共42680条是语义缺失，CSV中并非空值。year/st_case只作事故聚类键。",
+      "alcohol_known_rows": 39935,
+      "drinking_code_counts": {
+        "8": 34469,
+        "0": 30195,
+        "1": 9740,
+        "9": 8211
+      }
+    },
+    {
+      "file": "owid_china_co2_1907_2024.csv",
+      "data_type": "observed",
+      "rows": 118,
+      "columns": [
+        "Entity",
+        "Code",
+        "Year",
+        "Annual CO₂ emissions"
+      ],
+      "missing_counts": {
+        "Entity": 0,
+        "Code": 0,
+        "Year": 0,
+        "Annual CO₂ emissions": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "Entity",
+        "Year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "Year": {
+          "min": "1907",
+          "max": "2024"
+        }
+      },
+      "sha256": "3aa6a9fe777ac5a91d8a945da0c7e2fbdd88c133d188a61281286601bd0164b8",
+      "size_bytes": 3249
+    },
+    {
+      "file": "owid_global_annual_co2.csv",
+      "data_type": "observed",
+      "rows": 29384,
+      "columns": [
+        "Entity",
+        "Code",
+        "Year",
+        "Annual CO₂ emissions"
+      ],
+      "missing_counts": {
+        "Entity": 0,
+        "Code": 3311,
+        "Year": 0,
+        "Annual CO₂ emissions": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "Entity",
+        "Year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "Year": {
+          "min": "1750",
+          "max": "2024"
+        }
+      },
+      "sha256": "cd0e0334f2f5bdd401af7e04ec949959a3bceb319b42ac1a8fd9f357b2b169da",
+      "size_bytes": 890568
+    },
+    {
+      "file": "uci_credit_default_clients.csv",
+      "data_type": "observed",
+      "rows": 30000,
+      "columns": [
+        "limit_bal",
+        "sex",
+        "education",
+        "marriage",
+        "age",
+        "pay_0",
+        "pay_2",
+        "pay_3",
+        "pay_4",
+        "pay_5",
+        "pay_6",
+        "bill_amt1",
+        "bill_amt2",
+        "bill_amt3",
+        "bill_amt4",
+        "bill_amt5",
+        "bill_amt6",
+        "pay_amt1",
+        "pay_amt2",
+        "pay_amt3",
+        "pay_amt4",
+        "pay_amt5",
+        "pay_amt6",
+        "default_payment_next_month"
+      ],
+      "missing_counts": {
+        "limit_bal": 0,
+        "sex": 0,
+        "education": 0,
+        "marriage": 0,
+        "age": 0,
+        "pay_0": 0,
+        "pay_2": 0,
+        "pay_3": 0,
+        "pay_4": 0,
+        "pay_5": 0,
+        "pay_6": 0,
+        "bill_amt1": 0,
+        "bill_amt2": 0,
+        "bill_amt3": 0,
+        "bill_amt4": 0,
+        "bill_amt5": 0,
+        "bill_amt6": 0,
+        "pay_amt1": 0,
+        "pay_amt2": 0,
+        "pay_amt3": 0,
+        "pay_amt4": 0,
+        "pay_amt5": 0,
+        "pay_amt6": 0,
+        "default_payment_next_month": 0
+      },
+      "full_row_duplicate_count": 35,
+      "candidate_key": [],
+      "candidate_key_duplicate_count": null,
+      "candidate_key_missing_rows": null,
+      "period": {},
+      "sha256": "1f3f88e833faad5c97ebc8c9a14ce1aa6063fae0e4badd06383f5097463e91df",
+      "size_bytes": 2698314,
+      "note": "选列文件无客户ID，不能核验客户主键；不凭全列相同判定重复。"
+    },
+    {
+      "file": "wdi_china_macro_1960_2024.csv",
+      "data_type": "observed",
+      "rows": 65,
+      "columns": [
+        "year",
+        "gdp_constant_2015_usd",
+        "gdp_current_usd",
+        "gdp_growth_pct",
+        "gdp_per_capita_constant_2015_usd",
+        "life_expectancy",
+        "population",
+        "trade_pct_gdp"
+      ],
+      "missing_counts": {
+        "year": 0,
+        "gdp_constant_2015_usd": 0,
+        "gdp_current_usd": 0,
+        "gdp_growth_pct": 1,
+        "gdp_per_capita_constant_2015_usd": 0,
+        "life_expectancy": 0,
+        "population": 0,
+        "trade_pct_gdp": 0
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "1960",
+          "max": "2024"
+        }
+      },
+      "sha256": "dcfa0768e941dd833066ea2c57f64467bfe9a7ddde4ec18b4508e18d92ebd8bd",
+      "size_bytes": 7214
+    },
+    {
+      "file": "wdi_global_selected_indicators_wide.csv",
+      "data_type": "observed",
+      "rows": 16935,
+      "columns": [
+        "country",
+        "country_code",
+        "year",
+        "gdp_growth_pct",
+        "gdp_per_capita_constant_2015_usd",
+        "life_expectancy",
+        "population",
+        "trade_pct_gdp"
+      ],
+      "missing_counts": {
+        "country": 0,
+        "country_code": 0,
+        "year": 0,
+        "gdp_growth_pct": 3038,
+        "gdp_per_capita_constant_2015_usd": 2869,
+        "life_expectancy": 4,
+        "population": 0,
+        "trade_pct_gdp": 6221
+      },
+      "full_row_duplicate_count": 0,
+      "candidate_key": [
+        "country_code",
+        "year"
+      ],
+      "candidate_key_duplicate_count": 0,
+      "candidate_key_missing_rows": 0,
+      "period": {
+        "year": {
+          "min": "1960",
+          "max": "2024"
+        }
+      },
+      "sha256": "a4e7fdd74793354ba5d7af8c07105f16c939146245fee81b7bca824873c70fe9",
+      "size_bytes": 1407771
+    }
+  ]
+}

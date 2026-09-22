@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = second_hand_yoy ~ new_house_yoy, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.6895 -1.0250 -0.0422  1.0435  5.9862 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   38.96357    2.11932   18.39   <2e-16 ***
+new_house_yoy  0.56895    0.02202   25.84   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.526 on 838 degrees of freedom
+Multiple R-squared:  0.4434,	Adjusted R-squared:  0.4428 
+F-statistic: 667.6 on 1 and 838 DF,  p-value: < 2.2e-16
+

@@ -15,7 +15,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -42,11 +42,11 @@ open_png <- function(filename, width = 1800, height = 1300, res = 220) {
   par(family = cn_family, mar = c(5, 5, 3, 1) + 0.1)
 }
 
-coef_table <- function(model, vcov_mat, label) {
+coef_table <- function(model, vcov_mat, label, df_ref=df.residual(model)) {
   est <- coef(model)
   se <- sqrt(diag(vcov_mat))
   tval <- est / se
-  pval <- 2 * (1 - pt(abs(tval), df = df.residual(model)))
+  pval <- 2 * pt(abs(tval), df=df_ref, lower.tail=FALSE)
   data.frame(
     模型 = label,
     项 = names(est),
@@ -164,23 +164,18 @@ legend("topright",
        col = c("#D73027", "#D73027"), lwd = 2.5, lty = c(1, 2), bty = "n")
 dev.off()
 
-did_units <- 40
-did_times <- -3:3
-did_df <- expand.grid(unit = 1:did_units, period = did_times)
-did_df$treated <- as.integer(did_df$unit > did_units / 2)
-unit_fe <- rnorm(did_units, sd = 0.7)
-did_df$unit_fe <- unit_fe[did_df$unit]
-did_df$post <- as.integer(did_df$period >= 0)
-did_df$common_trend <- 0.35 * did_df$period
-did_df$tau <- 1.8 * did_df$treated * did_df$post
-did_df$y <- 5 + did_df$unit_fe + did_df$common_trend + did_df$tau +
-  rnorm(nrow(did_df), sd = 0.5)
+did_df <- read.csv(file.path(repo_dir,"data","processed","chapter13_did_simulated.csv"))
 did_cells <- aggregate(y ~ treated + period, data = did_df, FUN = mean)
 write.csv(did_cells,
           file.path(table_dir, "chapter12_did_simulated_cell_means.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
-did_model <- lm(y ~ treated + post + treated:post, data = did_df)
-write.csv(coef_table(did_model, vcovHC(did_model, type = "HC0"), "模拟DID"),
+did_model <- lm(y ~ treated:post + factor(unit) + factor(period), data=did_df)
+G_did <- length(unique(did_df$unit))
+did_table <- coef_table(did_model,
+    vcovCL(did_model,cluster=did_df$unit,type="HC1",cadjust=TRUE),
+    "模拟DID：双向固定效应，单位聚类CR1", df_ref=G_did-1)
+# 单位固定效应是控制项，不为每个固定效应报告聚类显著性检验。
+write.csv(did_table[did_table$项 == "treated:post", ],
           file.path(table_dir, "chapter12_did_simulated_regression.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 
@@ -201,17 +196,17 @@ legend("topleft", legend = c("对照组", "处理组", "政策开始"),
        pch = c(19, 17, NA), lty = c(1, 1, 2), lwd = 2.4, bty = "n")
 dev.off()
 
-iv_n <- 800
-z <- rbinom(iv_n, 1, 0.5)
-u <- rnorm(iv_n)
-d <- 0.7 * z + 0.9 * u + rnorm(iv_n)
-y_iv <- 1 + 2.0 * d + u + rnorm(iv_n)
-iv_df <- data.frame(y = y_iv, d = d, z = z, u = u)
+iv_df <- read.csv(file.path(repo_dir,"data","processed","chapter13_iv_simulated.csv"))
 iv_ols <- lm(y ~ d, data = iv_df)
 iv_fs <- lm(d ~ z, data = iv_df)
 iv_rf <- lm(y ~ z, data = iv_df)
 iv_df$dhat <- fitted(iv_fs)
 iv_2sls <- lm(y ~ dhat, data = iv_df)
+# 2SLS robust variance uses the STRUCTURAL residual y-X beta, not y-Xhat beta.
+X_iv <- model.matrix(~d,data=iv_df); Xhat_iv <- model.matrix(~dhat,data=iv_df)
+u_iv <- iv_df$y - as.vector(X_iv %*% coef(iv_2sls))
+A_iv <- solve(crossprod(Xhat_iv))
+V_iv <- A_iv %*% crossprod(Xhat_iv, Xhat_iv * as.vector(u_iv^2)) %*% A_iv
 fs_f <- summary(iv_fs)$fstatistic
 iv_table <- rbind(
   data.frame(方程 = "OLS结构式", 关键变量 = "D", 估计值 = coef(iv_ols)["d"],
@@ -221,7 +216,7 @@ iv_table <- rbind(
   data.frame(方程 = "简约式", 关键变量 = "Z", 估计值 = coef(iv_rf)["z"],
              标准误 = sqrt(diag(vcovHC(iv_rf, type = "HC0")))["z"]),
   data.frame(方程 = "2SLS第二阶段", 关键变量 = "Dhat", 估计值 = coef(iv_2sls)["dhat"],
-             标准误 = sqrt(diag(vcovHC(iv_2sls, type = "HC0")))["dhat"])
+             标准误 = sqrt(diag(V_iv))[2])
 )
 write.csv(iv_table,
           file.path(table_dir, "chapter12_iv_simulated_table.csv"),
@@ -244,7 +239,7 @@ df$fatal_injury <- ifelse(df$inj_sev == 4, 1, 0)
 
 h <- 3
 df_h <- df[abs(df$rv) <= h, ]
-write.csv(df_h[, c("year", "state", "statename", "age", "rv", "Z",
+write.csv(df_h[, c("year", "st_case", "state", "statename", "age", "rv", "Z",
                    "alcohol_involved", "male", "fatal_injury")],
           file.path(result_dir, "chapter12_fars_rd_analysis_data.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
@@ -252,7 +247,7 @@ write.csv(df_h[, c("year", "state", "statename", "age", "rv", "Z",
 rd_rf <- lm(alcohol_involved ~ Z + rv + Zrv, data = df_h)
 df_h$Dhat <- df_h$Z
 rd_2sls_naive <- lm(alcohol_involved ~ Dhat + rv + Zrv, data = df_h)
-rd_controls <- lm(alcohol_involved ~ Z + rv + Zrv + male + fatal_injury +
+rd_controls <- lm(alcohol_involved ~ Z + rv + Zrv + male +
                     factor(year), data = df_h)
 
 rd_bw_rows <- data.frame()
@@ -276,11 +271,23 @@ rd_tables <- rbind(
   coef_table(rd_2sls_naive, vcovHC(rd_2sls_naive, type = "HC0"),
              "sharp RD的2SLS等价写法"),
   coef_table(rd_controls, vcovHC(rd_controls, type = "HC0"),
-             "加入性别、伤害严重程度和年份控制")
+             "加入性别和年份控制")
 )
 write.csv(rd_tables,
           file.path(table_dir, "chapter12_fars_rd_hc0_tables.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
+
+
+# Sensitivity to dependence among people in the same recorded accident.
+accident <- interaction(df_h$year,df_h$st_case,drop=TRUE)
+rd_cluster <- rbind(
+ coef_table(rd_rf,vcovCL(rd_rf,cluster=accident,type="HC1",cadjust=TRUE),
+            "未加控制：事故聚类CR1",df_ref=nlevels(accident)-1),
+ coef_table(rd_controls,vcovCL(rd_controls,cluster=accident,type="HC1",cadjust=TRUE),
+            "性别年份控制：事故聚类CR1",df_ref=nlevels(accident)-1))
+write.csv(rd_cluster,file.path(table_dir,"chapter12_fars_accident_cluster.csv"),row.names=FALSE)
+write.csv(data.frame(指标=c("事故聚类数","人员数"),数值=c(nlevels(accident),nrow(df_h))),
+          file.path(result_dir,"chapter12_fars_accident_cluster_counts.csv"),row.names=FALSE)
 
 age_bins <- aggregate(alcohol_involved ~ age, data = df_h, FUN = mean)
 names(age_bins) <- c("年龄", "酒精涉及比例")
@@ -313,20 +320,10 @@ legend("topleft", legend = c("年龄均值", "局部线性拟合", "21岁阈值"
 dev.off()
 
 open_png("chapter12_fars_rd_balance.png")
-balance <- aggregate(cbind(male, fatal_injury) ~ age, data = df_h, FUN = mean)
-balance_y <- range(balance[, c("male", "fatal_injury")], finite = TRUE)
-balance_pad <- diff(balance_y) * 0.12
-plot(balance$age, balance$male, type = "b", pch = 19,
-     col = "#2166AC", lwd = 2,
-     ylim = c(balance_y[1] - balance_pad * 0.4, balance_y[2] + balance_pad),
-     xlab = "年龄",
-     ylab = "比例",
-     main = "阈值附近协变量均衡性示意")
-lines(balance$age, balance$fatal_injury, type = "b", pch = 17,
-      col = "#D73027", lwd = 2)
-abline(v = 21, lty = 2, col = "gray40")
-legend("topright", legend = c("男性比例", "致命伤比例"),
-       col = c("#2166AC", "#D73027"), pch = c(19, 17), lwd = 2, bty = "n")
+balance <- aggregate(male ~ age, data=df_h, FUN=mean)
+plot(balance$age, balance$male, type="b",pch=19,col="#2166AC",lwd=2,
+     xlab="年龄",ylab="男性比例",main="处理前特征的样本构成诊断")
+abline(v=21,lty=2,col="gray40")
 dev.off()
 
 open_png("chapter12_fars_rd_density.png", width = 1500, height = 1100)

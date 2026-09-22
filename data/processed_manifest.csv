@@ -1,15 +1,22 @@
-﻿file,rows,columns,size_mb,columns_preview
-acs_pums_california_persons_2023_selected.csv,392318,13,19.7,serialno; person_order; person_weight; age; has_employer_health_insurance; education_code; sex; employment_status_code; personal_income; poverty_income_ratio; female; employed
-bea_us_state_gdp_income_panel_1997_2025.csv,1827,8,0.1,geo_fips; state; year; real_gdp_millions_2017_usd; current_gdp_millions_usd; personal_income_millions_usd; population; per_capita_personal_income_usd
-bls_state_unemployment_cpi_monthly_2015_2025.csv,6360,7,0.41,series_id; year; month; date; value; series_type; state_fips
-data_license_inventory.csv,10,6,0.0,dataset; risk_level; license_or_terms; license_url; source_url; redistribution_note
-epa_airdata_county_annual_aqi_2015_2024.csv,10147,18,0.63,state; county; year; days_with_aqi; good_days; moderate_days; unhealthy_for_sensitive_groups_days; unhealthy_days; very_unhealthy_days; hazardous_days; max_aqi; 90th_percentile_aqi
-faostat_crops_livestock_selected_1990_2024.csv,80715,8,4.24,area_code_m49; country; item; element; year; unit; value; flag
-nbs_70city_house_price_2025.csv,1680,9,0.18,year; month; date; city; market; mom_index; yoy_index; ytd_average_index; source_url
-nhtsa_fars_rd_age18_24_2018_2023.csv,82615,20,10.59,st_case; state; statename; age; sex; sexname; inj_sev; inj_sevname; drinking; drinkingname; alc_status; alc_statusname
-owid_china_co2_1907_2024.csv,118,4,0.0,Entity; Code; Year; Annual CO₂ emissions
-owid_global_annual_co2.csv,29384,4,0.85,Entity; Code; Year; Annual CO₂ emissions
-uci_credit_default_clients.csv,30000,24,2.57,limit_bal; sex; education; marriage; age; pay_0; pay_2; pay_3; pay_4; pay_5; pay_6; bill_amt1
-wdi_china_macro_1960_2024.csv,65,8,0.01,year; gdp_constant_2015_usd; gdp_current_usd; gdp_growth_pct; gdp_per_capita_constant_2015_usd; life_expectancy; population; trade_pct_gdp
-wdi_global_selected_indicators_long.csv,86130,7,13.18,country; country_code; year; indicator_code; indicator; value; source_url
-wdi_global_selected_indicators_wide.csv,16935,8,1.34,country; country_code; year; gdp_growth_pct; gdp_per_capita_constant_2015_usd; life_expectancy; population; trade_pct_gdp
+﻿file,data_type,rows,columns,size_bytes,sha256,all_columns,candidate_key,key_duplicate_count
+acs_pums_california_persons_2023_selected.csv,observed,392318,13,20655692,903785fefff9be8b5ad5c38f55aad039cc12cbf37feb5928a43781850ff3cab3,serialno;person_order;person_weight;age;has_employer_health_insurance;education_code;sex;employment_status_code;personal_income;poverty_income_ratio;female;employed;has_bachelor_or_higher,serialno;person_order,0
+appendix_choice_vot_simulated.csv,simulated,1200,3,47983,74025b9079352438304d2408db456087642557c7e5f86019c1a566044d638275,choice;time_diff;cost_diff,,not_available
+bea_us_state_gdp_income_panel_1997_2025.csv,observed,1827,8,104131,b58052864c87c7efa0646474c69d8590e46e685f4b69e0794fabbe51d04e695f,geo_fips;state;year;real_gdp_millions_2017_usd;current_gdp_millions_usd;personal_income_millions_usd;population;per_capita_personal_income_usd,geo_fips;year,87
+bls_state_unemployment_cpi_monthly_2015_2025.csv,observed,6360,7,425976,71f3464de07b2735fb73726f783557b153c0329f4c2cea136af431ebbeff91e4,series_id;year;month;date;value;series_type;state_fips,series_id;year;month,0
+chapter04_wdi_life_gdp_2024_economies.csv,observed,192,10,25240,919f7b3be162eccc05594a5a7f23b20090e944b421f07c8aa7c1cac586ffb548,country;country_code;year;gdp_per_capita_constant_2015_usd;life_expectancy;log_gdp_per_capita;population;region;income_group;log_gdp_pc,country_code;year,0
+chapter13_did_simulated.csv,simulated,280,8,14580,4aa3284236f695786dbd5305d1eb26e85ae164c936383809ae141d59f64956e1,unit;period;treated;unit_fe;post;common_trend;tau;y,unit;period,0
+chapter13_event_common_timing_simulated.csv,simulated,480,6,17135,d94257c9b775bb246b4cf75f9728edff5d2859379838ff84702d25396e6e8368,id;year;treated;treat_year;rel_time;Y,id;year,0
+chapter13_iv_simulated.csv,simulated,800,4,44393,174afb1ee3c4470e5d0e23385ebe31cad7fedcfc72977c95c3f703b797be0b93,y;d;z;u,,not_available
+chapter13_mediation_simulated.csv,simulated,600,4,36381,1eb140f900179c9685c5d75acf466ed0f2108fcddb1ddf71ba4811980ff4ec4d,X;D;M;Y,,not_available
+chapter13_rd_continuous_simulated.csv,simulated,2000,4,119128,363d8dca7c4e47a48201ac7ec17bbe854f189f3c7ec503002c3559febd44791c,X;D;Y_sharp;Y_fuzzy,,not_available
+chapter13_scm_cities_simulated.csv,simulated,275,3,7089,c8b83ccb517cd177e9eaff8919eea130a731e786d78efa5523271eebc80d9f6b,city;year;outcome,city;year,0
+data_license_inventory.csv,metadata,10,6,2758,64b3fe44b1cbfa2cb6d1988f6bb4b0b61a56f65aa41b60d1328f7d18797c537a,dataset;risk_level;license_or_terms;license_url;source_url;redistribution_note,dataset,0
+epa_airdata_county_annual_aqi_2015_2024.csv,observed,10147,18,655602,16a50ad7e90bf98faad75b8d46384e427028977c8bb168f5d6e8cf672cde5ae5,state;county;year;days_with_aqi;good_days;moderate_days;unhealthy_for_sensitive_groups_days;unhealthy_days;very_unhealthy_days;hazardous_days;max_aqi;90th_percentile_aqi;median_aqi;days_co;days_no2;days_ozone;days_pm2_5;days_pm10,state;county;year,0
+faostat_crops_livestock_selected_1990_2024.csv,observed,80715,8,4447831,ca39f4f811738d3ff64fb9fbde6046b9ac6470901c2a8331cac0b5cd61e07222,area_code_m49;country;item;element;year;unit;value;flag,area_code_m49;item;element;year,0
+nbs_70city_house_price_2025.csv,observed,1680,9,191730,f258dd7924f71c71f490dff4b6050f298e27639d408314f3397a29f722020e39,year;month;date;city;market;mom_index;yoy_index;ytd_average_index;source_url,year;month;city;market,0
+nhtsa_fars_rd_age18_24_2018_2023.csv,observed,82615,20,11105975,67e1a19522b3e18e8e1f46a0b08a9ad8d9a84a37907df120bd92939427d83854,st_case;state;statename;age;sex;sexname;inj_sev;inj_sevname;drinking;drinkingname;alc_status;alc_statusname;month;day;day_week;hour;latitude;longitud;year;rd_age_18_24,,not_available
+owid_china_co2_1907_2024.csv,observed,118,4,3249,3aa6a9fe777ac5a91d8a945da0c7e2fbdd88c133d188a61281286601bd0164b8,Entity;Code;Year;Annual CO₂ emissions,Entity;Year,0
+owid_global_annual_co2.csv,observed,29384,4,890568,cd0e0334f2f5bdd401af7e04ec949959a3bceb319b42ac1a8fd9f357b2b169da,Entity;Code;Year;Annual CO₂ emissions,Entity;Year,0
+uci_credit_default_clients.csv,observed,30000,24,2698314,1f3f88e833faad5c97ebc8c9a14ce1aa6063fae0e4badd06383f5097463e91df,limit_bal;sex;education;marriage;age;pay_0;pay_2;pay_3;pay_4;pay_5;pay_6;bill_amt1;bill_amt2;bill_amt3;bill_amt4;bill_amt5;bill_amt6;pay_amt1;pay_amt2;pay_amt3;pay_amt4;pay_amt5;pay_amt6;default_payment_next_month,,not_available
+wdi_china_macro_1960_2024.csv,observed,65,8,7214,dcfa0768e941dd833066ea2c57f64467bfe9a7ddde4ec18b4508e18d92ebd8bd,year;gdp_constant_2015_usd;gdp_current_usd;gdp_growth_pct;gdp_per_capita_constant_2015_usd;life_expectancy;population;trade_pct_gdp,year,0
+wdi_global_selected_indicators_wide.csv,observed,16935,8,1407771,a4e7fdd74793354ba5d7af8c07105f16c939146245fee81b7bca824873c70fe9,country;country_code;year;gdp_growth_pct;gdp_per_capita_constant_2015_usd;life_expectancy;population;trade_pct_gdp,country_code;year,0

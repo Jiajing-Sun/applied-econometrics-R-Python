@@ -1,10 +1,35 @@
-# Data
+# 教材共享数据
 
-This folder contains the open-data package used by the Chinese textbook examples.
+这是本轮R/Python脚本实际读取的本地教学数据快照，核对日期2026-09-22。运行章节脚本不需要重新下载数据。路径按配套代码目录组织，数据保持在 `data/processed/`。
 
-- `processed/` contains cleaned CSV files ready for chapter R/Python scripts.
-- `processed_manifest.csv` lists files, row counts, columns, and sizes.
-- `data_license_inventory.csv` records source and license/attribution notes.
-- `chapter_dataset_map.csv` maps chapters to candidate teaching datasets.
+## 从哪里开始
 
-The next step is to move chapter-specific datasets into each chapter folder, or update scripts to read from `../../data/processed/`.
+- [章节—数据映射](chapter_dataset_map.csv)：按教材实际章号列出输入文件、样本和主要输出。
+- [完整文件清单](processed_manifest.csv)：仅列本地实际存在的CSV，含行数、全部列名、SHA256和候选键。
+- [数据字典与样本规则](metadata/数据字典与样本规则_20260922.md)：分析变量、单位、筛选、缺失值与模拟规则。
+- [逐文件质量核验](metadata/数据质量核验_20260922.json)：每列空值数、候选键重复、时间范围及核验边界。
+- [来源与许可记录](data_license_inventory.csv)：保留原数据包的来源和署名/许可说明；本轮文档核对没有重新审核或更新各网站条款。
+- [前一轮样本修订说明](修订数据说明_20260922.md)：第4章剔除汇总经济体及数据恢复记录。
+
+## 章号与目录
+
+| 教材章号 | 内容 | 保留的历史目录及脚本编号 |
+|---|---|---|
+| 2–10 | 基础至预测 | Chapter02–Chapter10 |
+| 11 | 非参数回归 | Chapter13，chapter13.R / chapter13.py |
+| 12 | 时间序列 | Chapter11，chapter11.R / chapter11.py |
+| 13 | 因果分析 | Chapter12，chapter12.R / chapter12.py |
+
+第13章模拟文件使用教材章号 `chapter13_...`，不表示属于历史 `Chapter13` 非参数目录。主脚本和正文代码框互补；非参数正文框先读取主脚本生成的分析CSV。
+
+## 本地快照的范围
+
+中国核心案例包括国家统计局2025年70城住宅价格指数和WDI中国年度GDP。全球排放与收入、美国州级和ACS微观数据、UCI信用卡数据保留各自真实背景，不能改称中国样本。
+
+BLS文件名虽含2025，实际内容仅为2015–2024；BEA文件包含1997–2025但指标存在缺失，州回归最新共同完整年为2024。WDI原始全球表含经济体与汇总组；第4章使用已经排除44个汇总组的192经济体冻结表。不能以文件名代替实际样本筛选。
+
+`chapter13_*_simulated.csv` 与 `appendix_choice_vot_simulated.csv` 均为教学模拟，生成器保存在 `scripts/`。第3章模拟直接由章节脚本生成。相同CSV使两语言使用同一观测，但R和NumPy随机数生成器不同，不能凭相同种子要求bootstrap或Monte Carlo结果逐项相同。
+
+EPA、FAOSTAT和中国CO₂单独序列目前保留为扩展资料，未被12个主章节脚本作为输入；不要把它们列成某章已使用的数据。`processed/data_license_inventory.csv` 是元信息副本，不是观测样本。
+
+本轮没有刷新真实数据的数值版本。来源网址用于追溯，下载最新数据可能改变样本和结果。若需要完全复现本书，应保留当前CSV和清单中的哈希。

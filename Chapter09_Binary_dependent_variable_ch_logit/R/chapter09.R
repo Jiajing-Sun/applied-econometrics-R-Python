@@ -6,10 +6,10 @@
 #
 # 教学对应关系：
 #   high_income                    -> ACS 个人收入是否处于样本最高四分位
-#   share_tertiary_school          -> 是否本科及以上学历
-#   lnpop                          -> log(年龄)
+#   bachelor          -> 是否本科及以上学历
+#   ln_age                          -> log(年龄)
 #   default_next_month             -> 下月是否信用卡违约
-#   blood_pressure                 -> 过去还款状态 pay_0
+#   pay_delay                 -> 过去还款状态 pay_0
 #   male                           -> 男性
 #   age                            -> 年龄
 #
@@ -21,7 +21,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -63,7 +63,8 @@ glm_table <- function(model, label) {
 }
 
 lm_table <- function(model, label) {
-  sm <- summary(model)$coefficients
+  # Binary outcome: HC1 heteroskedasticity-robust SE, asymptotic normal inference.
+  sm <- lmtest::coeftest(model, vcov.=sandwich::vcovHC(model,type="HC1"), df=Inf)
   data.frame(
     模型 = label,
     项 = rownames(sm),

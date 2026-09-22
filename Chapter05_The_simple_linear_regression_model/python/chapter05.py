@@ -357,3 +357,15 @@ result_lines = [
 )
 
 print("\n".join(result_lines))
+
+# 2026-09-22: same CR1 adjustment and t(G-1) as R.
+import statsmodels.formula.api as smf
+from scipy.stats import t as student_t
+city_fit = smf.ols("second_hand_yoy ~ new_house_yoy", data=df).fit(
+    cov_type="cluster", cov_kwds={"groups":df["city"],
+    "use_correction":True,"df_correction":True},use_t=True)
+ci=city_fit.conf_int()
+pd.DataFrame({"term":city_fit.params.index,"estimate":city_fit.params.values,
+ "se":city_fit.bse.values,"df":df.city.nunique()-1,
+ "lower":ci[0].values,"upper":ci[1].values}).to_csv(
+ TABLE_DIR/"python_chapter05_city_cluster_CR1.csv",index=False)

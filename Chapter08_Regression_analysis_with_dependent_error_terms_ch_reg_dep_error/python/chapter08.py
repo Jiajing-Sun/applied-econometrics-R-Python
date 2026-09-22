@@ -8,7 +8,7 @@ Textbook data:
     outcome_income           -> log(个人收入+1)
     bachelor_or_above        -> 是否本科及以上学历
     age                      -> 年龄
-    household_id             -> 家庭编号 serialno
+    household_id             -> 住房单元／集体住所个人记录编号 serialno
     municipal tax_rate        -> 人均个人收入（千美元）
     left_coalition_last_term  -> 州失业率
 
@@ -285,7 +285,7 @@ se_compare.to_csv(TABLE_DIR / "python_chapter08_bachelor_se_comparison.csv", ind
 household_size = acs.groupby("household_id").size()
 household_size_summary = pd.DataFrame(
     {
-        "指标": ["家庭数", "平均家庭样本人数", "中位数家庭样本人数", "最大家庭样本人数", "单人家庭占比"],
+        "指标": ["编号组数", "平均编号组样本人数", "中位数编号组样本人数", "最大编号组样本人数", "单样本成员编号组占比"],
         "数值": [
             household_size.size,
             household_size.mean(),
@@ -427,7 +427,7 @@ summary = pd.DataFrame(
     {
         "指标": [
             "ACS样本量",
-            "ACS家庭数",
+            "ACS编号组数",
             "本科及以上普通OLS系数",
             "本科及以上标准化系数",
             "方差分解样本量",

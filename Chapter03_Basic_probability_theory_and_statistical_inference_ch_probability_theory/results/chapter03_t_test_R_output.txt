@@ -1,0 +1,12 @@
+
+	One Sample t-test
+
+data:  dice_throws
+t = -1.5938, df = 49, p-value = 0.1174
+alternative hypothesis: true mean is not equal to 3.5
+95 percent confidence interval:
+ 2.640856 3.599144
+sample estimates:
+mean of x 
+     3.12 
+

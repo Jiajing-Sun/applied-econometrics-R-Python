@@ -13,7 +13,7 @@ file_arg <- args[grepl("^--file=", args)]
 if (length(file_arg) == 0) {
   script_dir <- getwd()
 } else {
-  script_dir <- dirname(normalizePath(sub("^--file=", "", file_arg[1])))
+  script_dir <- dirname(normalizePath(gsub("~+~", " ", sub("^--file=", "", file_arg[1]), fixed=TRUE)))
 }
 
 chapter_dir <- normalizePath(file.path(script_dir, ".."))
@@ -40,27 +40,12 @@ open_png <- function(filename, width = 1800, height = 1300, res = 220) {
   par(family = cn_family, mar = c(5, 5, 3, 1) + 0.1)
 }
 
-wdi <- read.csv(data_path, fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
-
-complete_counts <- aggregate(
-  complete_cases ~ year,
-  data = transform(
-    wdi,
-    complete_cases = !is.na(gdp_per_capita_constant_2015_usd) &
-      !is.na(life_expectancy) &
-      gdp_per_capita_constant_2015_usd > 0
-  ),
-  FUN = sum
-)
-analysis_year <- max(complete_counts$year[complete_counts$complete_cases >= 200])
-
-df <- wdi[wdi$year == analysis_year,
-          c("country", "country_code", "year",
-            "gdp_per_capita_constant_2015_usd", "life_expectancy")]
-df <- df[complete.cases(df) & df$gdp_per_capita_constant_2015_usd > 0, ]
-df$log_gdp_per_capita <- log(df$gdp_per_capita_constant_2015_usd)
-df <- df[order(df$country), ]
-row.names(df) <- NULL
+# 2026-09-22: 冻结2024年经济体样本；排除地区和收入汇总行。
+data_path <- file.path(repo_dir, "data", "processed",
+                       "chapter04_wdi_life_gdp_2024_economies.csv")
+df <- read.csv(data_path, fileEncoding = "UTF-8", stringsAsFactors = FALSE)
+analysis_year <- 2024
+stopifnot(nrow(df) == 192, !anyDuplicated(df$country_code))
 
 write.csv(df,
           file.path(result_dir, "chapter04_wdi_life_gdp_analysis_data.csv"),
@@ -81,7 +66,7 @@ CI_L <- (exp(2 * Z_L) - 1) / (exp(2 * Z_L) + 1)
 CI_U <- (exp(2 * Z_U) - 1) / (exp(2 * Z_U) + 1)
 
 T_obs <- corrXY * sqrt(n - 2) / sqrt(1 - corrXY^2)
-p_value <- 2 * (1 - pt(abs(T_obs), df = n - 2))
+p_value <- 2 * pt(abs(T_obs), df = n - 2, lower.tail = FALSE)
 p_value_text <- if (p_value == 0) "< 1e-15" else sprintf("%.4g", p_value)
 
 # ------------------------------------------------------------------------------
@@ -132,11 +117,11 @@ plot(1, corrXY, xlim = c(0.5, 1.5), ylim = c(max(-1, CI_L - 0.05), min(1, CI_U +
      main = "相关系数的Fisher Z置信区间")
 axis(1, at = 1, labels = paste0(analysis_year, "年WDI样本"))
 arrows(1, CI_L, 1, CI_U, angle = 90, code = 3, length = 0.08, lwd = 2)
-abline(h = 0, col = "#D95F0E", lty = 2, lwd = 2)
+# This panel zooms in on the interval; zero is outside the displayed range.
 legend("bottomright",
-       legend = c("样本相关", "95%置信区间", "零相关"),
-       pch = c(16, NA, NA), lty = c(NA, 1, 2), lwd = c(NA, 2, 2),
-       col = c("black", "black", "#D95F0E"), bty = "n")
+       legend = c("样本相关", "95%置信区间"),
+       pch = c(16, NA), lty = c(NA, 1), lwd = c(NA, 2),
+       col = c("black", "black"), bty = "n")
 grid(col = "gray88")
 dev.off()
 
@@ -182,3 +167,20 @@ writeLines(c(
 ), con = file.path(result_dir, "chapter04_results_readme.txt"))
 
 message("Chapter 04 complete. Outputs written to: ", chapter_dir)
+
+# 2026-09-22: rank correlation, residualization and Monte Carlo inference.
+x <- df$log_gdp_pc; y <- df$life_expectancy; z <- log(df$population)
+ex <- resid(lm(x ~ z)); ey <- resid(lm(y ~ z))
+semi <- cor(y, ex)
+delta_r2 <- summary(lm(y ~ z + x))$r.squared - summary(lm(y ~ z))$r.squared
+stopifnot(abs(semi^2 - delta_r2) < 1e-10)
+set.seed(42); B <- 9999
+permuted <- replicate(B, cor(x, sample(y)))
+p_perm <- (1 + sum(abs(permuted) >= abs(cor(x,y)))) / (B + 1)
+boot_corr <- replicate(B, {i <- sample.int(length(x), replace=TRUE); cor(x[i],y[i])})
+boot_ci <- quantile(boot_corr,c(.025,.975))
+extra <- data.frame(stat=c("spearman","partial_log_population","semipartial",
+                          "delta_r2","permutation_p","bootstrap_lower","bootstrap_upper"),
+                    value=c(cor(x,y,method="spearman"),cor(ex,ey),semi,delta_r2,
+                            p_perm,boot_ci))
+write.csv(extra,file.path(result_dir,"chapter04_additional_inference.csv"),row.names=FALSE)

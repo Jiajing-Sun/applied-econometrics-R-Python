@@ -1,0 +1,29 @@
+{
+  "seed": 20260922,
+  "type": "模拟教学数据；不是真实中国政策或城市观测",
+  "rd": {
+    "n": 2000,
+    "assignment": "Z=1[X>=0]; P(D=1|X)=.25+.5Z",
+    "outcomes": "Y_sharp=1+.4X+.2X^2+.8Z+e; Y_fuzzy=1+.4X+.2X^2+.8D+e",
+    "true_sharp_effect": 0.8,
+    "true_fuzzy_effect": 0.8
+  },
+  "mediation": {
+    "n": 600,
+    "assignment": "P(D=1|X)=logit_inverse(.3X)",
+    "equations": "M=.5D+.3X+eM; Y=.2D+.4M+.5X+eY; errors independent",
+    "direct_effect": 0.2,
+    "indirect_effect": 0.2,
+    "total_effect": 0.4
+  },
+  "files": [
+    {
+      "path": "chapter13_rd_continuous_simulated.csv",
+      "sha256": "363d8dca7c4e47a48201ac7ec17bbe854f189f3c7ec503002c3559febd44791c"
+    },
+    {
+      "path": "chapter13_mediation_simulated.csv",
+      "sha256": "1eb140f900179c9685c5d75acf466ed0f2108fcddb1ddf71ba4811980ff4ec4d"
+    }
+  ]
+}

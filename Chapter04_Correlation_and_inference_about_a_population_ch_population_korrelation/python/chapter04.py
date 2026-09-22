@@ -55,27 +55,12 @@ def t_cdf(x: float, df: int) -> float:
     return 0.5 - simpson_integral(lambda z: t_pdf(z, df), 0, -x)
 
 
-wdi = pd.read_csv(DATA_PATH, encoding="utf-8-sig")
-complete_counts = (
-    wdi.assign(
-        complete_cases=lambda d: (
-            d["gdp_per_capita_constant_2015_usd"].notna()
-            & d["life_expectancy"].notna()
-            & d["gdp_per_capita_constant_2015_usd"].gt(0)
-        )
-    )
-    .groupby("year", as_index=False)["complete_cases"]
-    .sum()
-)
-analysis_year = int(complete_counts.loc[complete_counts["complete_cases"].ge(200), "year"].max())
-
-df = wdi.loc[
-    wdi["year"].eq(analysis_year),
-    ["country", "country_code", "year", "gdp_per_capita_constant_2015_usd", "life_expectancy"],
-].dropna()
-df = df.loc[df["gdp_per_capita_constant_2015_usd"].gt(0)].copy()
-df["log_gdp_per_capita"] = np.log(df["gdp_per_capita_constant_2015_usd"])
-df = df.sort_values("country").reset_index(drop=True)
+# 2026-09-22: use the same frozen economy-only sample as R.
+from scipy import stats
+DATA_PATH = REPO_DIR / "data" / "processed" / "chapter04_wdi_life_gdp_2024_economies.csv"
+df = pd.read_csv(DATA_PATH)
+analysis_year = 2024
+assert len(df) == 192 and df["country_code"].is_unique
 
 df.to_csv(RESULT_DIR / "python_chapter04_wdi_life_gdp_analysis_data.csv", index=False)
 
@@ -105,7 +90,7 @@ CI_U = (np.exp(2 * Z_U) - 1) / (np.exp(2 * Z_U) + 1)
 
 corrXY2 = corrXY
 t_stat = corrXY2 * np.sqrt((n - 2) / (1 - corrXY2**2))
-p_value = 2 * (1 - t_cdf(abs(float(t_stat)), df=n - 2))
+p_value = 2 * stats.t.sf(abs(float(t_stat)), df=n - 2)
 p_value = min(1.0, max(0.0, float(p_value)))
 p_value_text = "< 1e-15" if p_value == 0 else f"{p_value:.4g}"
 
@@ -175,3 +160,25 @@ result_lines = [
 )
 
 print("\n".join(result_lines))
+
+# 2026-09-22: same estimands and resampling rules as R (different RNG streams).
+x = df["log_gdp_pc"].to_numpy(); y = df["life_expectancy"].to_numpy()
+Z = np.column_stack([np.ones(len(df)), np.log(df["population"])])
+ex = x - Z @ np.linalg.lstsq(Z,x,rcond=None)[0]
+ey = y - Z @ np.linalg.lstsq(Z,y,rcond=None)[0]
+semi = np.corrcoef(y,ex)[0,1]
+ZX = np.column_stack([Z,x]); ef = y-ZX@np.linalg.lstsq(ZX,y,rcond=None)[0]
+delta_r2 = (ey@ey-ef@ef)/np.sum((y-y.mean())**2)
+assert np.isclose(semi**2,delta_r2)
+rng = np.random.default_rng(42); B = 9999
+perm = np.array([np.corrcoef(x,rng.permutation(y))[0,1] for _ in range(B)])
+p_perm = (1+np.sum(np.abs(perm)>=abs(np.corrcoef(x,y)[0,1])))/(B+1)
+boot = []
+for _ in range(B):
+    ix = rng.integers(0,len(x),len(x)); boot.append(np.corrcoef(x[ix],y[ix])[0,1])
+lo,hi = np.quantile(boot,[.025,.975])
+pd.DataFrame({"stat":["spearman","partial_log_population","semipartial","delta_r2",
+                      "permutation_p","bootstrap_lower","bootstrap_upper"],
+              "value":[stats.spearmanr(x,y).statistic,np.corrcoef(ex,ey)[0,1],semi,
+                       delta_r2,p_perm,lo,hi]}).to_csv(
+    RESULT_DIR/"python_chapter04_additional_inference.csv",index=False)
