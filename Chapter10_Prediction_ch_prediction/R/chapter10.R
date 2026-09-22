@@ -358,21 +358,22 @@ display_tree <- rpart(display_form, data = display_df,
                                               minbucket = 12, cp = best_cp, xval=0))
 open_png("chapter10_pruned_regression_tree.png", width = 2400, height = 1500)
 par(mar = c(1, 1, 4, 1) + 0.1, xpd = NA)
-if (requireNamespace("rpart.plot", quietly = TRUE)) {
-  rpart.plot::rpart.plot(display_tree,
-                         type = 3, extra = 101, under = TRUE,
-                         fallen.leaves = TRUE,
-                         box.palette = "GnBu",
-                         branch.col = "#555555",
-                         shadow.col = "gray85",
-                         split.cex = 1.05, cex = 0.95,
-                         tweak = 1.08,
-                         main = "浅层回归树（可读展示版）")
-} else {
-  plot(display_tree, uniform = TRUE, branch = 0.5,
-       main = "浅层回归树（可读展示版）")
-  text(display_tree, use.n = TRUE, cex = 0.8)
+# 固定使用rpart自带绘图，不因本机是否另装rpart.plot改变展示。
+# 给节点文字加白底，并将阈值另起一行，避免连线穿过文字。
+plot(display_tree, uniform = TRUE, branch = 1,
+     main = "浅层回归树（可读展示版）")
+boxed_text <- function(x, y, labels, ..., adj = 0.5) {
+  labels <- sub("([<>]=?)", "\n\\1", labels)
+  keep <- is.finite(x) & is.finite(y) & !is.na(labels)
+  x <- x[keep]; y <- y[keep]; labels <- labels[keep]
+  half_w <- strwidth(labels, cex = 1.15) / 2 + strwidth(" ", cex = 1.15)
+  half_h <- strheight(labels, cex = 1.15) / 2 + strheight("M", cex = 1.15) * 0.25
+  rect(x - half_w, y - half_h, x + half_w, y + half_h,
+       col = "white", border = NA)
+  graphics::text(x, y, labels, cex = 1.15, adj = adj)
 }
+text(display_tree, use.n = TRUE, FUN = boxed_text)
+
 dev.off()
 
 # ------------------------------------------------------------------------------

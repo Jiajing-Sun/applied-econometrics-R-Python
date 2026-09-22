@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "csv_count": 11,
+  "unchanged_csv_hashes": {
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_five_fold_cv_mse.csv": "9545e52aaa94d93cb098eb08f847031fabb53b4d47111fb490e240b700f5ec3c",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_lasso_cv_curve.csv": "4e542f45eb5959a45201202f5660ba3af39fa3e677e0399742b7014ce6f96426",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_cart_cp_table.csv": "aa490dd8b89f305dc23fa454f02d1bda59af157025aa97c7e9ef8e21dfd955b5",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_polynomial_train_test_mse.csv": "3d21b340fb8e7a66c73d85e7f73889e00c7e5e1671bd40e27600212372876f1f",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_model_comparison_mse.csv": "b1746261dce45020b61b5671cfcd5eaf24bd48d469620fc255cee35ffcafa7c9",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_ridge_cv_curve.csv": "944d98cbf6b25e2e0571d5ac4549d67850d628eb24d392f9fdb19f8711e1b375",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_split_comparison_mse.csv": "fb1f6de2af31d494c67dee554b5df5719e563e56e962bf7de238d6d0c76cf7f9",
+    "Chapter10_Prediction_ch_prediction/tables/chapter10_bias_variance_simulation.csv": "39178ffffbf587c91e5d0a4560d82e5831d15b0764ea5ad18dfb50f5f5e76b60",
+    "Chapter10_Prediction_ch_prediction/results/chapter10_nbs_70city_prediction_data.csv": "c87a0c9e1ad44c3e7bf8a3dac703b60d841655a2ce4c97816f9609d559fb678d",
+    "Chapter10_Prediction_ch_prediction/results/chapter10_summary.csv": "e0f1bd13c2fc7810ddf2e2cdb4f535c874bc0f72ba880c510c622a47a81af28c",
+    "Chapter10_Prediction_ch_prediction/results/chapter10_predictions_all_models.csv": "8f6527ed63342223ea5f91e01470691f3c608664cca2fb49d2038d144583dcfb"
+  }
+}

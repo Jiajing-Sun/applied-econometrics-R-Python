@@ -75,10 +75,10 @@
     "script": "Chapter10_Prediction_ch_prediction/R/chapter10.R",
     "language": "R",
     "phase": "main",
-    "tag": "最终",
+    "tag": "树图视觉修正",
     "returncode": 0,
-    "seconds": 23.23,
-    "sha256": "3066526067cbf17bbaa44c9cab83aecf57eedfb2fbd6091e3c256c5ee0e4360b"
+    "seconds": 21.81,
+    "sha256": "02af8a3f3c58673879e71d100e507f5482ed14805e7d4118352652db53329384"
   },
   {
     "script": "Chapter11_Time_series_analysis/R/chapter11.R",
