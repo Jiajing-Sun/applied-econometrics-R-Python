@@ -14,4 +14,4 @@ if not res.success: raise RuntimeError(res.message)
 w = res.x
 gap = Y[0].to_numpy()-Y.iloc[:,1:].to_numpy()@w
 print(w, np.mean(gap[pre]**2), np.mean(gap[~pre]))
-pd.DataFrame({"weight":w}).to_csv("修订补充示例/scm_Python.csv",index=False)
+pd.DataFrame({"weight":w}).to_csv("补充示例/scm_Python.csv",index=False)

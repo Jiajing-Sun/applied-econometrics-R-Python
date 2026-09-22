@@ -47,7 +47,7 @@ table(predicted = class_03, observed = credit$default)
 
 # 代码框 5: book_chapters/ch09_binary.tex:685 / ch09_binary_8
 library(MASS)
-choice_df <- read.csv("修订补充示例/第二轮/ch09_有序多项选择_模拟.csv")
+choice_df <- read.csv("补充示例/正文/ch09_有序多项选择_模拟.csv")
 # 有序 logit（比例赔率模型）
 choice_df$edu_level <- ordered(choice_df$edu_level,
                                levels = c("低", "中", "高"))

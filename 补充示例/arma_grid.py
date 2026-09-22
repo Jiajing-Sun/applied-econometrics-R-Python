@@ -33,4 +33,4 @@ print(order, m_auto.summary())
 lb = acorr_ljungbox(m_auto.resid, lags=[10],
                    model_df=sum(order), return_df=True)
 print(lb)
-pd.DataFrame([{"order":f"{p} {q}","AICc":m.aicc} for (p,q),m in fits.items()]).to_csv("修订补充示例/arma_Python.csv",index=False)
+pd.DataFrame([{"order":f"{p} {q}","AICc":m.aicc} for (p,q),m in fits.items()]).to_csv("补充示例/arma_Python.csv",index=False)

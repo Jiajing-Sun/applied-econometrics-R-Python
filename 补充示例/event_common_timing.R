@@ -1,7 +1,7 @@
 # Run from the companion root; data are simulated teaching examples.
 use_quartz <- isTRUE(capabilities("aqua"))
 if (use_quartz) quartzFonts(PingFang=quartzFont(rep("PingFangSC-Regular",4)))
-png("修订补充示例/event_R.png",width=1400,height=950,res=150,
+png("补充示例/event_R.png",width=1400,height=950,res=150,
     type=if(use_quartz) "quartz" else "cairo")
 if (use_quartz) par(family="PingFang")
 library(sandwich)
@@ -23,4 +23,4 @@ pre <- cols[lags<0]; z <- coef(fit_es)[pre]
 Fpre <- as.numeric(t(z)%*%solve(V[pre,pre],z))/length(pre)
 print(pf(Fpre,length(pre),length(unique(df$id))-1,lower.tail=FALSE))
 dev.off()
-write.csv(data.frame(term=cols,estimate=est,se=se),"修订补充示例/event_R.csv",row.names=FALSE)
+write.csv(data.frame(term=cols,estimate=est,se=se),"补充示例/event_R.csv",row.names=FALSE)

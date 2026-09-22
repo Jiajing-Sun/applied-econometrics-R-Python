@@ -223,7 +223,7 @@ legend("topleft", legend = c("平均偏误平方", "平均方差"),
 dev.off()
 
 # ------------------------------------------------------------------------------
-# Box 06: 5 折交叉验证
+# Box 06: 扩展窗口验证
 # ------------------------------------------------------------------------------
 
 m <- 5
@@ -238,9 +238,9 @@ write.csv(cv_table,
           row.names = FALSE, fileEncoding = "UTF-8")
 
 open_png("chapter10_five_fold_cv_mse.png")
-barplot(cv_table$MSE, names.arg = paste0("第", cv_table$折, "折"),
+barplot(cv_table$MSE, names.arg = paste0(cv_table$验证月份, "月"),
         col = "#9ECAE1", border = NA,
-        xlab = "交叉验证折",
+        xlab = "验证月份",
         ylab = "验证集MSE",
         main = "扩展窗口验证误差（验证月5—9月）")
 abline(h = mean(cv_table$MSE), col = "#D73027", lwd = 2, lty = 2)

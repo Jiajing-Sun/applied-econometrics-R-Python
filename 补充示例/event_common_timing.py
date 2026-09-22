@@ -15,5 +15,5 @@ plt.errorbar(lags,fit_es.params[cols],
 plt.axhline(0,color="gray"); plt.xlabel("相对处理时间")
 print(fit_es.wald_test("D_n4=0,D_n3=0,D_n2=0",scalar=True))
 
-plt.savefig("修订补充示例/event_Python.png",dpi=150)
-pd.DataFrame({"term":cols,"estimate":fit_es.params[cols].values,"se":fit_es.bse[cols].values}).to_csv("修订补充示例/event_Python.csv",index=False)
+plt.savefig("补充示例/event_Python.png",dpi=150)
+pd.DataFrame({"term":cols,"estimate":fit_es.params[cols].values,"se":fit_es.bse[cols].values}).to_csv("补充示例/event_Python.csv",index=False)

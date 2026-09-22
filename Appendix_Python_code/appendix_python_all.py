@@ -11,7 +11,7 @@ def main():
                         help="只检查配套代码根目录和目标文件，不执行示例")
     args = parser.parse_args()
     repo_root = Path(__file__).resolve().parents[1]
-    target = repo_root / "修订补充示例" / "第二轮" / "appendix_Python_离线正文代码.py"
+    target = repo_root / "补充示例" / "正文" / "appendix_Python_离线正文代码.py"
     if not target.is_file():
         raise FileNotFoundError(f"缺少最新版离线入口：{target}")
     if not (repo_root / "data" / "processed").is_dir():

@@ -30,7 +30,7 @@ import statsmodels.formula.api as smf
 import numpy as np
 
 # 模拟数据，仅展示独立观测下 WLS+HC1
-df = pd.read_csv("修订补充示例/第二轮/ch08_调查加权_模拟.csv")
+df = pd.read_csv("补充示例/正文/ch08_调查加权_模拟.csv")
 # 方法一：WLS（指定权重）；df 列含义同 R 版
 m_wls = smf.wls("income ~ educ + age + urban",
                 data=df, weights=df["weight"]).fit(

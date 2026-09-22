@@ -23,7 +23,7 @@ coeftest(mod, vcov. = V, df = length(unique(acs$household_id)) - 1)
 # 代码框 2: book_chapters/ch08_dependent_errors.tex:568 / ch08_survey_r
 library(survey)
 # 模拟数据，仅展示分层与权重接口
-df <- read.csv("修订补充示例/第二轮/ch08_调查加权_模拟.csv")
+df <- read.csv("补充示例/正文/ch08_调查加权_模拟.csv")
 
 # 设定调查设计对象（df 中：weight 为个体抽样权重，stratum 为分层变量）
 # 真实调查须使用技术文件指定的权重、分层和 PSU；地区列不自动等于分层变量

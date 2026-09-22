@@ -321,7 +321,7 @@ for deg in degrees_bv:
 pd.DataFrame(bv_rows).to_csv(TABLE_DIR / "python_chapter10_bias_variance_simulation.csv", index=False)
 
 # ------------------------------------------------------------------------------
-# Box 06: 5 折交叉验证
+# Box 06: 扩展窗口验证
 # ------------------------------------------------------------------------------
 
 cv_rows = []

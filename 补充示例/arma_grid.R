@@ -1,4 +1,4 @@
-png("修订补充示例/arma_R.png",width=1000,height=700)
+png("补充示例/arma_R.png",width=1000,height=700)
 library(forecast)
 library(tseries)
 
@@ -33,4 +33,4 @@ Box.test(residuals(m_auto), lag=10, type="Ljung-Box",
 # 残差 ACF 图
 acf(residuals(m_auto), main = "ARMA 残差 ACF")
 dev.off()
-write.csv(data.frame(order=names(fits),AICc=sapply(fits,function(m)m$aicc)),"修订补充示例/arma_R.csv",row.names=FALSE)
+write.csv(data.frame(order=names(fits),AICc=sapply(fits,function(m)m$aicc)),"补充示例/arma_R.csv",row.names=FALSE)

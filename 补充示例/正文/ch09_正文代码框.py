@@ -54,7 +54,7 @@ for cutoff in [0.3, 0.5]:
 
 
 # 代码框 5: book_chapters/ch09_binary.tex:702 / ch09_binary_9
-choice_df = pd.read_csv("修订补充示例/第二轮/ch09_有序多项选择_模拟.csv")
+choice_df = pd.read_csv("补充示例/正文/ch09_有序多项选择_模拟.csv")
 import statsmodels.api as sm
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 choice_df["edu_level"] = pd.Categorical(

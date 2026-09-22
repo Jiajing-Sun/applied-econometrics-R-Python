@@ -18,7 +18,7 @@ run_appendix_offline <- function() {
   # Rscript 在部分平台会用 ~+~ 表示命令参数中的空格。
   script_path <- gsub("~+~", " ", script_path, fixed = TRUE)
   repo_root <- dirname(dirname(normalizePath(script_path, mustWork = TRUE)))
-  target <- file.path(repo_root, "修订补充示例", "第二轮",
+  target <- file.path(repo_root, "补充示例", "正文",
                       "appendix_R_离线正文代码.R")
   if (!file.exists(target)) stop("缺少最新版离线入口：", target)
   if (!dir.exists(file.path(repo_root, "data", "processed"))) {
