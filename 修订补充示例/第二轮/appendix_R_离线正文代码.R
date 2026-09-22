@@ -486,8 +486,8 @@ if (capabilities("aqua")) {
   cn_font <- "PingFang"
   png_type <- "quartz"
 }
-p <- p + theme(text = element_text(family = cn_font))
-ggsave("output/figures/R/housing_mom_yoy_ggplot.png", plot = p,
+p_saved <- p + theme(text = element_text(family = cn_font))
+ggsave("output/figures/R/housing_mom_yoy_ggplot.png", plot = p_saved,
        width = 7.5, height = 5.5, dpi = 150,
        device = grDevices::png, type = png_type)
 
@@ -711,9 +711,9 @@ fig_dir <- file.path("output", "figures", "R")
 dir.create(fig_dir, showWarnings = FALSE, recursive = TRUE)
 
 # 沿用前面保存示例定义的 cn_font 和 png_type。
-p <- p + theme(text = element_text(family = cn_font))
+p_saved <- p + theme(text = element_text(family = cn_font))
 ggsave(file.path(fig_dir, "housing70_saved_plot.png"),
-       p, width = 6.5, height = 4.5, dpi = 150,
+       p_saved, width = 6.5, height = 4.5, dpi = 150,
        device = grDevices::png, type = png_type)
 
 # 保留图形对象以备后续修改

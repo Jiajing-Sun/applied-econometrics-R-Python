@@ -78,10 +78,12 @@ def acf_values(x: np.ndarray, max_lag: int) -> pd.DataFrame:
 
 def pacf_values(y: np.ndarray, max_lag: int) -> pd.DataFrame:
     rows = [{"滞后阶数": 0, "偏自相关": 1.0}]
+    # Same Yule-Walker estimator as R pacf(): covariance denominator is n.
+    rho = acf_values(np.asarray(y, dtype=float), max_lag)["自相关"].to_numpy()
     for p in range(1, max_lag + 1):
-        y_ar, X_ar = embed_lags(y, p)
-        fit_p = fit_ols(y_ar, X_ar)
-        rows.append({"滞后阶数": p, "偏自相关": float(fit_p["beta"][-1])})
+        toeplitz = rho[np.abs(np.arange(p)[:, None] - np.arange(p)[None, :])]
+        coefficients = np.linalg.solve(toeplitz, rho[1:p+1])
+        rows.append({"滞后阶数": p, "偏自相关": float(coefficients[-1])})
     return pd.DataFrame(rows)
 
 
@@ -153,13 +155,14 @@ ar1_tables.to_csv(TABLE_DIR / "python_chapter11_ar1_hac_table.csv", index=False)
 
 y_growth = dloggdp[~np.isnan(dloggdp)]
 ar_rows = []
+y_common, X_common = embed_lags(y_growth, 5)
 for p in range(1, 6):
-    y_ar, X_ar = embed_lags(y_growth, p)
+    y_ar, X_ar = y_common, X_common[:, :p+1]
     fit_p = fit_ols(y_ar, X_ar)
     rss = float(fit_p["resid"] @ fit_p["resid"])
     sigma2 = rss / len(y_ar)
-    aic = len(y_ar) * np.log(sigma2) + 2 * (p + 1)
-    ar_rows.append({"阶数": p, "AIC": aic, "RSS": rss})
+    aic = len(y_ar) * (np.log(2*np.pi) + 1 + np.log(sigma2)) + 2 * (p + 2)
+    ar_rows.append({"阶数": p, "AIC": aic, "RSS": rss, "样本量": len(y_ar)})
 ar_aic = pd.DataFrame(ar_rows)
 ar_aic.to_csv(TABLE_DIR / "python_chapter11_ar_order_aic.csv", index=False)
 

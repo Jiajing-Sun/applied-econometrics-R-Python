@@ -1,9 +1,6 @@
-# 第 2 章 Python：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第2章Python：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch02_covariation.tex:113；box:pkorr
+# 代码框 1: book_chapters/ch02_covariation.tex:117 / box_pkorr
 import pandas as pd
 import numpy as np
 
@@ -24,7 +21,7 @@ r_xy = s_xy / (x.std(ddof=1) * y.std(ddof=1))
 r_xy
 
 
-# 教材：ch02_covariation.tex:228；box:pspearman
+# 代码框 2: book_chapters/ch02_covariation.tex:232 / box_pspearman
 wide["rank_new"] = wide["yoy_index_new"].rank(method="average")
 wide["rank_second"] = wide["yoy_index_second"].rank(method="average")
 
@@ -32,7 +29,7 @@ wide["rank_new"].corr(wide["rank_second"])
 wide["yoy_index_new"].corr(wide["yoy_index_second"], method="spearman")
 
 
-# 教材：ch02_covariation.tex:322；ch02_kendall_py
+# 代码框 3: book_chapters/ch02_covariation.tex:326 / ch02_kendall_py
 from scipy.stats import kendalltau, spearmanr
 from itertools import combinations
 
@@ -51,7 +48,7 @@ print("C, D, 并列对 =", C, D, T)
 print("tau_a =", (C-D)/len(signs))
 
 
-# 教材：ch02_covariation.tex:395；box:pols
+# 代码框 4: book_chapters/ch02_covariation.tex:399 / box_pols
 import statsmodels.api as sm
 
 X = sm.add_constant(wide["yoy_index_new"])
@@ -60,7 +57,7 @@ ols_model.params
 ols_model.rsquared
 
 
-# 教材：ch02_covariation.tex:546；ch02_binned_py
+# 代码框 5: book_chapters/ch02_covariation.tex:557 / ch02_binned_py
 import numpy as np, pandas as pd, statsmodels.formula.api as smf
 import matplotlib.pyplot as plt
 

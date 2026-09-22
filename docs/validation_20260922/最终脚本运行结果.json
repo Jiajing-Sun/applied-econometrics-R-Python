@@ -1,0 +1,704 @@
+[
+  {
+    "script": "Chapter02_Covariation_in_data/R/chapter02.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.72,
+    "sha256": "92ecc9ab58ea09dcfa3bc3bcf442ef5e98291b9f228db3e91ea5ef97a11e7db0"
+  },
+  {
+    "script": "Chapter03_Basic_probability_theory_and_statistical_inference_ch_probability_theory/R/chapter03.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 3.38,
+    "sha256": "852c44c1e5944a191e5a3089b3790219812f5d4c5f7c91f42b1c79181deb18d6"
+  },
+  {
+    "script": "Chapter04_Correlation_and_inference_about_a_population_ch_population_korrelation/R/chapter04.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.83,
+    "sha256": "717b96d17b9591636fb174cb6f4ca685f76a2c8760f94b04add705992ae8080d"
+  },
+  {
+    "script": "Chapter05_The_simple_linear_regression_model/R/chapter05.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.72,
+    "sha256": "97550add5cdd8f2f436ba1d4074c32189f9fea0d4b2de3b3ef3950ee268cc05d"
+  },
+  {
+    "script": "Chapter06_Multiple_Linear_Regression/R/chapter06.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.61,
+    "sha256": "ac8bd32c72ffa332d403239a00924f23dad1503608c9a946589e9a23c228ba4a"
+  },
+  {
+    "script": "Chapter07_Nonlinear_functional_form/R/chapter07.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.68,
+    "sha256": "8ec3ec5f6b4158b8258f2db7169a4edab78723d495f31fe8834089ee18ff54e9"
+  },
+  {
+    "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/R/chapter08.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 4.99,
+    "sha256": "d41b2ffa601be770c179fb365becc621e92f0e1e1e7599876e67af01e7f68c93"
+  },
+  {
+    "script": "Chapter09_Binary_dependent_variable_ch_logit/R/chapter09.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 3.58,
+    "sha256": "53849917123c0ead773b25bf1bf9770462f830a8c0b96179aa54cfab10ace9d8"
+  },
+  {
+    "script": "Chapter10_Prediction_ch_prediction/R/chapter10.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 23.23,
+    "sha256": "3066526067cbf17bbaa44c9cab83aecf57eedfb2fbd6091e3c256c5ee0e4360b"
+  },
+  {
+    "script": "Chapter11_Time_series_analysis/R/chapter11.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.78,
+    "sha256": "72bb7d0925c6b8a7e3f383356f06eb2af9fab488284c7fa74b7f1b11b793db43"
+  },
+  {
+    "script": "Chapter12_Causal_analyses_ch_causality/R/chapter12.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.73,
+    "sha256": "7b3096d0785670abbdee3cef53e70e10636e798ea11bd1abee4ab7d503f9457c"
+  },
+  {
+    "script": "Chapter13_Nonparametric_Regression_chapter_nonparametric/R/chapter13.R",
+    "language": "R",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.47,
+    "sha256": "80bf46e1531d0a33afe79d443cba5ea15fe71e973dae58be172052d27389d945"
+  },
+  {
+    "script": "Chapter02_Covariation_in_data/python/chapter02.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.57,
+    "sha256": "80bc37a930f9af1c1ba19317e1bbe98f9eb76d30c6a9c68ccf81f7c28842d7d3"
+  },
+  {
+    "script": "Chapter03_Basic_probability_theory_and_statistical_inference_ch_probability_theory/python/chapter03.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.26,
+    "sha256": "7a769c89c8cae35b26b939c48bb3e54ddd72ea93fc5de1fd2f3d7f1001489dbb"
+  },
+  {
+    "script": "Chapter04_Correlation_and_inference_about_a_population_ch_population_korrelation/python/chapter04.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.75,
+    "sha256": "13189f7a1cf4c41d853c54aaf52e5b3818e30e2e8f7565d7a225860dc7790e5d"
+  },
+  {
+    "script": "Chapter05_The_simple_linear_regression_model/python/chapter05.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.03,
+    "sha256": "03ff0f8478965a1ca0ddbea54e2e0fe058842a9ba21bc1c8e7c2966dabaf6c58"
+  },
+  {
+    "script": "Chapter06_Multiple_Linear_Regression/python/chapter06.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.26,
+    "sha256": "38e05c971f4741a7cc32bc370fda74dc059af7583bcf0157043d8d14d40c9b5f"
+  },
+  {
+    "script": "Chapter07_Nonlinear_functional_form/python/chapter07.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.18,
+    "sha256": "f054974f70e54cb4c0b8b14701d4c9d4545e6ecec0079fa9e9340137ef8cfe4f"
+  },
+  {
+    "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/python/chapter08.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.02,
+    "sha256": "9c362b52e9abd335aedd75bb6acff7b22f5aed1e8599149847c0fa50115e6dfe"
+  },
+  {
+    "script": "Chapter09_Binary_dependent_variable_ch_logit/python/chapter09.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.42,
+    "sha256": "e90bb20a290add4bf4ef06c04873812247eaf781cbe942ee93132853990880f7"
+  },
+  {
+    "script": "Chapter10_Prediction_ch_prediction/python/chapter10.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 5.66,
+    "sha256": "d08f07454bc2e9bed1a45bdf19abc2b7c145118761d35ed1cf58d27605bfb18b"
+  },
+  {
+    "script": "Chapter11_Time_series_analysis/python/chapter11.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.51,
+    "sha256": "72b0faea9d60d9f059ba46a3d300da98372a4139fb84d145a30c13e2b930a20e"
+  },
+  {
+    "script": "Chapter12_Causal_analyses_ch_causality/python/chapter12.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.82,
+    "sha256": "9b1771dd963d83e0b09822a15f457143e91d9c20f097a0e67f463dcce666fb3f"
+  },
+  {
+    "script": "Chapter13_Nonparametric_Regression_chapter_nonparametric/python/chapter13.py",
+    "language": "Python",
+    "phase": "main",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.53,
+    "sha256": "3b598f01b70956a7bc94cb4d365e71c83da904843da368c9feca5fcb45ecfd5f"
+  },
+  {
+    "script": "修订补充示例/第二轮/appendix_R_离线正文代码.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 2.89,
+    "sha256": "e249bd97ae8d6fe0f00a5c6ce2bef5b2a652b610a488e78d851fa41bfb4b05df"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.36,
+    "sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch03_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.51,
+    "sha256": "1c8d12b2bfe42b5406b73698c29e33f87988e107e19a4502552676c4ec5de4d0"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch04_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.2,
+    "sha256": "589a60c767b4f9bed2582eae75890dd33ff57ea5de0d95baac7490164b100175"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch05_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.87,
+    "sha256": "82784ccefebb8eb343b797befa9127bce180536ae41ba8f5be6fa5a95509546b"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch06_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.4,
+    "sha256": "0cce0c4aa32337dd08138f2662d55b078c91950df5c8ff85f59fe20f2f5af906"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终末尾格式核验",
+    "returncode": 0,
+    "seconds": 0.56,
+    "sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch08_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.38,
+    "sha256": "00fdffeeda2c331674b491d00bf40c97d4a29c958d9cfb6271547039a119b708"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.15,
+    "sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.89,
+    "sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_ar_hac_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.35,
+    "sha256": "9029c33c1f994912a31adecb263d17a426f656e2d76ab5049689c3bd1d87b8a0"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_fars_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.88,
+    "sha256": "36f457b16e7d7f8cc8512c92944a37ee5840f09cbe7d912d4fef590a54cbd89f"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_gam_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.84,
+    "sha256": "725bae0dcaac363a41c9263a59a357c986f630ab031dfad836d07c18bb4b3495"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_kde_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.4,
+    "sha256": "52fa1840cb6a44f798857ddd304b14b54f8c278775c37a4da8b802b0d57ee885"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_local_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.41,
+    "sha256": "1fa8f4c060192f50cb9bfa4442b6a9069b6d051aa398cb0ec5006eac957eb7da"
+  },
+  {
+    "script": "book_codeboxes_round2/appendix_delta_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.35,
+    "sha256": "1d4583e9529a22f47f4a7cf8167d996e9e9dee4970147d5bf6ea773fa25e2aa7"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_arma_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.1,
+    "sha256": "88097f53d106b8f7e17440c22be8b0bdba1e63fc5857ecefe75468086b0cd718"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_seasonal_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.42,
+    "sha256": "49827a0932d4247b370288264e485d97aed4474dd3ab7998310661c5756d80aa"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_var_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.81,
+    "sha256": "60ca8a549d7e0ab99f6d05e26fe625ac1546511eb06f17bc72c8e6e4b25edd0e"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_causal_6.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.35,
+    "sha256": "65ed274a48629e4e9ce61f74860b82264e2193c1cf46d2f5219251f369f0876e"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_event_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.45,
+    "sha256": "03668f149957169ed0e43b89548952e2a3143cb0a7a4403093c095fabd3c08b4"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_mediation_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 2.43,
+    "sha256": "45d026756c10e75c3ac88d5cccb5111a42c1cbb39a6ef075a672dfa5557e305f"
+  },
+  {
+    "script": "book_codeboxes_round2/tech_design_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.45,
+    "sha256": "cc56dc74d9bee99ad266c33b19d77234b40042daf253650df73ab1c32b4818ed"
+  },
+  {
+    "script": "book_codeboxes_round2/tech_rd_r.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.04,
+    "sha256": "18064dacdc293b01535926bed502a959ac7f50042fcae25916653f40ae3cd547"
+  },
+  {
+    "script": "修订补充示例/arma_grid.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 1.1,
+    "sha256": "b1b8aff22783545970a6119c349727d47d4ac16d529feaa6a88f5402228ac2b0"
+  },
+  {
+    "script": "修订补充示例/event_common_timing.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.4,
+    "sha256": "22aa93e59dc7deb32a7d4fd5a35ed723c24ad001bc5217c1641dee1008034127"
+  },
+  {
+    "script": "修订补充示例/scm_simulated.R",
+    "language": "R",
+    "phase": "student",
+    "tag": "最终设备修正",
+    "returncode": 0,
+    "seconds": 0.35,
+    "sha256": "fcbc8f59b3314cf86733b360af108953ea6a1174b17c14500986d429305f23af"
+  },
+  {
+    "script": "修订补充示例/第二轮/appendix_Python_离线正文代码.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 4.48,
+    "sha256": "c4f3ad7fe8218fd9732ada9d86ec36e5a55269ec9cdf35643c26069653d0ffcc"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.3,
+    "sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch03_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.89,
+    "sha256": "7797fd2fd3de987775ea3f8393fc0aef66e974bdc584684e583a52da31b13ef8"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch04_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 3.3,
+    "sha256": "bb9723fcc352907a91bde5337df66095e8035f0231e3cefa04ab65b4be6a9447"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch05_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.51,
+    "sha256": "33af4cb252b4ff1ea5a1bfa45d2380f4eed826d9d2a8570ef9ae526837eb599b"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch06_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.53,
+    "sha256": "19fa418546d1759c387ac350c14b659fd1d14f4749d940793fdeb8416933462a"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终末尾格式核验",
+    "returncode": 0,
+    "seconds": 1.85,
+    "sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch08_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.69,
+    "sha256": "4c539b8c3bdfe793aeb2d4bb276addf293aadb3b6fd3dd6b2e2d50d63730d107"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.17,
+    "sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 22.02,
+    "sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_ar_hac_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.85,
+    "sha256": "4f06d2368d92e87be25098a56aa6be088576e7fd9321b61f97ed29bbc1eba940"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_fars_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.02,
+    "sha256": "d6e69d500ffefae49bc52d7b98dde5847cd557e313110931c442a699e4f89d0e"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_gam_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.31,
+    "sha256": "2105d5e4b71c9ba2732355a4aee247da1fdf316ca32b33242bbb54c731d63395"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_kde_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.15,
+    "sha256": "ca6886e54e4e863b6ddbaf50477f1b2d55cd0a884abfbb2068a8b86312bb3315"
+  },
+  {
+    "script": "book_codeboxes_round2/B3_np_local_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.51,
+    "sha256": "225554b4a54ca4f3c7ea13aaf558a9c0ce8fab545d038b26a24e7398439df749"
+  },
+  {
+    "script": "book_codeboxes_round2/appendix_delta_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.43,
+    "sha256": "4dea4acc7cf7d77b5fb253ea669dd89ea1d54cfff42a57eeba46b076de883599"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_arma_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.01,
+    "sha256": "cc067bdb6ad183d7283928ed47851c1efa4609f3d7f7efdc6d00d546fb05fef7"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_seasonal_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.01,
+    "sha256": "a6834616d0b6303510484c74153f7afd48662b242d39e01878fe796d12261156"
+  },
+  {
+    "script": "book_codeboxes_round2/ch11_var_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.8,
+    "sha256": "d4c64380efe203aff8486a16f57e85f6bd0e16c88cf660f4159c3dd0e5efd395"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_causal_7.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.04,
+    "sha256": "63e193bba95488fdaf4a0cd69e762a8c867e5dc55987cf11afdf7a28cc0124b6"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_event_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.85,
+    "sha256": "4ec29aeb339a65ea62f32eaae2f40afbb9f03c27263ce6633081b011a8c3ab80"
+  },
+  {
+    "script": "book_codeboxes_round2/ch12_mediation_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.09,
+    "sha256": "b16c6f0fb71dd256f535622ca337e0b171c603a1c3d90d5470fccf7e3fc9d5ac"
+  },
+  {
+    "script": "book_codeboxes_round2/tech_design_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.43,
+    "sha256": "f5a3e7ab7c17c54fc024d4a176c25a4b0d63815917cc8c4064226a6aa6b8cf1d"
+  },
+  {
+    "script": "book_codeboxes_round2/tech_rd_py.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 2.24,
+    "sha256": "712b1addfee573e5c5f12162c8b83d6bcb4b287290c859af87cf32eabd6e3379"
+  },
+  {
+    "script": "修订补充示例/arma_grid.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.79,
+    "sha256": "798c8c3901f7dd02c79d3eaa9d4a37e91b393ff9c00473df6d99e8b9c7ec0e96"
+  },
+  {
+    "script": "修订补充示例/event_common_timing.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 1.86,
+    "sha256": "de1e512a861ca57f8d21fca228b51dd543d28586b2e329952fe4f4e05b936248"
+  },
+  {
+    "script": "修订补充示例/scm_simulated.py",
+    "language": "Python",
+    "phase": "student",
+    "tag": "最终",
+    "returncode": 0,
+    "seconds": 0.89,
+    "sha256": "3d8d3f863aaa84a90adfc245555f91df7d8cb0db98568cea971bb6b2eba8fc88"
+  }
+]

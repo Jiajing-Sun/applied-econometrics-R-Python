@@ -1,9 +1,6 @@
-# 第 3 章 Python：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第3章Python：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch03_probability.tex:345；
+# 代码框 1: book_chapters/ch03_probability.tex:358 / ch03_probability_2
 import numpy as np
 
 rng = np.random.default_rng(2026)
@@ -14,7 +11,7 @@ sample_means = draws.mean(axis=1)
 sample_means.mean(), sample_means.std(ddof=1)
 
 
-# 教材：ch03_probability.tex:537；
+# 代码框 2: book_chapters/ch03_probability.tex:551 / ch03_probability_4
 from scipy.stats import t
 rng = np.random.default_rng(2026)
 coverage_B = 5000

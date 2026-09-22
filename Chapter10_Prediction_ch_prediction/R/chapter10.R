@@ -367,10 +367,10 @@ if (requireNamespace("rpart.plot", quietly = TRUE)) {
                          shadow.col = "gray85",
                          split.cex = 1.05, cex = 0.95,
                          tweak = 1.08,
-                         main = "剪枝后的回归树（可读展示版）")
+                         main = "浅层回归树（可读展示版）")
 } else {
   plot(display_tree, uniform = TRUE, branch = 0.5,
-       main = "剪枝后的回归树（可读展示版）")
+       main = "浅层回归树（可读展示版）")
   text(display_tree, use.n = TRUE, cex = 0.8)
 }
 dev.off()

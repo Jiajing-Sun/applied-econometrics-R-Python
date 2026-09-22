@@ -3,15 +3,13 @@ args <- commandArgs(trailingOnly=FALSE)
 file_arg <- args[grepl("^--file=",args)]
 script_dir <- if(length(file_arg)) dirname(normalizePath(gsub("~+~"," ",sub("^--file=","",file_arg[1]),fixed=TRUE))) else getwd()
 repo_dir <- normalizePath(file.path(script_dir,"..",".."))
-local_lib <- file.path(repo_dir,"..",".R-library")
-if(dir.exists(local_lib)) .libPaths(c(local_lib,.libPaths()))
 setwd(repo_dir)
 library(sandwich)
 library(lmtest)
 set.seed(922)
-df <- read.csv(file.path(repo_dir,"Chapter06_Multiple_Linear_Regression/results/chapter06_bea_bls_state_analysis_data.csv"),fileEncoding="UTF-8-BOM")
 
-# 代码框 1: {R 中多元回归}
+
+# 代码框 1: book_chapters/ch06_multiple_regression.tex:120 / ch06_multiple_regression_0
 data_path <- file.path("Chapter06_Multiple_Linear_Regression",
                        "results", "chapter06_bea_bls_state_analysis_data.csv")
 df <- read.csv(data_path, fileEncoding="UTF-8-BOM")

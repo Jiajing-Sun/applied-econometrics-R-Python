@@ -1,7 +1,7 @@
 # Extracted verbatim from book_chapters/ch_nonparametric.tex; run from companion-code root.
 import numpy as np, pandas as pd
 df = pd.read_csv("Chapter13_Nonparametric_Regression_chapter_nonparametric/"
-                 "results/chapter13_nonparametric_analysis_data.csv")
+                 "results/python_chapter13_nonparametric_analysis_data.csv")
 grid = np.linspace(*df.log_gdp_pc.quantile([.02,.98]), 180)
 pred = []
 for x0 in grid:

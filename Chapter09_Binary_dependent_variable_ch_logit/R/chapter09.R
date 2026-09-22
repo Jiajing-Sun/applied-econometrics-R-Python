@@ -382,7 +382,7 @@ plot_ylim <- c(ll_range[1], ll_range[2] + 0.10 * ll_span)
 plot(beta_grid, ll_grid, type = "l", lwd = 2.5, col = "#2166AC",
      xlab = "还款状态系数 beta",
      ylab = "对数似然",
-     main = "单变量 logit 的对数似然剖面",
+     main = "固定截距的对数似然切片",
      ylim = plot_ylim)
 abline(v = beta_1_hat, col = "#C0392B", lwd = 2, lty = 2)
 mle_label_x <- beta_1_hat + 0.06 * diff(range(beta_grid))

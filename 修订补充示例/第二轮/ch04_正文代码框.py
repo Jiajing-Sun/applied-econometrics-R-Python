@@ -1,9 +1,6 @@
-# 第 4 章 Python：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第4章Python：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch04_correlation_inference.tex:118；ch4_corr_py
+# 代码框 1: book_chapters/ch04_correlation_inference.tex:118 / ch4_corr_py
 import pandas as pd, numpy as np
 from scipy import stats
 
@@ -30,7 +27,7 @@ def corr_row(g):
 df.groupby("region").apply(corr_row)
 
 
-# 教材：ch04_correlation_inference.tex:253；ch4_boot_py
+# 代码框 2: book_chapters/ch04_correlation_inference.tex:253 / ch4_boot_py
 rng = np.random.default_rng(42)
 r_boot = np.array([
     np.corrcoef(
@@ -42,7 +39,7 @@ r_boot = np.array([
 np.percentile(r_boot, [2.5, 97.5])   # 百分位 Bootstrap CI
 
 
-# 教材：ch04_correlation_inference.tex:414；
+# 代码框 3: book_chapters/ch04_correlation_inference.tex:418 / ch04_correlation_inference_5
 x = df["log_gdp_pc"].to_numpy()
 y = df["life_expectancy"].to_numpy()
 Z = np.column_stack([np.ones(len(df)), np.log(df["population"])])
@@ -57,7 +54,7 @@ assert np.isclose(semipartial**2, delta_r2)
 print(partial, semipartial)
 
 
-# 教材：ch04_correlation_inference.tex:491；
+# 代码框 4: book_chapters/ch04_correlation_inference.tex:495 / ch04_correlation_inference_7
 import numpy as np
 rng = np.random.default_rng(42)
 x = df["log_gdp_pc"].to_numpy()

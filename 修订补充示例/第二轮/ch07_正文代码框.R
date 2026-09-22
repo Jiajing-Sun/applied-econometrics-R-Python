@@ -3,15 +3,13 @@ args <- commandArgs(trailingOnly=FALSE)
 file_arg <- args[grepl("^--file=",args)]
 script_dir <- if(length(file_arg)) dirname(normalizePath(gsub("~+~"," ",sub("^--file=","",file_arg[1]),fixed=TRUE))) else getwd()
 repo_dir <- normalizePath(file.path(script_dir,"..",".."))
-local_lib <- file.path(repo_dir,"..",".R-library")
-if(dir.exists(local_lib)) .libPaths(c(local_lib,.libPaths()))
 setwd(repo_dir)
 library(sandwich)
 library(lmtest)
 set.seed(922)
-df <- read.csv(file.path(repo_dir,"Chapter07_Nonlinear_functional_form/results/chapter07_wdi_owid_income_co2_analysis_data.csv"),fileEncoding="UTF-8-BOM")
 
-# 代码框 1: {R 中多项式和边际效应}
+
+# 代码框 1: book_chapters/ch07_nonlinear.tex:128 / ch07_nonlinear_0
 data_path <- file.path("Chapter07_Nonlinear_functional_form",
                        "results", "chapter07_wdi_owid_income_co2_analysis_data.csv")
 df <- read.csv(data_path, fileEncoding="UTF-8-BOM")
@@ -20,14 +18,14 @@ grid <- quantile(df$log_gdp_pc, c(.25, .50, .75))
 coef(quad_model)[2] + 2 * coef(quad_model)[3] * grid
 
 
-# 代码框 2: {R 中 log-log 模型}
+# 代码框 2: book_chapters/ch07_nonlinear.tex:331 / ch07_nonlinear_2
 library(sandwich)
 library(lmtest)
 mod_log <- lm(log(co2_pc_tonnes) ~ log_gdp_pc, data = df)
 coeftest(mod_log, vcov = vcovHC(mod_log, type = "HC0"))
 
 
-# 代码框 3: [label=ch07_cont_interact_r]{R 中连续×连续交互项}
+# 代码框 3: book_chapters/ch07_nonlinear.tex:484 / ch07_cont_interact_r
 # 中心化
 df$lgdp_c <- df$log_gdp_pc - mean(df$log_gdp_pc)
 df$trade_c <- df$trade_pct_gdp - mean(df$trade_pct_gdp)
@@ -55,7 +53,7 @@ for (q in q_trade) {
 }
 
 
-# 代码框 4: [label=ch07_kink_r]{R 中分段线性回归}
+# 代码框 4: book_chapters/ch07_nonlinear.tex:576 / ch07_kink_r
 # 单折点线性样条，折点 c = 8.5
 c1 <- 8.5
 df$kink1 <- pmax(df$log_gdp_pc - c1, 0)
@@ -76,7 +74,7 @@ grid$kink1 <- pmax(grid$log_gdp_pc - c1, 0)
 grid$pred  <- predict(mod_kink, newdata=grid)
 
 
-# 代码框 5: [label=ch07_me_r]{R 中边际效应的系统计算}
+# 代码框 5: book_chapters/ch07_nonlinear.tex:690 / ch07_me_r
 mod_quad <- lm(co2_pc_tonnes ~ log_gdp_pc + I(log_gdp_pc^2), data=df)
 V <- sandwich::vcovHC(mod_quad, type="HC0")
 points <- c(AME=mean(df$log_gdp_pc),
@@ -90,7 +88,7 @@ for (q in points) {
 }
 
 
-# 代码框 6: {R 中生成预测曲线的基本流程}
+# 代码框 6: book_chapters/ch07_nonlinear.tex:769 / ch07_nonlinear_10
 grid <- data.frame(log_gdp_pc = seq(min(df$log_gdp_pc),
                                     max(df$log_gdp_pc),
                                     length.out = 100))

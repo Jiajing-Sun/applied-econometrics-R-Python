@@ -1,9 +1,6 @@
-# 第 5 章 Python：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第5章Python：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch05_simple_regression.tex:198；
+# 代码框 1: book_chapters/ch05_simple_regression.tex:213 / ch05_simple_regression_1
 import pandas as pd
 import statsmodels.api as sm
 raw = pd.read_csv("data/processed/nbs_70city_house_price_2025.csv")
@@ -21,7 +18,7 @@ mod.summary()
 mod.conf_int()
 
 
-# 教材：ch05_simple_regression.tex:361；
+# 代码框 2: book_chapters/ch05_simple_regression.tex:376 / ch05_simple_regression_3
 robust_mod = mod.get_robustcov_results(cov_type="HC0")
 print(robust_mod.summary())
 city_mod = mod.get_robustcov_results(
@@ -30,7 +27,7 @@ city_mod = mod.get_robustcov_results(
 print(city_mod.summary())
 
 
-# 教材：ch05_simple_regression.tex:506；ch05_mc_py
+# 代码框 3: book_chapters/ch05_simple_regression.tex:521 / ch05_mc_py
 import numpy as np
 import statsmodels.api as sm
 import matplotlib.pyplot as plt

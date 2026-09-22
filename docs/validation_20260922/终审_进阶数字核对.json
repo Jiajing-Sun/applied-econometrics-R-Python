@@ -1,0 +1,602 @@
+[
+  {
+    "id": "N01",
+    "book_claim": "2024年189经济体，R/Python输入对应且可分语言独立生成",
+    "actual": {
+      "n": 189,
+      "numeric_max_abs_differences": {
+        "gdp_per_capita_constant_2015_usd": 0.0,
+        "log_gdp_pc": 4.973799150320701e-14,
+        "population": 0.0,
+        "co2_pc_tonnes": 4.973799150320701e-14
+      },
+      "keys_unique": true
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter13_Nonparametric_Regression_chapter_nonparametric/results/chapter13_nonparametric_analysis_data.csv",
+        "sha256": "9ac5854167091e48baa3620bd7934ea26fd744ad08c28b2a46444f75edeb6dad"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_Python/Chapter13_Nonparametric_Regression_chapter_nonparametric/results/python_chapter13_nonparametric_analysis_data.csv",
+        "sha256": "5a5c0981d1973e3b02870d315b7f3c878d165f20a02be31437cc648277b1a310"
+      }
+    ],
+    "method": "逐行键/列检查、数值差对比",
+    "status": "核对通过"
+  },
+  {
+    "id": "N02",
+    "book_claim": "NW网格最优h=.64，MSE22.525；8箱首尾均值.082与11.031",
+    "actual": {
+      "summary": {
+        "分析年份": 2024.0,
+        "样本量": 189.0,
+        "最优带宽": 0.64,
+        "最小LOOCV_MSE": 22.5252404775771,
+        "bootstrap次数": 200.0,
+        "局部线性曲线均值": 4.56953043784456
+      },
+      "bin_counts": [
+        6,
+        21,
+        27,
+        28,
+        38,
+        30,
+        25,
+        14
+      ],
+      "first_last_means": [
+        0.0818787544722559,
+        11.031420621633
+      ]
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter13_Nonparametric_Regression_chapter_nonparametric/results/chapter13_summary.csv",
+        "sha256": "7935e45060c46f07933ee0bdf8566c741841876c0a0aa1671733183f648b93aa"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter13_Nonparametric_Regression_chapter_nonparametric/tables/chapter13_regression_histogram_bins.csv",
+        "sha256": "f5b0533a1278126d59135f58fb4e167ec1de9bd9fd2aa8c19b881ac88ba336de"
+      }
+    ],
+    "method": "与主脚本输出核对舍入",
+    "status": "核对通过"
+  },
+  {
+    "id": "N03",
+    "book_claim": "发现并报主代理：绘图上限20省略6个高值，拟合仍含189经济体",
+    "actual": {
+      "off_panel_n": 6,
+      "off_panel": [
+        {
+          "country_code": "TTO",
+          "co2_pc_tonnes": 25.2689074954708
+        },
+        {
+          "country_code": "KWT",
+          "co2_pc_tonnes": 26.4471501734744
+        },
+        {
+          "country_code": "BHR",
+          "co2_pc_tonnes": 24.5510118526818
+        },
+        {
+          "country_code": "BRN",
+          "co2_pc_tonnes": 26.0469332491934
+        },
+        {
+          "country_code": "ARE",
+          "co2_pc_tonnes": 20.2057161581592
+        },
+        {
+          "country_code": "QAT",
+          "co2_pc_tonnes": 44.0238265364323
+        }
+      ]
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter13_Nonparametric_Regression_chapter_nonparametric/results/chapter13_nonparametric_analysis_data.csv",
+        "sha256": "9ac5854167091e48baa3620bd7934ea26fd744ad08c28b2a46444f75edeb6dad"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter13_Nonparametric_Regression_chapter_nonparametric/R/chapter13.R",
+        "sha256": "80bf46e1531d0a33afe79d443cba5ea15fe71e973dae58be172052d27389d945"
+      }
+    ],
+    "method": "按实际co2_ylim=0:20筛查图形口径；披露由主代理整合",
+    "status": "核对通过"
+  },
+  {
+    "id": "T01",
+    "book_claim": "中国1978–2024实际GDP47水平/46增长/45AR观测；AR=.620,HAC=.0697",
+    "actual": {
+      "levels": 47,
+      "growth": 46,
+      "ar_observations": 45,
+      "summary": {
+        "起始年份": 1978.0,
+        "结束年份": 2024.0,
+        "样本量": 47.0,
+        "GDP水平一阶自相关": 0.929296067760112,
+        "GDP增长率一阶自相关": 0.595992743852684,
+        "AR1滞后项系数": 0.620122971724544,
+        "AR1滞后项HAC标准误": 0.0696727288172404,
+        "AIC选择阶数": 1.0,
+        "一步预测增长率": 6.2201522356952,
+        "一步预测GDP万亿美元": 19.6746224892115
+      }
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/wdi_china_macro_1960_2024.csv",
+        "sha256": "dcfa0768e941dd833066ea2c57f64467bfe9a7ddde4ec18b4508e18d92ebd8bd"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/results/chapter11_summary.csv",
+        "sha256": "d1e96ea5ba6f1f60b3fd700913f595c708b1f087e7bbd53df253d2ac572078cf"
+      }
+    ],
+    "method": "输入年份、正值、差分计数及数值舍入核对",
+    "status": "核对通过"
+  },
+  {
+    "id": "T02",
+    "book_claim": "AR1–5统一41目标年，完整高斯AIC与书表一致",
+    "actual": {
+      "table": [
+        {
+          "阶数": 1,
+          "AIC": 187.321405140679,
+          "RSS": 199.970188194288,
+          "样本量": 41
+        },
+        {
+          "阶数": 2,
+          "AIC": 189.251919180665,
+          "RSS": 199.631569838997,
+          "样本量": 41
+        },
+        {
+          "阶数": 3,
+          "AIC": 191.220091200194,
+          "RSS": 199.476657543519,
+          "样本量": 41
+        },
+        {
+          "阶数": 4,
+          "AIC": 193.143026825633,
+          "RSS": 199.102069601112,
+          "样本量": 41
+        },
+        {
+          "阶数": 5,
+          "AIC": 193.905371746341,
+          "RSS": 193.181641997575,
+          "样本量": 41
+        }
+      ],
+      "cross_language_max_aic_difference": 4.831690603168681e-13
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/tables/chapter11_ar_order_aic.csv",
+        "sha256": "11f0600c4fa0b9a16023d56559cedb4f848a99021ab6b1bf2a23c87a55b1f7c5"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_Python/Chapter11_Time_series_analysis/tables/python_chapter11_ar_order_aic.csv",
+        "sha256": "0e6e87efe4c9c40aff85660d52fb846bf71746039aaa3e4cf8a31eb2673172dd"
+      }
+    ],
+    "method": "核对新主脚本改动后R/Python结果；旧不等样本算法已由根代理修正",
+    "status": "核对通过"
+  },
+  {
+    "id": "T03-acf",
+    "book_claim": "ACF/PACF两语言同口径；PACF采用按n分母自协方差的YW",
+    "actual": {
+      "first_five_rows": [
+        {
+          "滞后阶数": 0,
+          "自相关": 1.0
+        },
+        {
+          "滞后阶数": 1,
+          "自相关": 0.595992743852684
+        },
+        {
+          "滞后阶数": 2,
+          "自相关": 0.319902799578874
+        },
+        {
+          "滞后阶数": 3,
+          "自相关": 0.122504972146802
+        },
+        {
+          "滞后阶数": 4,
+          "自相关": 0.0754867721282669
+        }
+      ],
+      "max_abs_diff": 4.0245584642661925e-16
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/tables/chapter11_china_gdp_acf.csv",
+        "sha256": "b15359be0ba4aa42f2e9c41d6a255204d3ff495257f4f8a668af8928477bdaff"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_Python/Chapter11_Time_series_analysis/tables/python_chapter11_china_gdp_acf.csv",
+        "sha256": "32343a13f6446207d45505984a685edaf1636764bf84471eb3adeda4a2c7b29d"
+      }
+    ],
+    "method": "逐项数值对照新干净输出",
+    "status": "核对通过"
+  },
+  {
+    "id": "T03-pacf",
+    "book_claim": "ACF/PACF两语言同口径；PACF采用按n分母自协方差的YW",
+    "actual": {
+      "first_five_rows": [
+        {
+          "滞后阶数": 1,
+          "偏自相关": 0.595992743852684
+        },
+        {
+          "滞后阶数": 2,
+          "偏自相关": -0.0547533399859254
+        },
+        {
+          "滞后阶数": 3,
+          "偏自相关": -0.0714952989087363
+        },
+        {
+          "滞后阶数": 4,
+          "偏自相关": 0.0698987504444094
+        },
+        {
+          "滞后阶数": 5,
+          "偏自相关": -0.18322675782075
+        }
+      ],
+      "max_abs_diff": 4.996003610813204e-16
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/tables/chapter11_china_gdp_pacf.csv",
+        "sha256": "5c6445c373853e16b064ab426672efd265292fc08f2a2eefc15d325bdbf4168f"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_Python/Chapter11_Time_series_analysis/tables/python_chapter11_china_gdp_pacf.csv",
+        "sha256": "f3230505909ff1567f5a9ab158efd5281d0215b27a733ab0c96308297a1445bc"
+      }
+    ],
+    "method": "逐项数值对照新干净输出",
+    "status": "核对通过"
+  },
+  {
+    "id": "T04",
+    "book_claim": "2025一步外推，增长6.220对数百分点、水平19.675/均值19.679、区间18.846–20.539",
+    "actual": {
+      "最后观测年份": 2024.0,
+      "最后观测GDP（万亿美元）": 18.4881148377693,
+      "最后观测增长率（%）": 4.85744894062208,
+      "预测年份": 2025.0,
+      "预测增长率（%）": 6.2201522356952,
+      "朴素水平预测（万亿美元）": 19.6746224892115,
+      "Jensen修正水平预测（万亿美元）": 19.6793607271215,
+      "95%预测区间下限（万亿美元）": 18.8462991948344,
+      "95%预测区间上限（万亿美元）": 20.5393518425668
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/tables/chapter11_forecast_backtransform.csv",
+        "sha256": "02764f29dd24fe7c64b9c47df7fa1b7c40d74233cca65a4ae7d2e4096d120e77"
+      }
+    ],
+    "method": "表值按书中小数位核对；不宣称有2025真实留出误差",
+    "status": "核对通过"
+  },
+  {
+    "id": "T05",
+    "book_claim": "含趋势ADF辅助回归水平项-.016，统计量-.337",
+    "actual": {
+      "项": "lag_log_level",
+      "估计值": -0.0159743137040221,
+      "标准误": 0.047372050959604,
+      "t统计量": -0.337209670690509
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter11_Time_series_analysis/tables/chapter11_unit_root_illustration.csv",
+        "sha256": "2d2bca3b13795f141fdc59d45b7ca33c6fc16fa8cb0be60f6dcb6b24bd319e94"
+      }
+    ],
+    "method": "只核对辅助回归，不用普通t临界值判单位根",
+    "status": "核对通过"
+  },
+  {
+    "id": "C01",
+    "book_claim": "DID40单位7期280行，4均值差等于双FE1.900275，单位CR1 SE.120345",
+    "actual": {
+      "n": 280,
+      "units": 40,
+      "four_means": {
+        "(0, 0)": 4.337782859335727,
+        "(0, 1)": 5.50179954473936,
+        "(1, 0)": 4.187390555387393,
+        "(1, 1)": 7.25168259558168
+      },
+      "did_from_means": 1.9002753547906535,
+      "regression": {
+        "模型": "模拟DID：双向固定效应，单位聚类CR1",
+        "项": "treated:post",
+        "估计值": 1.90027535479065,
+        "标准误": 0.120344645913947,
+        "t统计量": 15.7902775014142,
+        "p值": 1.55368600599923e-18
+      }
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/chapter13_did_simulated.csv",
+        "sha256": "4aa3284236f695786dbd5305d1eb26e85ae164c936383809ae141d59f64956e1"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter12_Causal_analyses_ch_causality/tables/chapter12_did_simulated_regression.csv",
+        "sha256": "ddc4b9b44a6c8e75c65035fdf7b5768c32c8b418d816b36be2bfecae93261085"
+      }
+    ],
+    "method": "直接分组手算四均值；核对原面板CR1，不用4个汇总点推断",
+    "status": "核对通过"
+  },
+  {
+    "id": "C02",
+    "book_claim": "IV800连续D、Wald1.902872，结构残差HC0 .142588",
+    "actual": {
+      "n": 800,
+      "wald": 1.902872481063293,
+      "scalar_structural_hc0": 0.1425876984508255,
+      "main_table": [
+        {
+          "方程": "OLS结构式",
+          "关键变量": "D",
+          "估计值": 2.49265897836651,
+          "标准误": 0.0296031048784284
+        },
+        {
+          "方程": "第一阶段",
+          "关键变量": "Z",
+          "估计值": 0.745870854911458,
+          "标准误": 0.0955646458085947
+        },
+        {
+          "方程": "简约式",
+          "关键变量": "Z",
+          "估计值": 1.41929712423816,
+          "标准误": 0.257625832472179
+        },
+        {
+          "方程": "2SLS第二阶段",
+          "关键变量": "Dhat",
+          "估计值": 1.90287248106329,
+          "标准误": 0.142587698450829
+        }
+      ]
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/chapter13_iv_simulated.csv",
+        "sha256": "174afb1ee3c4470e5d0e23385ebe31cad7fedcfc72977c95c3f703b797be0b93"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter12_Causal_analyses_ch_causality/tables/chapter12_iv_simulated_table.csv",
+        "sha256": "e1e64bcaae1e43727cd0cdb436379f9273fa183ee0024698c513fee2b2f7dd87"
+      }
+    ],
+    "method": "以中心化协方差之比和单工具标量结构残差公式独立复算",
+    "status": "核对通过"
+  },
+  {
+    "id": "C03",
+    "book_claim": "FARS结果39935/原82615，已知性别39905，35715/35693事故聚类",
+    "actual": {
+      "raw_n": 82615,
+      "outcome_n": 39935,
+      "outcome_missing_n": 42680,
+      "outcome_missing_rate": 0.5166132058342916,
+      "sex_codes": {
+        "1": 28257,
+        "2": 11648,
+        "8": 27,
+        "9": 3
+      },
+      "known_sex_n": 39905,
+      "full_accident_groups": 35715,
+      "known_sex_accident_groups": 35693
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/nhtsa_fars_rd_age18_24_2018_2023.csv",
+        "sha256": "67e1a19522b3e18e8e1f46a0b08a9ad8d9a84a37907df120bd92939427d83854"
+      }
+    ],
+    "method": "从原始处理后CSV按drinking0/1、sex1/2及year+st_case直接计数",
+    "status": "核对通过"
+  },
+  {
+    "id": "C04",
+    "book_claim": "按人员等权OLS相当于年龄均值按人数加权，主跳跃.049788；控制后.050091、HC0 .009408",
+    "actual": {
+      "age_cell_weighted_jump": 0.04978803993094058,
+      "reported": [
+        {
+          "模型": "局部线性RD",
+          "项": "Z",
+          "估计值": 0.0497880399309258,
+          "标准误": 0.0094459424811662,
+          "t统计量": 5.27083877868148,
+          "p值": 1.36506027300687e-07
+        },
+        {
+          "模型": "加入性别和年份控制",
+          "项": "Z",
+          "估计值": 0.050090948026141,
+          "标准误": 0.0094080935465703,
+          "t统计量": 5.32424000443757,
+          "p值": 1.01923214707687e-07
+        }
+      ]
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter12_Causal_analyses_ch_causality/tables/chapter12_fars_rd_hc0_tables.csv",
+        "sha256": "875ea1d0a4116581c23eb0f37973868e09e613cf8aa29658fd4d3518ed67d93e"
+      },
+      {
+        "path": "AUDIT_ROOT/.clean/run_Python/Chapter12_Causal_analyses_ch_causality/tables/python_chapter12_fars_rd_hc0_tables.csv",
+        "sha256": "45302de660b3f585e8b9a673df2cab915aa0b59e41cd899ae68283c4a8bb9ab8"
+      }
+    ],
+    "method": "按7个年龄单元人数加权独立核对主拟合；控制行R/Python同SE对照",
+    "status": "核对通过"
+  },
+  {
+    "id": "C05",
+    "book_claim": "FARS半窗口2/3/4=29145/39935/39935；3/4同支撑",
+    "actual": [
+      {
+        "带宽": 2,
+        "样本量": 29145,
+        "左侧样本量": 11191,
+        "右侧样本量": 17954,
+        "跳跃估计": 0.058896158985552,
+        "HC0标准误": 0.013035924641485
+      },
+      {
+        "带宽": 3,
+        "样本量": 39935,
+        "左侧样本量": 16214,
+        "右侧样本量": 23721,
+        "跳跃估计": 0.0497880399309258,
+        "HC0标准误": 0.0094459424811662
+      },
+      {
+        "带宽": 4,
+        "样本量": 39935,
+        "左侧样本量": 16214,
+        "右侧样本量": 23721,
+        "跳跃估计": 0.0497880399309258,
+        "HC0标准误": 0.0094459424811662
+      }
+    ],
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter12_Causal_analyses_ch_causality/tables/chapter12_fars_rd_bandwidth_sensitivity.csv",
+        "sha256": "01cee958348426570481d029db9cd2570400fc1b6902a16684bce62d2a607ff2"
+      }
+    ],
+    "method": "对应age19–23及18–24真实支持范围",
+    "status": "核对通过"
+  },
+  {
+    "id": "C06",
+    "book_claim": "8人4处理共有70分配，均值差.75，Fisher双侧p=.829",
+    "actual": {
+      "assignments": 70,
+      "observed_difference": 0.75,
+      "p_exact": 0.8285714285714286
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/.clean/run_R/Chapter12_Causal_analyses_ch_causality/tables/chapter12_randomization_summary.csv",
+        "sha256": "07f9ed0aa709669e52451eb748635b869a04d04a034741d9ffe5f1b872206d1b"
+      }
+    ],
+    "method": "独立枚举70分配，尖锐零效应下固定观测结果",
+    "status": "核对通过"
+  },
+  {
+    "id": "C07",
+    "book_claim": "事件研究为独立60×8面板，2014共同处理，rel_time=-4…3",
+    "actual": {
+      "n": 480,
+      "units": 60,
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "relative_times": [
+        -999,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "treated_units": 30
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/chapter13_event_common_timing_simulated.csv",
+        "sha256": "d94257c9b775bb246b4cf75f9728edff5d2859379838ff84702d25396e6e8368"
+      }
+    ],
+    "method": "与40×7静态DID分开确认，-1基期无系数",
+    "status": "核对通过"
+  },
+  {
+    "id": "C08",
+    "book_claim": "中介600行同样本TE=ADE+ACME；连续M而非证书二元",
+    "actual": {
+      "n": 600,
+      "TE": 0.5227077854922477,
+      "ADE": 0.30661444401285215,
+      "ACME": 0.21609334147939552,
+      "identity_error": 5.551115123125783e-17
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/chapter13_mediation_simulated.csv",
+        "sha256": "1eb140f900179c9685c5d75acf466ed0f2108fcddb1ddf71ba4811980ff4ec4d"
+      }
+    ],
+    "method": "独立OLS三个方程代数一致性，仅为分解而非验证无混杂",
+    "status": "核对通过"
+  },
+  {
+    "id": "C09",
+    "book_claim": "连续RD模拟独立于FARS，n2000、X在[-1,1]，结果与D完整",
+    "actual": {
+      "n": 2000,
+      "X_min": -0.9994668810073372,
+      "X_max": 0.9973568029654862,
+      "unique_X": 2000,
+      "columns": [
+        "X",
+        "D",
+        "Y_sharp",
+        "Y_fuzzy"
+      ]
+    },
+    "sources": [
+      {
+        "path": "AUDIT_ROOT/配套代码/data/processed/chapter13_rd_continuous_simulated.csv",
+        "sha256": "363d8dca7c4e47a48201ac7ec17bbe854f189f3c7ec503002c3559febd44791c"
+      }
+    ],
+    "method": "检查文件完整性与正文变量映射；不将此模拟的RBC外推给离散FARS",
+    "status": "核对通过"
+  }
+]

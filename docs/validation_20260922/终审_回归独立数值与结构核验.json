@@ -1,0 +1,2382 @@
+{
+  "analysis_schemas": [
+    {
+      "chapter": 7,
+      "file": "wdi_owid_income_co2_analysis_data",
+      "rows": 157,
+      "columns": [
+        "country",
+        "country_code",
+        "year",
+        "gdp_per_capita_constant_2015_usd",
+        "log_gdp_pc",
+        "trade_pct_gdp",
+        "population",
+        "co2_pc_tonnes",
+        "log_co2_pc",
+        "income_decile",
+        "income_group",
+        "high_income",
+        "high_trade"
+      ],
+      "equal_schema": true
+    },
+    {
+      "chapter": 8,
+      "file": "acs_cluster_analysis_data",
+      "rows": 203337,
+      "columns": [
+        "household_id",
+        "person_order",
+        "age",
+        "female",
+        "employed",
+        "bachelor",
+        "personal_income",
+        "log_income"
+      ],
+      "equal_schema": true
+    },
+    {
+      "chapter": 8,
+      "file": "bea_bls_state_panel_analysis_data",
+      "rows": 510,
+      "columns": [
+        "state",
+        "state_fips",
+        "year",
+        "income_pc_thousand",
+        "gdp_pc_thousand",
+        "unemployment_rate",
+        "population"
+      ],
+      "equal_schema": true
+    },
+    {
+      "chapter": 9,
+      "file": "acs_high_income_analysis_data",
+      "rows": 203337,
+      "columns": [
+        "age",
+        "female",
+        "employed",
+        "bachelor",
+        "personal_income",
+        "high_income",
+        "ln_age"
+      ],
+      "equal_schema": true
+    },
+    {
+      "chapter": 9,
+      "file": "credit_default_analysis_data",
+      "rows": 30000,
+      "columns": [
+        "default",
+        "pay_delay",
+        "male",
+        "age",
+        "limit_bal_10k",
+        "bill_ratio",
+        "pred",
+        "pred_lpm"
+      ],
+      "equal_schema": true
+    },
+    {
+      "chapter": 10,
+      "file": "nbs_70city_prediction_data",
+      "rows": 840,
+      "columns": [
+        "year",
+        "month",
+        "date",
+        "city",
+        "second_hand_yoy",
+        "new_house_yoy",
+        "second_hand_mom",
+        "new_house_mom",
+        "first_tier"
+      ],
+      "equal_schema": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "C07 centering leaves fitted values unchanged",
+      "max_absolute_difference": 3.7769787297747826e-13,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C07 centering leaves interaction coefficient unchanged",
+      "max_absolute_difference": 3.0097452308197603e-16,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C07 printed continuous interaction q values",
+      "max_absolute_difference": 0.00043722639438215083,
+      "tolerance": 0.0005,
+      "passed": true
+    },
+    {
+      "check": "C07 printed continuous interaction marginal effects",
+      "max_absolute_difference": 0.00046982395202821436,
+      "tolerance": 0.0005,
+      "passed": true
+    },
+    {
+      "check": "C07 gradient standard error at -52.45093413430096",
+      "max_absolute_difference": 0.0,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C07 gradient standard error at -11.058299282539366",
+      "max_absolute_difference": 0.0,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C07 gradient standard error at 62.189583334113166",
+      "max_absolute_difference": 0.0,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 合并OLS（按州聚类） vs R",
+      "max_absolute_difference": 3.3306690738754696e-15,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 合并OLS（按州聚类） vs Python",
+      "max_absolute_difference": 1.3322676295501878e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 州固定效应 vs R",
+      "max_absolute_difference": 2.8199664825478976e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 州固定效应 vs Python",
+      "max_absolute_difference": 3.219646771412954e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 州与年份双向固定效应 vs R",
+      "max_absolute_difference": 4.712064072265321e-13,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 direct grouped-score 州与年份双向固定效应 vs Python",
+      "max_absolute_difference": 4.721223412218478e-13,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C08 within slope equals explicit state dummies",
+      "max_absolute_difference": 3.397282455352979e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C09 LPM independent HC1/z estimate and SE",
+      "max_absolute_difference": 2.7922109069322687e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C09 odds-to-probability inversion",
+      "max_absolute_difference": 0.0,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C10 four-feature baseline test MSE",
+      "max_absolute_difference": 1.8207657603852567e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "C10 univariate rolling CV mean",
+      "max_absolute_difference": 3.4638958368304884e-14,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "GLS whitening L Omega L prime identity",
+      "max_absolute_difference": 1.1102230246251565e-16,
+      "tolerance": 1e-08,
+      "passed": true
+    },
+    {
+      "check": "GLS formula equals whitened least squares",
+      "max_absolute_difference": 2.220446049250313e-16,
+      "tolerance": 1e-08,
+      "passed": true
+    }
+  ],
+  "continuous_interaction": [
+    {
+      "trade_raw": 39.921045305191505,
+      "effect": 2.092656840356265,
+      "hc0_se": 0.2228592312100877,
+      "df": 153,
+      "ci": [
+        1.6523783015700593,
+        2.5329353791424705
+      ]
+    },
+    {
+      "trade_raw": 81.3136801569531,
+      "effect": 2.0095301760479716,
+      "hc0_se": 0.2075233377790162,
+      "df": 153,
+      "ci": [
+        1.5995490797960086,
+        2.4195112722999346
+      ]
+    },
+    {
+      "trade_raw": 154.56156277360563,
+      "effect": 1.862430283244007,
+      "hc0_se": 0.25906601625380143,
+      "df": 153,
+      "ci": [
+        1.3506219705882816,
+        2.3742385958997323
+      ]
+    }
+  ],
+  "panel_cluster_results": [
+    {
+      "model": "合并OLS（按州聚类）",
+      "beta": -0.7588154417561617,
+      "se": 0.5710197388192071,
+      "p": 0.18992101166510716,
+      "df": 50
+    },
+    {
+      "model": "州固定效应",
+      "beta": -1.7469170594644883,
+      "se": 0.29237868351481483,
+      "p": 2.3950070406231315e-07,
+      "df": 50
+    },
+    {
+      "model": "州与年份双向固定效应",
+      "beta": 0.2932141589399512,
+      "se": 0.23652570722781,
+      "p": 0.22088391690771922,
+      "df": 50
+    }
+  ],
+  "prediction_baseline_mse": 2.106647248455458,
+  "univariate_time_cv": [
+    2.8054769952628966,
+    2.550721298137117,
+    2.3851626403608597,
+    2.1387738748234613,
+    2.022561237192143
+  ],
+  "static_checks": [
+    {
+      "file": "book_chapters/ch07_nonlinear.tex",
+      "sha256": "98ba00848e3d63301014f72c637a95933b77071827a2f9d67a94ecc2c3131353",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          25,
+          25
+        ],
+        "auditcv": [
+          9,
+          9
+        ],
+        "redcv": [
+          3,
+          3
+        ],
+        "rbox": [
+          6,
+          6
+        ],
+        "pbox": [
+          6,
+          6
+        ],
+        "equation": [
+          20,
+          20
+        ],
+        "table": [
+          9,
+          9
+        ]
+      },
+      "brace_balance": 0
+    },
+    {
+      "file": "book_chapters/ch08_dependent_errors.tex",
+      "sha256": "782ac158843286657c7d9f587afd7e2cef9f360671771dfc5380ca5d426de1a0",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          46,
+          46
+        ],
+        "auditcv": [
+          4,
+          4
+        ],
+        "redcv": [
+          0,
+          0
+        ],
+        "rbox": [
+          2,
+          2
+        ],
+        "pbox": [
+          2,
+          2
+        ],
+        "equation": [
+          23,
+          23
+        ],
+        "table": [
+          3,
+          3
+        ]
+      },
+      "brace_balance": 0
+    },
+    {
+      "file": "book_chapters/ch09_binary.tex",
+      "sha256": "b2940442b958bcf3672630a9776453e954a143be96b7746e009dbb442c4fdfcb",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          22,
+          22
+        ],
+        "auditcv": [
+          8,
+          8
+        ],
+        "redcv": [
+          2,
+          2
+        ],
+        "rbox": [
+          5,
+          5
+        ],
+        "pbox": [
+          5,
+          5
+        ],
+        "equation": [
+          19,
+          19
+        ],
+        "table": [
+          8,
+          8
+        ]
+      },
+      "brace_balance": 0
+    },
+    {
+      "file": "book_chapters/ch10_prediction.tex",
+      "sha256": "d414fc19544d46a2568a02f27e3e57867efc0ddb3e0d82ae30a269ce38edf3b4",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          21,
+          21
+        ],
+        "auditcv": [
+          6,
+          6
+        ],
+        "redcv": [
+          2,
+          2
+        ],
+        "rbox": [
+          4,
+          4
+        ],
+        "pbox": [
+          4,
+          4
+        ],
+        "equation": [
+          8,
+          8
+        ],
+        "table": [
+          5,
+          5
+        ]
+      },
+      "brace_balance": 0
+    },
+    {
+      "file": "technical_supplements/tech_gls_ch8.tex",
+      "sha256": "7d606529f74ae6631bfafd48a3905055e36e94f266592d4d45ebb2fd2fff8d75",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          12,
+          12
+        ],
+        "auditcv": [
+          0,
+          0
+        ],
+        "redcv": [
+          0,
+          0
+        ],
+        "rbox": [
+          0,
+          0
+        ],
+        "pbox": [
+          0,
+          0
+        ],
+        "equation": [
+          11,
+          11
+        ],
+        "table": [
+          0,
+          0
+        ]
+      },
+      "brace_balance": 0
+    },
+    {
+      "file": "technical_supplements/tech_cluster_panel_ols_ch8.tex",
+      "sha256": "3012d12fe45fca9334b1322b71d9bb8631fc9fc22063800e13f9b10ff434a32d",
+      "labels_preserved": true,
+      "environment_counts": {
+        "auditrevision": [
+          6,
+          6
+        ],
+        "auditcv": [
+          0,
+          0
+        ],
+        "redcv": [
+          0,
+          0
+        ],
+        "rbox": [
+          0,
+          0
+        ],
+        "pbox": [
+          0,
+          0
+        ],
+        "equation": [
+          21,
+          21
+        ],
+        "table": [
+          0,
+          0
+        ]
+      },
+      "brace_balance": 0
+    }
+  ],
+  "run_records": [
+    {
+      "script": "Chapter07_Nonlinear_functional_form/R/chapter07.R",
+      "language": "R",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 0.68,
+      "sha256": "8ec3ec5f6b4158b8258f2db7169a4edab78723d495f31fe8834089ee18ff54e9",
+      "log": "核验记录/R_main_最终/chapter07.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/R/chapter08.R",
+      "language": "R",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 4.99,
+      "sha256": "d41b2ffa601be770c179fb365becc621e92f0e1e1e7599876e67af01e7f68c93",
+      "log": "核验记录/R_main_最终/chapter08.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "Chapter09_Binary_dependent_variable_ch_logit/R/chapter09.R",
+      "language": "R",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 3.58,
+      "sha256": "53849917123c0ead773b25bf1bf9770462f830a8c0b96179aa54cfab10ace9d8",
+      "log": "核验记录/R_main_最终/chapter09.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "Chapter10_Prediction_ch_prediction/R/chapter10.R",
+      "language": "R",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 23.23,
+      "sha256": "3066526067cbf17bbaa44c9cab83aecf57eedfb2fbd6091e3c256c5ee0e4360b",
+      "log": "核验记录/R_main_最终/chapter10.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+      "language": "R",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 0.46,
+      "sha256": "f137fd9782a0413613d0957e5c03c1dd25eeaf8fb4d4e3103dae11f1a653e2f4",
+      "log": "核验记录/R_student_最终/ch07_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch08_正文代码框.R",
+      "language": "R",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 1.49,
+      "sha256": "00fdffeeda2c331674b491d00bf40c97d4a29c958d9cfb6271547039a119b708",
+      "log": "核验记录/R_student_最终/ch08_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+      "language": "R",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 1.27,
+      "sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2",
+      "log": "核验记录/R_student_最终/ch09_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+      "language": "R",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 0.93,
+      "sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8",
+      "log": "核验记录/R_student_最终/ch10_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_R"
+    },
+    {
+      "script": "Chapter07_Nonlinear_functional_form/python/chapter07.py",
+      "language": "Python",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 2.18,
+      "sha256": "f054974f70e54cb4c0b8b14701d4c9d4545e6ecec0079fa9e9340137ef8cfe4f",
+      "log": "核验记录/Python_main_最终/chapter07.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/python/chapter08.py",
+      "language": "Python",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 2.02,
+      "sha256": "9c362b52e9abd335aedd75bb6acff7b22f5aed1e8599149847c0fa50115e6dfe",
+      "log": "核验记录/Python_main_最终/chapter08.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "Chapter09_Binary_dependent_variable_ch_logit/python/chapter09.py",
+      "language": "Python",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 1.42,
+      "sha256": "e90bb20a290add4bf4ef06c04873812247eaf781cbe942ee93132853990880f7",
+      "log": "核验记录/Python_main_最终/chapter09.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "Chapter10_Prediction_ch_prediction/python/chapter10.py",
+      "language": "Python",
+      "phase": "main",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 5.66,
+      "sha256": "d08f07454bc2e9bed1a45bdf19abc2b7c145118761d35ed1cf58d27605bfb18b",
+      "log": "核验记录/Python_main_最终/chapter10.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+      "language": "Python",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 1.47,
+      "sha256": "b8f8ec5f53a14fda5e728890e9bbb90d0aea9c839871f0fb35a95f9be6e5685a",
+      "log": "核验记录/Python_student_最终/ch07_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch08_正文代码框.py",
+      "language": "Python",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 1.69,
+      "sha256": "4c539b8c3bdfe793aeb2d4bb276addf293aadb3b6fd3dd6b2e2d50d63730d107",
+      "log": "核验记录/Python_student_最终/ch08_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+      "language": "Python",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 2.17,
+      "sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25",
+      "log": "核验记录/Python_student_最终/ch09_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    },
+    {
+      "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+      "language": "Python",
+      "phase": "student",
+      "tag": "最终",
+      "returncode": 0,
+      "seconds": 22.02,
+      "sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453",
+      "log": "核验记录/Python_student_最终/ch10_正文代码框.log",
+      "run_root": "AUDIT_ROOT/.clean/run_Python"
+    }
+  ],
+  "output_snapshots": [
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_dummy_interaction_predictions.csv",
+      "sha256": "705220dfe312e56116a1d0f31aa2de3066ee82f82732574b1725be6186531654",
+      "rows": 4,
+      "columns": [
+        "收入组",
+        "贸易组",
+        "预测人均CO2"
+      ],
+      "records": [
+        {
+          "收入组": "非高收入",
+          "贸易组": "低贸易开放度",
+          "预测人均CO2": 1.4881839666
+        },
+        {
+          "收入组": "高收入",
+          "贸易组": "低贸易开放度",
+          "预测人均CO2": 6.6889535794
+        },
+        {
+          "收入组": "非高收入",
+          "贸易组": "高贸易开放度",
+          "预测人均CO2": 2.0009756842
+        },
+        {
+          "收入组": "高收入",
+          "贸易组": "高贸易开放度",
+          "预测人均CO2": 6.8273623766
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_income_decile_co2_means.csv",
+      "sha256": "aadd9042ce0adb7dd0a5ff03a1bae67990eb6055233bba9851693daebf06a374",
+      "rows": 10,
+      "columns": [
+        "收入分箱",
+        "人均CO2均值",
+        "log人均GDP均值"
+      ],
+      "records": [
+        {
+          "收入分箱": "[5.97,7]",
+          "人均CO2均值": 0.1801425147,
+          "log人均GDP均值": 6.5508550091
+        },
+        {
+          "收入分箱": "(7,7.45]",
+          "人均CO2均值": 0.8873351057,
+          "log人均GDP均值": 7.2221803402
+        },
+        {
+          "收入分箱": "(7.45,8.15]",
+          "人均CO2均值": 1.1507632278,
+          "log人均GDP均值": 7.7679240917
+        },
+        {
+          "收入分箱": "(8.15,8.43]",
+          "人均CO2均值": 2.1520122496,
+          "log人均GDP均值": 8.3163556641
+        },
+        {
+          "收入分箱": "(8.43,8.8]",
+          "人均CO2均值": 4.0431118919,
+          "log人均GDP均值": 8.6629648215
+        },
+        {
+          "收入分箱": "(8.8,9.23]",
+          "人均CO2均值": 4.6328778287,
+          "log人均GDP均值": 8.9668832042
+        },
+        {
+          "收入分箱": "(9.23,9.75]",
+          "人均CO2均值": 5.6082083273,
+          "log人均GDP均值": 9.5101709504
+        },
+        {
+          "收入分箱": "(9.75,10.3]",
+          "人均CO2均值": 7.955258485,
+          "log人均GDP均值": 9.9645413444
+        },
+        {
+          "收入分箱": "(10.3,10.7]",
+          "人均CO2均值": 7.9231204367,
+          "log人均GDP均值": 10.5564672311
+        },
+        {
+          "收入分箱": "(10.7,11.7]",
+          "人均CO2均值": 7.6825179833,
+          "log人均GDP均值": 11.1236104819
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_income_group_means.csv",
+      "sha256": "380c37d581ed7e1dc916e15199f624db7762bc51f4e98736fa0eae9a1d8c5f0a",
+      "rows": 4,
+      "columns": [
+        "收入组",
+        "人均CO2均值"
+      ],
+      "records": [
+        {
+          "收入组": "低收入组",
+          "人均CO2均值": 0.6443090027
+        },
+        {
+          "收入组": "中低收入组",
+          "人均CO2均值": 2.7613004231
+        },
+        {
+          "收入组": "中高收入组",
+          "人均CO2均值": 5.4401203715
+        },
+        {
+          "收入组": "高收入组",
+          "人均CO2均值": 8.1045871326
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_interaction_models_hc0_table.csv",
+      "sha256": "d5f48a1bad40d137e42e2087437a64d53e5f7ec36ac21ffaede28814b6f0de27",
+      "rows": 10,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值",
+        "CI下限",
+        "CI上限"
+      ],
+      "records": [
+        {
+          "模型": "模型1：高收入虚拟变量",
+          "项": "(Intercept)",
+          "估计值": 1.689406033,
+          "标准误": 0.229949612,
+          "t统计量": 7.3468531577,
+          "p值": 0.0,
+          "CI下限": 1.2351665287,
+          "CI上限": 2.1436455373
+        },
+        {
+          "模型": "模型1：高收入虚拟变量",
+          "项": "high_income",
+          "估计值": 5.0829477191,
+          "标准误": 0.5780058561,
+          "t统计量": 8.7939380983,
+          "p值": 0.0,
+          "CI下限": 3.9411623892,
+          "CI上限": 6.2247330489
+        },
+        {
+          "模型": "模型2：两个虚拟变量交互",
+          "项": "(Intercept)",
+          "估计值": 1.4881839666,
+          "标准误": 0.2676679072,
+          "t统计量": 5.5598147046,
+          "p值": 1.174e-07,
+          "CI下限": 0.9593818414,
+          "CI上限": 2.0169860918
+        },
+        {
+          "模型": "模型2：两个虚拟变量交互",
+          "项": "high_income",
+          "估计值": 5.2007696128,
+          "标准误": 0.8594526075,
+          "t统计量": 6.0512581698,
+          "p值": 1.06e-08,
+          "CI下限": 3.5028433652,
+          "CI上限": 6.8986958604
+        },
+        {
+          "模型": "模型2：两个虚拟变量交互",
+          "项": "high_trade",
+          "估计值": 0.5127917176,
+          "标准误": 0.4879725674,
+          "t统计量": 1.0508617735,
+          "p值": 0.2949790437,
+          "CI下限": -0.4512421605,
+          "CI上限": 1.4768255958
+        },
+        {
+          "模型": "模型2：两个虚拟变量交互",
+          "项": "high_income_high_trade",
+          "估计值": -0.3743829204,
+          "标准误": 1.1786889494,
+          "t统计量": -0.3176265635,
+          "p值": 0.7512012881,
+          "CI下限": -2.7029893932,
+          "CI上限": 1.9542235524
+        },
+        {
+          "模型": "模型3：虚拟变量与连续变量交互",
+          "项": "(Intercept)",
+          "估计值": 0.867817567,
+          "标准误": 0.5124281559,
+          "t统计量": 1.6935399764,
+          "p值": 0.0923876544,
+          "CI下限": -0.1445305349,
+          "CI上限": 1.880165669
+        },
+        {
+          "模型": "模型3：虚拟变量与连续变量交互",
+          "项": "high_income",
+          "估计值": 5.852189291,
+          "标准误": 1.0441438068,
+          "t统计量": 5.6047732627,
+          "p值": 9.47e-08,
+          "CI下限": 3.7893888987,
+          "CI上限": 7.9149896833
+        },
+        {
+          "模型": "模型3：虚拟变量与连续变量交互",
+          "项": "trade_pct_gdp",
+          "估计值": 0.0109540188,
+          "标准误": 0.0073978384,
+          "t统计量": 1.4807053386,
+          "p值": 0.1407414652,
+          "CI下限": -0.0036610791,
+          "CI上限": 0.0255691166
+        },
+        {
+          "模型": "模型3：虚拟变量与连续变量交互",
+          "项": "high_income_trade",
+          "估计值": -0.0104779789,
+          "标准误": 0.0098284614,
+          "t统计量": -1.0660853622,
+          "p值": 0.2880644652,
+          "CI下限": -0.0298949921,
+          "CI上限": 0.0089390344
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_log_model_interpretation.csv",
+      "sha256": "774c1ecad4a34da41b4ed9a6f1b36d6b3c3e3831d5e9eb57cf6940bbf9520b37",
+      "rows": 3,
+      "columns": [
+        "模型",
+        "设定",
+        "系数含义",
+        "本章读法"
+      ],
+      "records": [
+        {
+          "模型": "log-log",
+          "设定": "log(Y) ~ log(X)",
+          "系数含义": "X增加1%，Y条件几何均值约变化beta%",
+          "本章读法": "收入弹性约 0.789"
+        },
+        {
+          "模型": "lin-log",
+          "设定": "Y ~ log(X)",
+          "系数含义": "X增加1%，Y条件算术均值约变化beta/100个单位",
+          "本章读法": "人均GDP增加1%，人均CO2约变化 0.020 吨"
+        },
+        {
+          "模型": "log-level",
+          "设定": "log(Y) ~ X",
+          "系数含义": "X增加1个单位，Y条件几何均值精确变化100*(exp(beta)-1)%",
+          "本章读法": "本章未作为主模型；适用于正值结果，单位变化的解释取决于X的计量单位"
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_log_models_hc0_table.csv",
+      "sha256": "17832734e124816587fc4eeb56d41785d723d767dd2751ec10b40822d24487ab",
+      "rows": 4,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值",
+        "CI下限",
+        "CI上限"
+      ],
+      "records": [
+        {
+          "模型": "log-log模型",
+          "项": "(Intercept)",
+          "估计值": -6.1951527353,
+          "标准误": 0.4226925299,
+          "t统计量": -14.6564045883,
+          "p值": 0.0,
+          "CI下限": -7.0301341193,
+          "CI上限": -5.3601713512
+        },
+        {
+          "模型": "log-log模型",
+          "项": "log_gdp_pc",
+          "估计值": 0.7888347006,
+          "标准误": 0.046721706,
+          "t统计量": 16.8836878657,
+          "p值": 0.0,
+          "CI下限": 0.6965412438,
+          "CI上限": 0.8811281573
+        },
+        {
+          "模型": "lin-log模型",
+          "项": "(Intercept)",
+          "估计值": -13.0900717845,
+          "标准误": 1.4703253111,
+          "t统计量": -8.9028405385,
+          "p值": 0.0,
+          "CI下限": -15.9945334826,
+          "CI上限": -10.1856100865
+        },
+        {
+          "模型": "lin-log模型",
+          "项": "log_gdp_pc",
+          "估计值": 1.9523590095,
+          "标准误": 0.1892339854,
+          "t统计量": 10.3171690093,
+          "p值": 0.0,
+          "CI下限": 1.57854863,
+          "CI上限": 2.326169389
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_polynomial_hc0_table.csv",
+      "sha256": "e7dcdfa6a67dd6adbe0468bb8a3bdde31f5088dc5b70bfdef4d10b7bbcc06f5e",
+      "rows": 5,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值",
+        "CI下限",
+        "CI上限"
+      ],
+      "records": [
+        {
+          "模型": "四阶原始多项式",
+          "项": "(Intercept)",
+          "估计值": 60.1069318462,
+          "标准误": 226.1383860592,
+          "t统计量": 0.2657971205,
+          "p值": 0.7907556354,
+          "CI下限": -386.673304337,
+          "CI上限": 506.8871680294
+        },
+        {
+          "模型": "四阶原始多项式",
+          "项": "log_gdp_pc",
+          "估计值": -17.2018777473,
+          "标准误": 110.6839848865,
+          "t统计量": -0.1554143336,
+          "p值": 0.8767008815,
+          "CI下限": -235.879554594,
+          "CI上限": 201.4757990994
+        },
+        {
+          "模型": "四阶原始多项式",
+          "项": "log_gdp2",
+          "估计值": 0.6197182436,
+          "标准误": 20.0295111298,
+          "t统计量": 0.0309402581,
+          "p值": 0.9753577729,
+          "CI下限": -38.9524652727,
+          "CI上限": 40.1919017599
+        },
+        {
+          "模型": "四阶原始多项式",
+          "项": "log_gdp3",
+          "估计值": 0.1606776564,
+          "标准误": 1.587638869,
+          "t统计量": 0.1012054187,
+          "p值": 0.9195207717,
+          "CI下限": -2.9760108167,
+          "CI上限": 3.2973661296
+        },
+        {
+          "模型": "四阶原始多项式",
+          "项": "log_gdp4",
+          "估计值": -0.0103592289,
+          "标准误": 0.0464938391,
+          "t统计量": -0.2228086374,
+          "p值": 0.8239835733,
+          "CI下限": -0.1022168245,
+          "CI上限": 0.0814983666
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_quadratic_marginal_effects.csv",
+      "sha256": "7185f8470f7fbccf79306c1a6117abef30c1fa7575723ac7d51bf67dc85e2316",
+      "rows": 3,
+      "columns": [
+        "位置",
+        "log人均GDP",
+        "边际效应"
+      ],
+      "records": [
+        {
+          "位置": "第25百分位",
+          "log人均GDP": 7.7365130252,
+          "边际效应": 2.0165890406
+        },
+        {
+          "位置": "中位数",
+          "log人均GDP": 8.8009934643,
+          "边际效应": 1.9553785015
+        },
+        {
+          "位置": "第75百分位",
+          "log人均GDP": 9.925514803,
+          "边际效应": 1.8907154464
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/tables/chapter07_trade_interaction_predictions.csv",
+      "sha256": "c29ee91c3c5ebce9eb46dbfb096ad5f6fbc52df80174f4b5f7408e8df9878870",
+      "rows": 6,
+      "columns": [
+        "收入组",
+        "贸易开放度",
+        "预测人均CO2"
+      ],
+      "records": [
+        {
+          "收入组": "非高收入",
+          "贸易开放度": 51.2640379409,
+          "预测人均CO2": 1.429364801
+        },
+        {
+          "收入组": "非高收入",
+          "贸易开放度": 81.313680157,
+          "预测人均CO2": 1.7585291459
+        },
+        {
+          "收入组": "非高收入",
+          "贸易开放度": 114.852671522,
+          "预测人均CO2": 2.1259158869
+        },
+        {
+          "收入组": "高收入",
+          "贸易开放度": 51.2640379409,
+          "预测人均CO2": 6.7444105853
+        },
+        {
+          "收入组": "高收入",
+          "贸易开放度": 81.313680157,
+          "预测人均CO2": 6.7587154138
+        },
+        {
+          "收入组": "高收入",
+          "贸易开放度": 114.852671522,
+          "预测人均CO2": 6.7746813117
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter07_Nonlinear_functional_form/results/chapter07_summary.csv",
+      "sha256": "63b361649e0df72cf4d324018a04f31cc606978a6638c52160a3e83780bd16aa",
+      "rows": 7,
+      "columns": [
+        "指标",
+        "数值"
+      ],
+      "records": [
+        {
+          "指标": "分析年份",
+          "数值": 2024.0
+        },
+        {
+          "指标": "样本量",
+          "数值": 157.0
+        },
+        {
+          "指标": "人均CO2均值",
+          "数值": 4.214692161
+        },
+        {
+          "指标": "人均CO2中位数",
+          "数值": 3.3230399298
+        },
+        {
+          "指标": "log-log模型收入弹性",
+          "数值": 0.7888347006
+        },
+        {
+          "指标": "四阶多项式R2",
+          "数值": 0.4059186833
+        },
+        {
+          "指标": "交互模型R2",
+          "数值": 0.3368375905
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/tables/chapter08_acs_cluster_robust_tables.csv",
+      "sha256": "39e3e3a33feb6036ace5ee21a42ba0f809dce89de5e6a515d98a9167ecf8d1c3",
+      "rows": 17,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值",
+        "自由度"
+      ],
+      "records": [
+        {
+          "模型": "普通OLS",
+          "项": "(Intercept)",
+          "估计值": 8.6969926926,
+          "标准误": 0.0104173113,
+          "t统计量": 834.859631064,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "普通OLS",
+          "项": "bachelor",
+          "估计值": 1.7554617896,
+          "标准误": 0.0162467279,
+          "t统计量": 108.0501751244,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "HC0稳健",
+          "项": "(Intercept)",
+          "估计值": 8.6969926926,
+          "标准误": 0.0113586755,
+          "t统计量": 765.6696171297,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "HC0稳健",
+          "项": "bachelor",
+          "估计值": 1.7554617896,
+          "标准误": 0.0155690988,
+          "t统计量": 112.7529479155,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "按家庭聚类",
+          "项": "(Intercept)",
+          "估计值": 8.6969926926,
+          "标准误": 0.0112769496,
+          "t统计量": 771.2185483876,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "按家庭聚类",
+          "项": "bachelor",
+          "估计值": 1.7554617896,
+          "标准误": 0.0154335688,
+          "t统计量": 113.7430892341,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "年龄：普通OLS",
+          "项": "(Intercept)",
+          "估计值": 9.4187162092,
+          "标准误": 0.0082203103,
+          "t统计量": 1145.7859755602,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "年龄：普通OLS",
+          "项": "age_centered",
+          "估计值": -0.0002560128,
+          "标准误": 0.0007070806,
+          "t统计量": -0.362070173,
+          "p值": 0.7172999684,
+          "自由度": 203335
+        },
+        {
+          "模型": "年龄：HC0稳健",
+          "项": "(Intercept)",
+          "估计值": 9.4187162092,
+          "标准误": 0.0082202698,
+          "t统计量": 1145.7916105132,
+          "p值": 0.0,
+          "自由度": 203335
+        },
+        {
+          "模型": "年龄：HC0稳健",
+          "项": "age_centered",
+          "估计值": -0.0002560128,
+          "标准误": 0.0006962295,
+          "t统计量": -0.3677132246,
+          "p值": 0.7130874613,
+          "自由度": 203335
+        },
+        {
+          "模型": "年龄：按家庭聚类",
+          "项": "(Intercept)",
+          "估计值": 9.4187162092,
+          "标准误": 0.0082829753,
+          "t统计量": 1137.117500508,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "年龄：按家庭聚类",
+          "项": "age_centered",
+          "估计值": -0.0002560128,
+          "标准误": 0.0006975269,
+          "t统计量": -0.3670292817,
+          "p值": 0.7135978589,
+          "自由度": 113779
+        },
+        {
+          "模型": "本科+年龄+性别+就业：按家庭聚类",
+          "项": "(Intercept)",
+          "估计值": 5.1777567599,
+          "标准误": 0.022366297,
+          "t统计量": 231.498166915,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "本科+年龄+性别+就业：按家庭聚类",
+          "项": "bachelor",
+          "估计值": 0.9184270954,
+          "标准误": 0.0114388185,
+          "t统计量": 80.2903811096,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "本科+年龄+性别+就业：按家庭聚类",
+          "项": "age_centered",
+          "估计值": 0.0281459868,
+          "标准误": 0.0005331658,
+          "t统计量": 52.7903090963,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "本科+年龄+性别+就业：按家庭聚类",
+          "项": "female",
+          "估计值": -0.7168270194,
+          "标准误": 0.011361952,
+          "t统计量": -63.0901294002,
+          "p值": 0.0,
+          "自由度": 113779
+        },
+        {
+          "模型": "本科+年龄+性别+就业：按家庭聚类",
+          "项": "employed",
+          "估计值": 5.7153252133,
+          "标准误": 0.0217438544,
+          "t统计量": 262.8478418523,
+          "p值": 0.0,
+          "自由度": 113779
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/tables/chapter08_bachelor_se_comparison.csv",
+      "sha256": "892bcd1446ee6eeb0b58d00f1ed8bad07f8920994aceae25c1629bd8f84cd409",
+      "rows": 3,
+      "columns": [
+        "模型",
+        "标准误",
+        "相对HC0"
+      ],
+      "records": [
+        {
+          "模型": "普通OLS",
+          "标准误": 0.0162467279,
+          "相对HC0": 1.0435239719
+        },
+        {
+          "模型": "HC0稳健",
+          "标准误": 0.0155690988,
+          "相对HC0": 1.0
+        },
+        {
+          "模型": "按家庭聚类",
+          "标准误": 0.0154335688,
+          "相对HC0": 0.9912949321
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/tables/chapter08_multilevel_fixed_effects.csv",
+      "sha256": "bf854aee04179c08952c30440485875400668cd63505e2782d464ccc18e24eb9",
+      "rows": 5,
+      "columns": [
+        "项",
+        "估计值",
+        "标准误",
+        "自由度",
+        "t统计量",
+        "p值"
+      ],
+      "records": [
+        {
+          "项": "(Intercept)",
+          "估计值": 5.1546134004,
+          "标准误": 0.0546959484,
+          "自由度": 11589,
+          "t统计量": 94.2412290082,
+          "p值": 0.0
+        },
+        {
+          "项": "bachelor",
+          "估计值": 0.9026354889,
+          "标准误": 0.0489928216,
+          "自由度": 406,
+          "t统计量": 18.4238314982,
+          "p值": 1.578581927e-55
+        },
+        {
+          "项": "age_centered",
+          "估计值": 0.0266855097,
+          "标准误": 0.0020356691,
+          "自由度": 406,
+          "t统计量": 13.1089623586,
+          "p值": 5.512673094e-33
+        },
+        {
+          "项": "female",
+          "估计值": -0.6922460175,
+          "标准误": 0.0474427574,
+          "自由度": 406,
+          "t统计量": -14.5911842971,
+          "p值": 4.555871534e-39
+        },
+        {
+          "项": "employed",
+          "估计值": 5.7460443993,
+          "标准误": 0.0551939568,
+          "自由度": 406,
+          "t统计量": 104.1064045874,
+          "p值": 6.281819573e-295
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/tables/chapter08_panel_model_comparison.csv",
+      "sha256": "b17a99b57f1faca896768a5915b888cbf50e34c9d2c31b97ee27552baa864c4e",
+      "rows": 3,
+      "columns": [
+        "模型",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值"
+      ],
+      "records": [
+        {
+          "模型": "合并OLS（按州聚类）",
+          "估计值": -0.7588154418,
+          "标准误": 0.5710197388,
+          "t统计量": -1.3288777781,
+          "p值": 0.1899210117
+        },
+        {
+          "模型": "州固定效应",
+          "估计值": -1.7469170595,
+          "标准误": 0.2923786835,
+          "t统计量": -5.974844125,
+          "p值": 2.395e-07
+        },
+        {
+          "模型": "州与年份双向固定效应",
+          "估计值": 0.2932141589,
+          "标准误": 0.2365257072,
+          "t统计量": 1.2396714183,
+          "p值": 0.2208839169
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/tables/chapter08_state_panel_fe_tables.csv",
+      "sha256": "60ba05e52c6cb8efa8ad9182f1bfa4705f8fa222a690683d2fc6935e1d57c24e",
+      "rows": 4,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "t统计量",
+        "p值",
+        "自由度"
+      ],
+      "records": [
+        {
+          "模型": "合并OLS（按州聚类）",
+          "项": "(Intercept)",
+          "估计值": 61.5562110587,
+          "标准误": 1.9234574796,
+          "t统计量": 32.0028967173,
+          "p值": 0.0,
+          "自由度": 50
+        },
+        {
+          "模型": "合并OLS（按州聚类）",
+          "项": "unemployment_rate",
+          "估计值": -0.7588154418,
+          "标准误": 0.5710197388,
+          "t统计量": -1.3288777781,
+          "p值": 0.1899210117,
+          "自由度": 50
+        },
+        {
+          "模型": "州固定效应",
+          "项": "unemployment_rate",
+          "估计值": -1.7469170595,
+          "标准误": 0.2923786835,
+          "t统计量": -5.974844125,
+          "p值": 2.395e-07,
+          "自由度": 50
+        },
+        {
+          "模型": "州与年份双向固定效应",
+          "项": "unemployment_rate",
+          "估计值": 0.2932141589,
+          "标准误": 0.2365257072,
+          "t统计量": 1.2396714183,
+          "p值": 0.2208839169,
+          "自由度": 50
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter08_Regression_analysis_with_dependent_error_terms_ch_reg_dep_error/results/chapter08_summary.csv",
+      "sha256": "cf7c9d7d6cabfefdbeaa641f9d55debc32ceb51c3f6fa6cab4691b17837ceb93",
+      "rows": 9,
+      "columns": [
+        "指标",
+        "数值"
+      ],
+      "records": [
+        {
+          "指标": "ACS样本量",
+          "数值": 203337.0
+        },
+        {
+          "指标": "ACS编号组数",
+          "数值": 113780.0
+        },
+        {
+          "指标": "本科及以上普通OLS系数",
+          "数值": 1.7554617896
+        },
+        {
+          "指标": "本科及以上标准化系数",
+          "数值": 0.4735827701
+        },
+        {
+          "指标": "LME样本量",
+          "数值": 12000.0
+        },
+        {
+          "指标": "面板州数",
+          "数值": 51.0
+        },
+        {
+          "指标": "面板年份起点",
+          "数值": 2015.0
+        },
+        {
+          "指标": "面板年份终点",
+          "数值": 2024.0
+        },
+        {
+          "指标": "双向FE失业率系数",
+          "数值": 0.2932141589
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter09_Binary_dependent_variable_ch_logit/tables/chapter09_acs_high_income_logit_table.csv",
+      "sha256": "5d8a7e5c5fc028aa74f601e5bbeecc8dff21423d59252186ec65cadb74337efc",
+      "rows": 7,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "z值",
+        "p值"
+      ],
+      "records": [
+        {
+          "模型": "ACS高收入：单变量logit",
+          "项": "(Intercept)",
+          "估计值": -2.1538951429,
+          "标准误": 0.0094677652,
+          "z值": -227.4977365102,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：单变量logit",
+          "项": "bachelor",
+          "估计值": 1.9899363958,
+          "标准误": 0.0117392036,
+          "z值": 169.5120439402,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：多变量logit",
+          "项": "(Intercept)",
+          "估计值": -9.4219801731,
+          "标准误": 0.0950382412,
+          "z值": -99.1388314487,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：多变量logit",
+          "项": "bachelor",
+          "估计值": 2.0933378688,
+          "标准误": 0.012845778,
+          "z值": 162.9592123139,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：多变量logit",
+          "项": "ln_age",
+          "估计值": 1.5189458542,
+          "标准误": 0.0233014979,
+          "z值": 65.1866186174,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：多变量logit",
+          "项": "female",
+          "估计值": -0.7623150329,
+          "标准误": 0.0122378882,
+          "z值": -62.2913872423,
+          "p值": 0
+        },
+        {
+          "模型": "ACS高收入：多变量logit",
+          "项": "employed",
+          "估计值": 2.174381909,
+          "标准误": 0.0222954523,
+          "z值": 97.5258039227,
+          "p值": 0
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter09_Binary_dependent_variable_ch_logit/tables/chapter09_binary_model_comparison.csv",
+      "sha256": "030d903867d02513928195a69ca7a7b5105c6fd192a1124325d5de8cbd52229d",
+      "rows": 3,
+      "columns": [
+        "模型",
+        "样本量",
+        "pay_delay系数",
+        "AIC"
+      ],
+      "records": [
+        {
+          "模型": "LPM",
+          "样本量": 30000,
+          "pay_delay系数": 0.1125349478,
+          "AIC": 28832.7682170046
+        },
+        {
+          "模型": "logit",
+          "样本量": 30000,
+          "pay_delay系数": 0.6921523269,
+          "AIC": 28293.311246154
+        },
+        {
+          "模型": "probit",
+          "样本量": 30000,
+          "pay_delay系数": 0.3687445686,
+          "AIC": 28488.9423860985
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter09_Binary_dependent_variable_ch_logit/tables/chapter09_credit_logit_probit_table.csv",
+      "sha256": "93d4477c06611404642a30d6ed28da8c667d47d1416ea1895bbe7021d2eb25a2",
+      "rows": 12,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "z值",
+        "p值"
+      ],
+      "records": [
+        {
+          "模型": "违约：单变量logit",
+          "项": "(Intercept)",
+          "估计值": -1.4024911327,
+          "标准误": 0.0155960906,
+          "z值": -89.9258135718,
+          "p值": 0.0
+        },
+        {
+          "模型": "违约：单变量logit",
+          "项": "pay_delay",
+          "估计值": 0.7371936026,
+          "标准误": 0.0142767325,
+          "z值": 51.6360169843,
+          "p值": 0.0
+        },
+        {
+          "模型": "违约：多变量logit",
+          "项": "(Intercept)",
+          "估计值": -1.4662853209,
+          "标准误": 0.0595882742,
+          "z值": -24.6069439056,
+          "p值": 1.064503395e-133
+        },
+        {
+          "模型": "违约：多变量logit",
+          "项": "pay_delay",
+          "估计值": 0.6921523269,
+          "标准误": 0.0146487254,
+          "z值": 47.2500035364,
+          "p值": 0.0
+        },
+        {
+          "模型": "违约：多变量logit",
+          "项": "male",
+          "估计值": 0.1020698048,
+          "标准误": 0.0302062869,
+          "z值": 3.3790914204,
+          "p值": 0.0007272582
+        },
+        {
+          "模型": "违约：多变量logit",
+          "项": "age",
+          "估计值": 0.0088497362,
+          "标准误": 0.0015766348,
+          "z值": 5.6130538612,
+          "p值": 1.99e-08
+        },
+        {
+          "模型": "违约：多变量logit",
+          "项": "limit_bal_10k",
+          "估计值": -0.0186694382,
+          "标准误": 0.0013050035,
+          "z值": -14.3060446687,
+          "p值": 2.006026605e-46
+        },
+        {
+          "模型": "违约：多变量probit",
+          "项": "(Intercept)",
+          "估计值": -0.8734607401,
+          "标准误": 0.0340557082,
+          "z值": -25.6479981061,
+          "p值": 4.451155589e-145
+        },
+        {
+          "模型": "违约：多变量probit",
+          "项": "pay_delay",
+          "估计值": 0.3687445686,
+          "标准误": 0.0081810126,
+          "z值": 45.0732187702,
+          "p值": 0.0
+        },
+        {
+          "模型": "违约：多变量probit",
+          "项": "male",
+          "估计值": 0.055810409,
+          "标准误": 0.0172429382,
+          "z值": 3.2367110794,
+          "p值": 0.0012091577
+        },
+        {
+          "模型": "违约：多变量probit",
+          "项": "age",
+          "估计值": 0.0053400087,
+          "标准误": 0.000907584,
+          "z值": 5.8837625714,
+          "p值": 4e-09
+        },
+        {
+          "模型": "违约：多变量probit",
+          "项": "limit_bal_10k",
+          "估计值": -0.0102158029,
+          "标准误": 0.0007195546,
+          "z值": -14.1973977557,
+          "p值": 9.507791716e-46
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter09_Binary_dependent_variable_ch_logit/tables/chapter09_credit_lpm_table.csv",
+      "sha256": "215d9ada488a97fa5ee577b71b5929707da85c15fb315f33d8e3240bc9a8908d",
+      "rows": 5,
+      "columns": [
+        "模型",
+        "项",
+        "估计值",
+        "标准误",
+        "统计量",
+        "p值"
+      ],
+      "records": [
+        {
+          "模型": "违约：LPM",
+          "项": "(Intercept)",
+          "估计值": 0.201382599,
+          "标准误": 0.0095004975,
+          "统计量": 21.1970581712,
+          "p值": 1.016555073e-99
+        },
+        {
+          "模型": "违约：LPM",
+          "项": "pay_delay",
+          "估计值": 0.1125349478,
+          "标准误": 0.0024631059,
+          "统计量": 45.6882295888,
+          "p值": 0.0
+        },
+        {
+          "模型": "违约：LPM",
+          "项": "male",
+          "估计值": 0.014698667,
+          "标准误": 0.0046851365,
+          "统计量": 3.1372975155,
+          "p值": 0.0017051301
+        },
+        {
+          "模型": "违约：LPM",
+          "项": "age",
+          "估计值": 0.0015880979,
+          "标准误": 0.0002579475,
+          "统计量": 6.1566718648,
+          "p值": 7e-10
+        },
+        {
+          "模型": "违约：LPM",
+          "项": "limit_bal_10k",
+          "估计值": -0.0024170802,
+          "标准误": 0.0001721034,
+          "统计量": -14.0443513979,
+          "p值": 8.342870143e-45
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter09_Binary_dependent_variable_ch_logit/results/chapter09_summary.csv",
+      "sha256": "f07b1c99e548e0165dc27326bcbf958385042a855f9a1d84dde723a093128755",
+      "rows": 10,
+      "columns": [
+        "指标",
+        "数值"
+      ],
+      "records": [
+        {
+          "指标": "ACS样本量",
+          "数值": 203337.0
+        },
+        {
+          "指标": "ACS高收入阈值",
+          "数值": 90100.0
+        },
+        {
+          "指标": "ACS本科高收入赔率比",
+          "数值": 8.1119466393
+        },
+        {
+          "指标": "信用卡样本量",
+          "数值": 30000.0
+        },
+        {
+          "指标": "违约率",
+          "数值": 0.2212
+        },
+        {
+          "指标": "还款状态赔率比",
+          "数值": 2.1767693816
+        },
+        {
+          "指标": "男性赔率比",
+          "数值": 1.1074607752
+        },
+        {
+          "指标": "给定画像预测违约概率",
+          "数值": 0.5588466881
+        },
+        {
+          "指标": "手算预测违约概率",
+          "数值": 0.5588466881
+        },
+        {
+          "指标": "还款状态平均风险差",
+          "数值": 0.1377317224
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_bias_variance_simulation.csv",
+      "sha256": "39178ffffbf587c91e5d0a4560d82e5831d15b0764ea5ad18dfb50f5f5e76b60",
+      "rows": 3,
+      "columns": [
+        "多项式次数",
+        "平均偏误平方",
+        "平均方差"
+      ],
+      "records": [
+        {
+          "多项式次数": 1,
+          "平均偏误平方": 0.2007538679,
+          "平均方差": 0.0180513034
+        },
+        {
+          "多项式次数": 3,
+          "平均偏误平方": 0.0047965662,
+          "平均方差": 0.018635791
+        },
+        {
+          "多项式次数": 9,
+          "平均偏误平方": 0.0023793455,
+          "平均方差": 4.6708204377
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_cart_cp_table.csv",
+      "sha256": "aa490dd8b89f305dc23fa454f02d1bda59af157025aa97c7e9ef8e21dfd955b5",
+      "rows": 6,
+      "columns": [
+        "CP",
+        "time_cv_mse"
+      ],
+      "records": [
+        {
+          "CP": 0.0,
+          "time_cv_mse": 0.727816258
+        },
+        {
+          "CP": 0.001,
+          "time_cv_mse": 0.7781105782
+        },
+        {
+          "CP": 0.003,
+          "time_cv_mse": 0.8917958142
+        },
+        {
+          "CP": 0.01,
+          "time_cv_mse": 1.3379628695
+        },
+        {
+          "CP": 0.03,
+          "time_cv_mse": 2.0515898566
+        },
+        {
+          "CP": 0.1,
+          "time_cv_mse": 2.5352930553
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_five_fold_cv_mse.csv",
+      "sha256": "9545e52aaa94d93cb098eb08f847031fabb53b4d47111fb490e240b700f5ec3c",
+      "rows": 5,
+      "columns": [
+        "折",
+        "验证月份",
+        "MSE"
+      ],
+      "records": [
+        {
+          "折": 1,
+          "验证月份": 5,
+          "MSE": 2.8054769953
+        },
+        {
+          "折": 2,
+          "验证月份": 6,
+          "MSE": 2.5507212981
+        },
+        {
+          "折": 3,
+          "验证月份": 7,
+          "MSE": 2.3851626404
+        },
+        {
+          "折": 4,
+          "验证月份": 8,
+          "MSE": 2.1387738748
+        },
+        {
+          "折": 5,
+          "验证月份": 9,
+          "MSE": 2.0225612372
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_lasso_cv_curve.csv",
+      "sha256": "4e542f45eb5959a45201202f5660ba3af39fa3e677e0399742b7014ce6f96426",
+      "rows": 20,
+      "columns": [
+        "log_lambda",
+        "cvm",
+        "cvsd"
+      ],
+      "records": [
+        {
+          "log_lambda": -6.907755279,
+          "cvm": 0.7381071909,
+          "cvsd": 0.2577825811
+        },
+        {
+          "log_lambda": -6.4230005226,
+          "cvm": 0.7371592144,
+          "cvsd": 0.2554944452
+        },
+        {
+          "log_lambda": -5.9382457661,
+          "cvm": 0.7359697951,
+          "cvsd": 0.2509121524
+        },
+        {
+          "log_lambda": -5.4534910097,
+          "cvm": 0.7344969461,
+          "cvsd": 0.2431528736
+        },
+        {
+          "log_lambda": -4.9687362533,
+          "cvm": 0.7331045771,
+          "cvsd": 0.233623562
+        },
+        {
+          "log_lambda": -4.4839814969,
+          "cvm": 0.7296069555,
+          "cvsd": 0.2202823948
+        },
+        {
+          "log_lambda": -3.9992267405,
+          "cvm": 0.7296654123,
+          "cvsd": 0.1996750662
+        },
+        {
+          "log_lambda": -3.514471984,
+          "cvm": 0.7372661922,
+          "cvsd": 0.1785004637
+        },
+        {
+          "log_lambda": -3.0297172276,
+          "cvm": 0.7635832052,
+          "cvsd": 0.1351155653
+        },
+        {
+          "log_lambda": -2.5449624712,
+          "cvm": 0.8644508593,
+          "cvsd": 0.0741921797
+        },
+        {
+          "log_lambda": -2.0602077148,
+          "cvm": 1.1322929679,
+          "cvsd": 0.0753540132
+        },
+        {
+          "log_lambda": -1.5754529584,
+          "cvm": 1.6472433971,
+          "cvsd": 0.2250286243
+        },
+        {
+          "log_lambda": -1.0906982019,
+          "cvm": 2.2464451583,
+          "cvsd": 0.3240894263
+        },
+        {
+          "log_lambda": -0.6059434455,
+          "cvm": 2.5841594669,
+          "cvsd": 0.4056651835
+        },
+        {
+          "log_lambda": -0.1211886891,
+          "cvm": 3.1389333198,
+          "cvsd": 0.5086077116
+        },
+        {
+          "log_lambda": 0.3635660673,
+          "cvm": 4.5418114548,
+          "cvsd": 0.6036964762
+        },
+        {
+          "log_lambda": 0.8483208237,
+          "cvm": 4.8595349798,
+          "cvsd": 0.6030118096
+        },
+        {
+          "log_lambda": 1.3330755802,
+          "cvm": 4.8595349798,
+          "cvsd": 0.6030118096
+        },
+        {
+          "log_lambda": 1.8178303366,
+          "cvm": 4.8595349798,
+          "cvsd": 0.6030118096
+        },
+        {
+          "log_lambda": 2.302585093,
+          "cvm": 4.8595349798,
+          "cvsd": 0.6030118096
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_model_comparison_mse.csv",
+      "sha256": "b1746261dce45020b61b5671cfcd5eaf24bd48d469620fc255cee35ffcafa7c9",
+      "rows": 5,
+      "columns": [
+        "模型",
+        "训练集 MSE",
+        "测试集 MSE"
+      ],
+      "records": [
+        {
+          "模型": "OLS 线性",
+          "训练集 MSE": 2.117505429,
+          "测试集 MSE": 2.1066472485
+        },
+        {
+          "模型": "OLS 五阶多项式",
+          "训练集 MSE": 0.3755383432,
+          "测试集 MSE": 2.9889836107
+        },
+        {
+          "模型": "岭回归",
+          "训练集 MSE": 0.4733937224,
+          "测试集 MSE": 2.5609725386
+        },
+        {
+          "模型": "LASSO",
+          "训练集 MSE": 0.4090262109,
+          "测试集 MSE": 2.8688947865
+        },
+        {
+          "模型": "回归树",
+          "训练集 MSE": 0.2111866723,
+          "测试集 MSE": 1.5774948252
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_polynomial_train_test_mse.csv",
+      "sha256": "3d21b340fb8e7a66c73d85e7f73889e00c7e5e1671bd40e27600212372876f1f",
+      "rows": 10,
+      "columns": [
+        "多项式次数",
+        "训练集 MSE",
+        "测试集 MSE"
+      ],
+      "records": [
+        {
+          "多项式次数": 1,
+          "训练集 MSE": 2.4008200022,
+          "测试集 MSE": 2.175264858
+        },
+        {
+          "多项式次数": 2,
+          "训练集 MSE": 2.3070355382,
+          "测试集 MSE": 1.9622452845
+        },
+        {
+          "多项式次数": 3,
+          "训练集 MSE": 2.297123818,
+          "测试集 MSE": 1.9014852517
+        },
+        {
+          "多项式次数": 4,
+          "训练集 MSE": 2.2899278265,
+          "测试集 MSE": 1.8448952493
+        },
+        {
+          "多项式次数": 5,
+          "训练集 MSE": 2.2776635006,
+          "测试集 MSE": 1.8988287614
+        },
+        {
+          "多项式次数": 6,
+          "训练集 MSE": 2.2719422408,
+          "测试集 MSE": 1.9631808547
+        },
+        {
+          "多项式次数": 7,
+          "训练集 MSE": 2.2650567208,
+          "测试集 MSE": 1.8893184896
+        },
+        {
+          "多项式次数": 8,
+          "训练集 MSE": 2.2646233504,
+          "测试集 MSE": 1.8832396282
+        },
+        {
+          "多项式次数": 9,
+          "训练集 MSE": 2.2626572886,
+          "测试集 MSE": 1.9068863843
+        },
+        {
+          "多项式次数": 10,
+          "训练集 MSE": 2.2626552928,
+          "测试集 MSE": 1.9053115646
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_ridge_cv_curve.csv",
+      "sha256": "944d98cbf6b25e2e0571d5ac4549d67850d628eb24d392f9fdb19f8711e1b375",
+      "rows": 20,
+      "columns": [
+        "log_lambda",
+        "cvm",
+        "cvsd"
+      ],
+      "records": [
+        {
+          "log_lambda": -6.907755279,
+          "cvm": 0.7388724726,
+          "cvsd": 0.2608873139
+        },
+        {
+          "log_lambda": -6.4230005226,
+          "cvm": 0.7387180107,
+          "cvsd": 0.260841533
+        },
+        {
+          "log_lambda": -5.9382457661,
+          "cvm": 0.7383964763,
+          "cvsd": 0.2606914071
+        },
+        {
+          "log_lambda": -5.4534910097,
+          "cvm": 0.7377162895,
+          "cvsd": 0.2602860851
+        },
+        {
+          "log_lambda": -4.9687362533,
+          "cvm": 0.736295988,
+          "cvsd": 0.2593154596
+        },
+        {
+          "log_lambda": -4.4839814969,
+          "cvm": 0.7334598346,
+          "cvsd": 0.2572098917
+        },
+        {
+          "log_lambda": -3.9992267405,
+          "cvm": 0.7281865901,
+          "cvsd": 0.2530399066
+        },
+        {
+          "log_lambda": -3.514471984,
+          "cvm": 0.7192213,
+          "cvsd": 0.2454392984
+        },
+        {
+          "log_lambda": -3.0297172276,
+          "cvm": 0.7054924338,
+          "cvsd": 0.232540067
+        },
+        {
+          "log_lambda": -2.5449624712,
+          "cvm": 0.6871435605,
+          "cvsd": 0.211961634
+        },
+        {
+          "log_lambda": -2.0602077148,
+          "cvm": 0.6678516556,
+          "cvsd": 0.1812619409
+        },
+        {
+          "log_lambda": -1.5754529584,
+          "cvm": 0.6592326908,
+          "cvsd": 0.1403738946
+        },
+        {
+          "log_lambda": -1.0906982019,
+          "cvm": 0.6868671455,
+          "cvsd": 0.1021266082
+        },
+        {
+          "log_lambda": -0.6059434455,
+          "cvm": 0.7933527668,
+          "cvsd": 0.1131454904
+        },
+        {
+          "log_lambda": -0.1211886891,
+          "cvm": 1.0287152995,
+          "cvsd": 0.1827109021
+        },
+        {
+          "log_lambda": 0.3635660673,
+          "cvm": 1.42312082,
+          "cvsd": 0.2679848229
+        },
+        {
+          "log_lambda": 0.8483208237,
+          "cvm": 1.9579021882,
+          "cvsd": 0.3469782174
+        },
+        {
+          "log_lambda": 1.3330755802,
+          "cvm": 2.5638318852,
+          "cvsd": 0.4127203315
+        },
+        {
+          "log_lambda": 1.8178303366,
+          "cvm": 3.1528582159,
+          "cvsd": 0.4652390864
+        },
+        {
+          "log_lambda": 2.302585093,
+          "cvm": 3.657151785,
+          "cvsd": 0.5062663469
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/tables/chapter10_split_comparison_mse.csv",
+      "sha256": "fb1f6de2af31d494c67dee554b5df5719e563e56e962bf7de238d6d0c76cf7f9",
+      "rows": 2,
+      "columns": [
+        "划分方式",
+        "训练样本量",
+        "测试样本量",
+        "测试集 MSE"
+      ],
+      "records": [
+        {
+          "划分方式": "时间顺序切分",
+          "训练样本量": 630,
+          "测试样本量": 210,
+          "测试集 MSE": 2.1066472485
+        },
+        {
+          "划分方式": "随机切分",
+          "训练样本量": 630,
+          "测试样本量": 210,
+          "测试集 MSE": 2.0859919504
+        }
+      ]
+    },
+    {
+      "file": ".clean/run_R/Chapter10_Prediction_ch_prediction/results/chapter10_summary.csv",
+      "sha256": "e0f1bd13c2fc7810ddf2e2cdb4f535c874bc0f72ba880c510c622a47a81af28c",
+      "rows": 8,
+      "columns": [
+        "指标",
+        "数值"
+      ],
+      "records": [
+        {
+          "指标": "样本量",
+          "数值": "840"
+        },
+        {
+          "指标": "训练集样本量",
+          "数值": "630"
+        },
+        {
+          "指标": "测试集样本量",
+          "数值": "210"
+        },
+        {
+          "指标": "简单 OLS 扩展窗口 CV 平均 MSE",
+          "数值": "2.38053920915533"
+        },
+        {
+          "指标": "岭回归 lambda.min",
+          "数值": "0.206913808111479"
+        },
+        {
+          "指标": "LASSO lambda.min",
+          "数值": "0.0112883789168469"
+        },
+        {
+          "指标": "固定展示模型测试集 MSE",
+          "数值": "2.10664724845544"
+        },
+        {
+          "指标": "固定展示模型",
+          "数值": "OLS 线性"
+        }
+      ]
+    }
+  ]
+}

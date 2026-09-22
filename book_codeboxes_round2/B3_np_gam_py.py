@@ -2,7 +2,7 @@
 from pygam import LinearGAM, s
 import numpy as np, pandas as pd
 df = pd.read_csv("Chapter13_Nonparametric_Regression_chapter_nonparametric/"
-                 "results/chapter13_nonparametric_analysis_data.csv")
+                 "results/python_chapter13_nonparametric_analysis_data.csv")
 gam = LinearGAM(s(0)).gridsearch(df[["log_gdp_pc"]].to_numpy(),
     df["co2_pc_tonnes"].to_numpy(), lam=np.logspace(-3,3,15), progress=False)
 print("全模型 EDF:", gam.statistics_["edof"])

@@ -317,7 +317,9 @@ within_model <- plm(
 )
 within_table <- coef_table_matrix(
   coeftest(within_model,
-           vcov = vcovHC(within_model, type = "HC0", cluster = "group")),
+           vcov = vcovHC(within_model, type = "HC0", cluster = "group") *
+             length(unique(panel$state))/(length(unique(panel$state))-1),
+           df = length(unique(panel$state))-1),
   "州固定效应"
 )
 
@@ -329,11 +331,14 @@ twoway_model <- plm(
 )
 twoway_table <- coef_table_matrix(
   coeftest(twoway_model,
-           vcov = vcovHC(twoway_model, type = "HC0", cluster = "group")),
+           vcov = vcovHC(twoway_model, type = "HC0", cluster = "group") *
+             length(unique(panel$state))/(length(unique(panel$state))-1),
+           df = length(unique(panel$state))-1),
   "州与年份双向固定效应"
 )
 
 panel_tables <- rbind(pooled_table, within_table, twoway_table)
+panel_tables$自由度 <- length(unique(panel$state)) - 1
 write.csv(panel_tables,
           file.path(table_dir, "chapter08_state_panel_fe_tables.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
@@ -364,8 +369,8 @@ dev.off()
 coef_compare <- panel_tables[panel_tables$项 == "unemployment_rate",
                              c("模型", "估计值", "标准误")]
 open_png("chapter08_fixed_effect_estimates.png")
-coef_ci_lower <- coef_compare$估计值 - 1.96 * coef_compare$标准误
-coef_ci_upper <- coef_compare$估计值 + 1.96 * coef_compare$标准误
+coef_ci_lower <- coef_compare$估计值 - qt(.975, length(unique(panel$state))-1) * coef_compare$标准误
+coef_ci_upper <- coef_compare$估计值 + qt(.975, length(unique(panel$state))-1) * coef_compare$标准误
 coef_plot_range <- range(c(0, coef_ci_lower, coef_ci_upper))
 coef_plot_range <- coef_plot_range + c(-1, 1) * 0.05 * diff(coef_plot_range)
 bar_mid <- barplot(coef_compare$估计值, names.arg = coef_compare$模型,

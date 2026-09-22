@@ -197,17 +197,19 @@ ar5_model <- ar.ols(na.omit(dloggdp), order.max = 5,
 
 ar_aic_rows <- data.frame()
 y <- as.numeric(na.omit(dloggdp))
+# 固定最大滞后5：所有候选阶数比较同一组目标年份。
+lagged_all <- embed(y, 6)
 for (p in 1:5) {
-  lagged <- embed(y, p + 1)
+  lagged <- lagged_all[, 1:(p + 1), drop = FALSE]
   y_ar <- lagged[, 1]
   X_ar <- lagged[, -1, drop = FALSE]
   model_p <- lm(y_ar ~ X_ar)
   n_p <- length(y_ar)
   sigma2 <- mean(residuals(model_p)^2)
-  aic <- n_p * log(sigma2) + 2 * (p + 1)
+  aic <- n_p * (log(2*pi) + 1 + log(sigma2)) + 2 * (p + 2)
   ar_aic_rows <- rbind(ar_aic_rows,
                        data.frame(阶数 = p, AIC = aic,
-                                  RSS = sum(residuals(model_p)^2)))
+                                  RSS = sum(residuals(model_p)^2), 样本量 = n_p))
 }
 write.csv(ar_aic_rows,
           file.path(table_dir, "chapter11_ar_order_aic.csv"),

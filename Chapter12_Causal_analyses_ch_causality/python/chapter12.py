@@ -166,7 +166,7 @@ df["alcohol_involved"] = (df["drinking"] == 1).astype(int)
 df["rv"] = df["age"] - 21
 df["Z"] = (df["rv"] >= 0).astype(int)
 df["Zrv"] = df["Z"] * df["rv"]
-df["male"] = (df["sex"] == 1).astype(int)
+df["male"] = np.where(df["sex"].isin([1, 2]), (df["sex"] == 1).astype(float), np.nan)
 df["fatal_injury"] = (df["inj_sev"] == 4).astype(int)
 
 h = 3
@@ -183,11 +183,12 @@ df_h["Dhat"] = df_h["Z"]
 X_2sls = design(df_h, ["Dhat", "rv", "Zrv"])
 rd_2sls = fit_ols(y, X_2sls, ["截距", "Dhat", "年龄差", "21岁及以上×年龄差"])
 
-year_dummies = pd.get_dummies(df_h["year"].astype(int), prefix="year", drop_first=True, dtype=float)
-control_df = pd.concat([df_h[["Z", "rv", "Zrv", "male"]], year_dummies], axis=1)
+df_controls = df_h.loc[df_h["male"].notna()].copy()
+year_dummies = pd.get_dummies(df_controls["year"].astype(int), prefix="year", drop_first=True, dtype=float)
+control_df = pd.concat([df_controls[["Z", "rv", "Zrv", "male"]], year_dummies], axis=1)
 X_controls = np.column_stack([np.ones(len(control_df)), control_df.to_numpy(float)])
 names_controls = ["截距", "21岁及以上", "年龄差", "21岁及以上×年龄差", "男性"] + list(year_dummies.columns)
-rd_controls = fit_ols(y, X_controls, names_controls)
+rd_controls = fit_ols(df_controls["alcohol_involved"].to_numpy(float), X_controls, names_controls)
 
 rd_bw_rows = []
 for bw in [2, 3, 4]:
@@ -228,12 +229,15 @@ def accident_covariance(fit, X, group):
     bread=np.linalg.inv(X.T@X)
     return (G/(G-1))*((n-1)/(n-p))*bread@(score.T@score)@bread
 accident=(df_h["year"].astype(str)+":"+df_h["st_case"].astype(str)).to_numpy()
-G_accident=len(np.unique(accident)); cluster_rows=[]
-for fit,X,label in [(rd_rf,X_rd,"未加控制：事故聚类CR1"),(rd_controls,X_controls,"性别年份控制：事故聚类CR1")]:
-    fit=dict(fit); fit["vcov_cluster"]=accident_covariance(fit,X,accident);fit["df_inference"]=G_accident-1
+accident_controls=(df_controls["year"].astype(str)+":"+df_controls["st_case"].astype(str)).to_numpy()
+G_accident=len(np.unique(accident)); G_controls=len(np.unique(accident_controls)); cluster_rows=[]
+for fit,X,group,label in [(rd_rf,X_rd,accident,"未加控制：事故聚类CR1"),
+                          (rd_controls,X_controls,accident_controls,"性别年份控制：事故聚类CR1")]:
+    fit=dict(fit); fit["vcov_cluster"]=accident_covariance(fit,X,group);fit["df_inference"]=len(np.unique(group))-1
     cluster_rows.append(coefficient_table(fit,"vcov_cluster",label))
 pd.concat(cluster_rows).to_csv(TABLE_DIR/"python_chapter12_fars_accident_cluster.csv",index=False)
-pd.DataFrame({"指标":["事故聚类数","人员数"],"数值":[G_accident,len(df_h)]}).to_csv(
+pd.DataFrame({"指标":["事故聚类数","人员数","控制样本事故聚类数","控制样本人员数","性别未知排除数"],
+              "数值":[G_accident,len(df_h),G_controls,len(df_controls),int(df_h["male"].isna().sum())]}).to_csv(
     RESULT_DIR/"python_chapter12_fars_accident_cluster_counts.csv",index=False)
 
 age_bins = (

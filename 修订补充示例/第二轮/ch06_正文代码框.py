@@ -5,14 +5,14 @@ from scipy import stats
 repo_dir=Path(__file__).resolve().parents[2]
 import os
 os.chdir(repo_dir)
-df=pd.read_csv(repo_dir / 'Chapter06_Multiple_Linear_Regression/results/chapter06_bea_bls_state_analysis_data.csv')
 
-# 代码框 1: {Python 中多元回归}
+
+# 代码框 1: book_chapters/ch06_multiple_regression.tex:133 / ch06_multiple_regression_1
 import numpy as np, pandas as pd
 import statsmodels.formula.api as smf
 from pathlib import Path
 data_path = (Path("Chapter06_Multiple_Linear_Regression")
-             / "results" / "chapter06_bea_bls_state_analysis_data.csv")
+             / "results" / "python_chapter06_bea_bls_state_analysis_data.csv")
 df = pd.read_csv(data_path)
 import statsmodels.formula.api as smf
 mod_mid = smf.ols(

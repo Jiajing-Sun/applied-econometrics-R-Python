@@ -1,0 +1,839 @@
+[
+  {
+    "language": "R",
+    "label": "box_korr",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 94,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "code_sha256": "b2c57206e0f0e3481da0db6b2ef00af1c49daa03e23f592d5f1843e4d1e924fe",
+    "script_sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "language": "R",
+    "label": "box_spearman",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 222,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "code_sha256": "f0da5b12dbb9b58b355ca7644681f1ee4849cc960bf05788e927181407173a83",
+    "script_sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "language": "R",
+    "label": "ch02_kendall_r",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 300,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "code_sha256": "82177afe0e8a4c634a5ced9ada13c70a060aab25cf4028086f6285f5d91855ea",
+    "script_sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "language": "R",
+    "label": "box_ols",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 391,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "code_sha256": "88fb7b1baee09c38e131c3e173df6732ce288689d079a6262badcba9a4eb6dcd",
+    "script_sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "language": "R",
+    "label": "ch02_binned_r",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 532,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.R",
+    "code_sha256": "3defc11ee0daed109313db005a002cc5b7130a90682f967fabe50d3c037af2d7",
+    "script_sha256": "540076a3c88d7305e18344095d187cc94c51c8ed42b07df14698cf13682fd9c4"
+  },
+  {
+    "language": "Python",
+    "label": "box_pkorr",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 117,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "code_sha256": "5a4a9e3afb76128d751f9f777f0489c4c833215e8b9cba7ae95d587a3ac4dbe6",
+    "script_sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "language": "Python",
+    "label": "box_pspearman",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 232,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "code_sha256": "f7b68b42b7f02fc160f092bce1a66948c55c5479b4aed57ecde9f87a9adb12b2",
+    "script_sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "language": "Python",
+    "label": "ch02_kendall_py",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 326,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "code_sha256": "c710a60f0e8e1f6dacc9e0a698b140691efdd3ea4f4491b25f600667a464764d",
+    "script_sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "language": "Python",
+    "label": "box_pols",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 399,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "code_sha256": "85148972f6f260ebe72e4c5240b285ee3f60b4ffc20633be2e675cee27c5f42e",
+    "script_sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "language": "Python",
+    "label": "ch02_binned_py",
+    "source": "book_chapters/ch02_covariation.tex",
+    "line": 557,
+    "script": "修订补充示例/第二轮/ch02_正文代码框.py",
+    "code_sha256": "bd544303e6557816d17856d2341ed134189d0f0130c7ee3ed2e010976936f233",
+    "script_sha256": "8d2502562a1c67f2270234244d9f456cb99ffc2de9fd6713f92131a674cf9dec"
+  },
+  {
+    "language": "R",
+    "label": "ch03_bayes_r",
+    "source": "book_chapters/ch03_probability.tex",
+    "line": 185,
+    "script": "修订补充示例/第二轮/ch03_正文代码框.R",
+    "code_sha256": "7ed1566510a216dde70d5be8658a303612cc08fd8945d6464113a361312d5733",
+    "script_sha256": "1c8d12b2bfe42b5406b73698c29e33f87988e107e19a4502552676c4ec5de4d0"
+  },
+  {
+    "language": "R",
+    "label": "ch03_probability_1",
+    "source": "book_chapters/ch03_probability.tex",
+    "line": 347,
+    "script": "修订补充示例/第二轮/ch03_正文代码框.R",
+    "code_sha256": "fe323a4bf2818b8f4b43f82ee8dc44898da787a40282566f224e6975c7e0a0c7",
+    "script_sha256": "1c8d12b2bfe42b5406b73698c29e33f87988e107e19a4502552676c4ec5de4d0"
+  },
+  {
+    "language": "R",
+    "label": "ch03_probability_3",
+    "source": "book_chapters/ch03_probability.tex",
+    "line": 536,
+    "script": "修订补充示例/第二轮/ch03_正文代码框.R",
+    "code_sha256": "5595a5c699ea52dec65dae7270a5ef469d7c4830f964cc17db1a3ed420f0f851",
+    "script_sha256": "1c8d12b2bfe42b5406b73698c29e33f87988e107e19a4502552676c4ec5de4d0"
+  },
+  {
+    "language": "Python",
+    "label": "ch03_probability_2",
+    "source": "book_chapters/ch03_probability.tex",
+    "line": 358,
+    "script": "修订补充示例/第二轮/ch03_正文代码框.py",
+    "code_sha256": "31ae7f82bd78372d836c2eba08ff38e580a2fbbfebc12080441d979e7676c105",
+    "script_sha256": "7797fd2fd3de987775ea3f8393fc0aef66e974bdc584684e583a52da31b13ef8"
+  },
+  {
+    "language": "Python",
+    "label": "ch03_probability_4",
+    "source": "book_chapters/ch03_probability.tex",
+    "line": 551,
+    "script": "修订补充示例/第二轮/ch03_正文代码框.py",
+    "code_sha256": "57f8d983340073af75dd57de7b8290b9aa53b98d207bbbc4db8f0d5811ab32a1",
+    "script_sha256": "7797fd2fd3de987775ea3f8393fc0aef66e974bdc584684e583a52da31b13ef8"
+  },
+  {
+    "language": "R",
+    "label": "ch4_corr_r",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 91,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.R",
+    "code_sha256": "ba2ea04bce05174662ae4906ffbc71365fda573f9f4e75cf87e67b7746964eff",
+    "script_sha256": "589a60c767b4f9bed2582eae75890dd33ff57ea5de0d95baac7490164b100175"
+  },
+  {
+    "language": "R",
+    "label": "ch4_boot_r",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 241,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.R",
+    "code_sha256": "841625102f5be153bbf4fcd9ca7661de1f6e3e542b9bc8e4766b8fe0c0ccb98a",
+    "script_sha256": "589a60c767b4f9bed2582eae75890dd33ff57ea5de0d95baac7490164b100175"
+  },
+  {
+    "language": "R",
+    "label": "ch04_correlation_inference_4",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 404,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.R",
+    "code_sha256": "66fb28b0bad1b33a096a31b74a53e398feabcd0a4f6dc74ab90615eea120797d",
+    "script_sha256": "589a60c767b4f9bed2582eae75890dd33ff57ea5de0d95baac7490164b100175"
+  },
+  {
+    "language": "R",
+    "label": "ch04_correlation_inference_6",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 483,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.R",
+    "code_sha256": "9e0e50ff6501b04a4317115ec2610063368918997064e86194061608c192d4cf",
+    "script_sha256": "589a60c767b4f9bed2582eae75890dd33ff57ea5de0d95baac7490164b100175"
+  },
+  {
+    "language": "Python",
+    "label": "ch4_corr_py",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 118,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.py",
+    "code_sha256": "0684a2309f99ffaf0d4a64660cd53cbe33357ab12b1fcea9be9053341e686b9f",
+    "script_sha256": "bb9723fcc352907a91bde5337df66095e8035f0231e3cefa04ab65b4be6a9447"
+  },
+  {
+    "language": "Python",
+    "label": "ch4_boot_py",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 253,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.py",
+    "code_sha256": "8ae8cf9fea198042af35a6bec7732255ff0423d4d9bf43a85841541a896dba05",
+    "script_sha256": "bb9723fcc352907a91bde5337df66095e8035f0231e3cefa04ab65b4be6a9447"
+  },
+  {
+    "language": "Python",
+    "label": "ch04_correlation_inference_5",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 418,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.py",
+    "code_sha256": "226391abfa6ffd54960274d52b1986f574c61e4d8d3731de1553b522035ca65e",
+    "script_sha256": "bb9723fcc352907a91bde5337df66095e8035f0231e3cefa04ab65b4be6a9447"
+  },
+  {
+    "language": "Python",
+    "label": "ch04_correlation_inference_7",
+    "source": "book_chapters/ch04_correlation_inference.tex",
+    "line": 495,
+    "script": "修订补充示例/第二轮/ch04_正文代码框.py",
+    "code_sha256": "68f557f4bf9030c7626156787d15c80596c91bc1b1561299dff2e70eb34c26ce",
+    "script_sha256": "bb9723fcc352907a91bde5337df66095e8035f0231e3cefa04ab65b4be6a9447"
+  },
+  {
+    "language": "R",
+    "label": "ch05_simple_regression_0",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 194,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.R",
+    "code_sha256": "603354a76e6988a915503ec7bb4e03a13dbd965ed31aa27281bd0501e845fb89",
+    "script_sha256": "82784ccefebb8eb343b797befa9127bce180536ae41ba8f5be6fa5a95509546b"
+  },
+  {
+    "language": "R",
+    "label": "ch05_simple_regression_2",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 365,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.R",
+    "code_sha256": "e3655602c3c1f62b62b603b73c9c455c20ffb1c42054e2c8d14a2f719f564460",
+    "script_sha256": "82784ccefebb8eb343b797befa9127bce180536ae41ba8f5be6fa5a95509546b"
+  },
+  {
+    "language": "R",
+    "label": "ch05_mc_r",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 486,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.R",
+    "code_sha256": "b388f91fd5d7097684ae0618916acae5c387a9e37d30337522c03ab00d33dceb",
+    "script_sha256": "82784ccefebb8eb343b797befa9127bce180536ae41ba8f5be6fa5a95509546b"
+  },
+  {
+    "language": "Python",
+    "label": "ch05_simple_regression_1",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 213,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.py",
+    "code_sha256": "9c8615fad97cc2b41564a68690e68b80a57a34831ec6e3905792d36e4ca0ee71",
+    "script_sha256": "33af4cb252b4ff1ea5a1bfa45d2380f4eed826d9d2a8570ef9ae526837eb599b"
+  },
+  {
+    "language": "Python",
+    "label": "ch05_simple_regression_3",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 376,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.py",
+    "code_sha256": "783951c9cfcab2e6d041d7623d3bc97ebc1f258e00c012c40503d3bad884a5de",
+    "script_sha256": "33af4cb252b4ff1ea5a1bfa45d2380f4eed826d9d2a8570ef9ae526837eb599b"
+  },
+  {
+    "language": "Python",
+    "label": "ch05_mc_py",
+    "source": "book_chapters/ch05_simple_regression.tex",
+    "line": 521,
+    "script": "修订补充示例/第二轮/ch05_正文代码框.py",
+    "code_sha256": "240102886f9fe948cca0dc105d0f49b5b91c412fa76e85312e89f068ae15c73f",
+    "script_sha256": "33af4cb252b4ff1ea5a1bfa45d2380f4eed826d9d2a8570ef9ae526837eb599b"
+  },
+  {
+    "language": "R",
+    "label": "ch06_multiple_regression_0",
+    "source": "book_chapters/ch06_multiple_regression.tex",
+    "line": 120,
+    "script": "修订补充示例/第二轮/ch06_正文代码框.R",
+    "code_sha256": "9b6a8f2ebb73bd14a0c9c0f2560f5a8cdf1c163ac94f30999e79a3a094b427b8",
+    "script_sha256": "0cce0c4aa32337dd08138f2662d55b078c91950df5c8ff85f59fe20f2f5af906"
+  },
+  {
+    "language": "Python",
+    "label": "ch06_multiple_regression_1",
+    "source": "book_chapters/ch06_multiple_regression.tex",
+    "line": 133,
+    "script": "修订补充示例/第二轮/ch06_正文代码框.py",
+    "code_sha256": "9b9c53721e94c14b7f370a133110a80340ff68a5dc6afdd675de5e6f8dd13088",
+    "script_sha256": "19fa418546d1759c387ac350c14b659fd1d14f4749d940793fdeb8416933462a"
+  },
+  {
+    "language": "R",
+    "label": "ch07_nonlinear_0",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 128,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "6889ca513d22c2596ee74897e193f26702f5d1a65a3e8d9c16484b8cc4e64b7d",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "R",
+    "label": "ch07_nonlinear_2",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 331,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "0f62a2c86682563e122cc8b5ef4806f4155fbca825fc89f9a4323044392a96fb",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "R",
+    "label": "ch07_cont_interact_r",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 484,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "13cfdbe535f318073556a61f94c9e9038279f891b8baa7805e42f587eba962a0",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "R",
+    "label": "ch07_kink_r",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 576,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "7f4b90fdc78607fadbfbeffc3010523fb53213c7c6aa234e1dcd27822a5bfc09",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "R",
+    "label": "ch07_me_r",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 690,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "88bbd5b5dbeccb39d6eb314066bc80ba05b1c2aeb0acb8aa232ceeae3c0c5235",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "R",
+    "label": "ch07_nonlinear_10",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 769,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.R",
+    "code_sha256": "eb762b12039db0dfb35f1fcf0516a67c415155badb2ac606af31d1e2e238ef0a",
+    "script_sha256": "96733febfc93617d3cd08a00c88f5e4ce1d01e4b68e209c4ee7cb76040cb3493"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_nonlinear_1",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 139,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "6a9e6329bde45ea227778c0c8a030cb3ae238908ea6422fd0d5bd6452f70b086",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_nonlinear_3",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 340,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "ecf599f07fb7f18d742b05596131d44fa35f328ee09fa9b9f6469f3dca6e8337",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_cont_interact_py",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 514,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "cf138566f80182d82af907c75c9399ddd3acd57b6dfbeb897d9ad6a1a40a7535",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_kink_py",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 599,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "5f0e0ad01158e681d7121939249e6025f9389a0cdbd6012c8a1435a2acbb3910",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_me_py",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 706,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "7def1e390539f68cc88433b643b1b6b467c9ccd391a617fbd651ed3fef4e9d1c",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "Python",
+    "label": "ch07_nonlinear_11",
+    "source": "book_chapters/ch07_nonlinear.tex",
+    "line": 779,
+    "script": "修订补充示例/第二轮/ch07_正文代码框.py",
+    "code_sha256": "b47ec6b48efd2b4a0a55e339f0762986107f83d70140fbbcd0825db64522dc61",
+    "script_sha256": "f0f6657e77f13b483125a2ff4016507921e9db85f25740ff4744909ff4f151c4"
+  },
+  {
+    "language": "R",
+    "label": "ch08_dependent_errors_0",
+    "source": "book_chapters/ch08_dependent_errors.tex",
+    "line": 92,
+    "script": "修订补充示例/第二轮/ch08_正文代码框.R",
+    "code_sha256": "eb1b19109134f19b9f62c3d9487f081ca1a36f3c4346dddd48a29cf619d09e57",
+    "script_sha256": "00fdffeeda2c331674b491d00bf40c97d4a29c958d9cfb6271547039a119b708"
+  },
+  {
+    "language": "R",
+    "label": "ch08_survey_r",
+    "source": "book_chapters/ch08_dependent_errors.tex",
+    "line": 568,
+    "script": "修订补充示例/第二轮/ch08_正文代码框.R",
+    "code_sha256": "72d1547ae1f39d55b354020d97829c414efd354c6591426b04b96c335db12903",
+    "script_sha256": "00fdffeeda2c331674b491d00bf40c97d4a29c958d9cfb6271547039a119b708"
+  },
+  {
+    "language": "Python",
+    "label": "ch08_dependent_errors_1",
+    "source": "book_chapters/ch08_dependent_errors.tex",
+    "line": 105,
+    "script": "修订补充示例/第二轮/ch08_正文代码框.py",
+    "code_sha256": "75730582567c85ea647305b73d071547fb6bc420979f67354e6373fe5902a341",
+    "script_sha256": "4c539b8c3bdfe793aeb2d4bb276addf293aadb3b6fd3dd6b2e2d50d63730d107"
+  },
+  {
+    "language": "Python",
+    "label": "ch08_survey_py",
+    "source": "book_chapters/ch08_dependent_errors.tex",
+    "line": 592,
+    "script": "修订补充示例/第二轮/ch08_正文代码框.py",
+    "code_sha256": "16248bf144cb2156c3238267df65a4378a128c217b46865a5ce202b084c7d4e8",
+    "script_sha256": "4c539b8c3bdfe793aeb2d4bb276addf293aadb3b6fd3dd6b2e2d50d63730d107"
+  },
+  {
+    "language": "R",
+    "label": "ch09_binary_0",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 94,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "code_sha256": "eac04e0a3c8a734dc6317a4dc4ce3dd6f140b50f70fbf3d710197551bd5c29ac",
+    "script_sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "language": "R",
+    "label": "ch09_binary_2",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 189,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "code_sha256": "675a9639809b6f5d5ed157092cb7fe0c20e38b076fd3a73e47db573439ab60a4",
+    "script_sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "language": "R",
+    "label": "ch09_binary_4",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 421,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "code_sha256": "8cd091c25aa311fd95e1f3094a8d21505a79ebec6c76aec5d961cb4311822fb2",
+    "script_sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "language": "R",
+    "label": "ch09_binary_6",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 547,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "code_sha256": "f1f60835e2bac318942db405c3fdf3fc603da6dd24a5eb1a274bdbe0df37ab1c",
+    "script_sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "language": "R",
+    "label": "ch09_binary_8",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 685,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.R",
+    "code_sha256": "363c330badcc818579ea54539d9608d251fc100b2472b2ff988839a7f6c0949e",
+    "script_sha256": "1372707f74205216ea980f9f1acee425b78614eaddbcbc3a0bab7de58e36efc2"
+  },
+  {
+    "language": "Python",
+    "label": "ch09_binary_1",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 107,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "code_sha256": "821626baaf1c7797c8626d977fb34acf4e5414583174a03cd7e781e7ded3e85a",
+    "script_sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "language": "Python",
+    "label": "ch09_binary_3",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 198,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "code_sha256": "2716f26571823a0d5329624ef766f3f71593879c07b5806a9f07261f21e7a2a5",
+    "script_sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "language": "Python",
+    "label": "ch09_binary_5",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 433,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "code_sha256": "15e6f8f42ee3321473db82b60228b56e9212ffed16483b9990c1cb7f1b950ef3",
+    "script_sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "language": "Python",
+    "label": "ch09_binary_7",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 557,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "code_sha256": "55a85f8ded7cb7a1c63643515b12d1018b0d350022fb2de67e6124befdb2b80b",
+    "script_sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "language": "Python",
+    "label": "ch09_binary_9",
+    "source": "book_chapters/ch09_binary.tex",
+    "line": 702,
+    "script": "修订补充示例/第二轮/ch09_正文代码框.py",
+    "code_sha256": "ae8484879683ee0b9367e206a7691d6e67b70fcf419d82df353a0aff16fc74f8",
+    "script_sha256": "e24a5d0621d823aa422a9dd089ee9d7d3a24c926f9d21d505d5bcf14401dff25"
+  },
+  {
+    "language": "R",
+    "label": "ch10_prediction_0",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 315,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+    "code_sha256": "3301d1df1f428aad93ca781d82fa8649e51c1cd389dbf255558b968fd2fbb759",
+    "script_sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8"
+  },
+  {
+    "language": "R",
+    "label": "ch10_prediction_2",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 388,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+    "code_sha256": "3dbb6cd9614e219595cccb4799cb9432d5d905bca2c076af8cd07b49d6e7c553",
+    "script_sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8"
+  },
+  {
+    "language": "R",
+    "label": "ch10_prediction_4",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 439,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+    "code_sha256": "f3cfbabb0a845abf234a5fa976555e639cf191af7077c297a520feddec2653f0",
+    "script_sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8"
+  },
+  {
+    "language": "R",
+    "label": "ch10_prediction_6",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 556,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.R",
+    "code_sha256": "f724b8bad80cba3ecbe4c8e6aaaba5a551ef14ffa03519a00ea16464fb8448ba",
+    "script_sha256": "b2e53c4bfa199ff155a0280dad9771058e97eb96459baa4cca067f53422666b8"
+  },
+  {
+    "language": "Python",
+    "label": "ch10_prediction_1",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 329,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+    "code_sha256": "69417f7288c08720aa3eb9aebc8b7ddd1eb0377a6b0e23439fb9d9968a321f28",
+    "script_sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453"
+  },
+  {
+    "language": "Python",
+    "label": "ch10_prediction_3",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 397,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+    "code_sha256": "4085ac5302939f036744d7e506ff211b311a8ff3c862f4960ec8a00211ade068",
+    "script_sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453"
+  },
+  {
+    "language": "Python",
+    "label": "ch10_prediction_5",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 451,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+    "code_sha256": "d31ca31ea4ca8a6e47811a101a03568ad0a3b873b2d695ddcb93517bf901c5da",
+    "script_sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453"
+  },
+  {
+    "language": "Python",
+    "label": "ch10_prediction_7",
+    "source": "book_chapters/ch10_prediction.tex",
+    "line": 570,
+    "script": "修订补充示例/第二轮/ch10_正文代码框.py",
+    "code_sha256": "490028bc9f2cc5466b03bb2cd4bd29b52e769c867dd77b5f34c7662f4f828a93",
+    "script_sha256": "a245787683542e4e83a8324c5f65e4472ab4396063bc6bc02144fa671afbf453"
+  },
+  {
+    "language": "R",
+    "label": "B3_np_local_r",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 231,
+    "script": "book_codeboxes_round2/B3_np_local_r.R",
+    "code_sha256": "6db56a61c5ba1acf33e43e33a12391fb92117f3678b297a9150b5680eab28f1e",
+    "script_sha256": "1fa8f4c060192f50cb9bfa4442b6a9069b6d051aa398cb0ec5006eac957eb7da"
+  },
+  {
+    "language": "Python",
+    "label": "B3_np_local_py",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 245,
+    "script": "book_codeboxes_round2/B3_np_local_py.py",
+    "code_sha256": "4975f39709841bea27005285a88bdbcc0c774ff52a6a0b603b0eac35669f0718",
+    "script_sha256": "225554b4a54ca4f3c7ea13aaf558a9c0ce8fab545d038b26a24e7398439df749"
+  },
+  {
+    "language": "R",
+    "label": "B3_np_gam_r",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 357,
+    "script": "book_codeboxes_round2/B3_np_gam_r.R",
+    "code_sha256": "5f934852ea984e2435850653cd580b0d453deaca4a68f6ffe11dd4ba896cc029",
+    "script_sha256": "725bae0dcaac363a41c9263a59a357c986f630ab031dfad836d07c18bb4b3495"
+  },
+  {
+    "language": "Python",
+    "label": "B3_np_gam_py",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 369,
+    "script": "book_codeboxes_round2/B3_np_gam_py.py",
+    "code_sha256": "48adf5b810185a056a412165e7569d4d8db8eb751d56d8f9c1d35d154ff52668",
+    "script_sha256": "2105d5e4b71c9ba2732355a4aee247da1fdf316ca32b33242bbb54c731d63395"
+  },
+  {
+    "language": "R",
+    "label": "B3_np_kde_r",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 437,
+    "script": "book_codeboxes_round2/B3_np_kde_r.R",
+    "code_sha256": "145aecdbb6819cce8aa9b09588462026dd87695c2e962e662c06ab48bef477ff",
+    "script_sha256": "52fa1840cb6a44f798857ddd304b14b54f8c278775c37a4da8b802b0d57ee885"
+  },
+  {
+    "language": "Python",
+    "label": "B3_np_kde_py",
+    "source": "book_chapters/ch_nonparametric.tex",
+    "line": 448,
+    "script": "book_codeboxes_round2/B3_np_kde_py.py",
+    "code_sha256": "7b10bd34f12ac1d3f6b5a142b45c58066e082850bdf0f50d415db7cb3dfc9919",
+    "script_sha256": "ca6886e54e4e863b6ddbaf50477f1b2d55cd0a884abfbb2068a8b86312bb3315"
+  },
+  {
+    "language": "R",
+    "label": "B3_ar_hac_r",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 161,
+    "script": "book_codeboxes_round2/B3_ar_hac_r.R",
+    "code_sha256": "825899c0db12d26797dadf05d6b7207534c8eab699a4d28ee0977b863b896efb",
+    "script_sha256": "9029c33c1f994912a31adecb263d17a426f656e2d76ab5049689c3bd1d87b8a0"
+  },
+  {
+    "language": "Python",
+    "label": "B3_ar_hac_py",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 179,
+    "script": "book_codeboxes_round2/B3_ar_hac_py.py",
+    "code_sha256": "7d596ce6352a8c4a04907846f8cbc447a684098bee65f8abb3d5dcffac538ef4",
+    "script_sha256": "4f06d2368d92e87be25098a56aa6be088576e7fd9321b61f97ed29bbc1eba940"
+  },
+  {
+    "language": "R",
+    "label": "ch11_arma_r",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 545,
+    "script": "book_codeboxes_round2/ch11_arma_r.R",
+    "code_sha256": "515de7fc1a2c74b94d3bae24e9ca97fa85a91476bcefcd7c7f9d0944e32746b0",
+    "script_sha256": "88097f53d106b8f7e17440c22be8b0bdba1e63fc5857ecefe75468086b0cd718"
+  },
+  {
+    "language": "Python",
+    "label": "ch11_arma_py",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 583,
+    "script": "book_codeboxes_round2/ch11_arma_py.py",
+    "code_sha256": "471cc0b8622a3a051b45b04c9c1edd20f77d8452596483d1b32fa9994bc18e92",
+    "script_sha256": "cc067bdb6ad183d7283928ed47851c1efa4609f3d7f7efdc6d00d546fb05fef7"
+  },
+  {
+    "language": "R",
+    "label": "ch11_seasonal_r",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 684,
+    "script": "book_codeboxes_round2/ch11_seasonal_r.R",
+    "code_sha256": "066e838994d2a87ce4795b9e4ead6a7d29c12e5537d879ff09b4b85b435850fb",
+    "script_sha256": "49827a0932d4247b370288264e485d97aed4474dd3ab7998310661c5756d80aa"
+  },
+  {
+    "language": "Python",
+    "label": "ch11_seasonal_py",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 710,
+    "script": "book_codeboxes_round2/ch11_seasonal_py.py",
+    "code_sha256": "b75ba8d7744791652b965ccb6e5aa11eb58d05d997522993467fdab8cd745fc0",
+    "script_sha256": "a6834616d0b6303510484c74153f7afd48662b242d39e01878fe796d12261156"
+  },
+  {
+    "language": "R",
+    "label": "ch11_var_r",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 798,
+    "script": "book_codeboxes_round2/ch11_var_r.R",
+    "code_sha256": "e00790f5fad3b964c90e8d5f3c6c1bbd70b31078d83a3097e4b9d1c6810c97f8",
+    "script_sha256": "60ca8a549d7e0ab99f6d05e26fe625ac1546511eb06f17bc72c8e6e4b25edd0e"
+  },
+  {
+    "language": "Python",
+    "label": "ch11_var_py",
+    "source": "book_chapters/ch11_timeseries.tex",
+    "line": 837,
+    "script": "book_codeboxes_round2/ch11_var_py.py",
+    "code_sha256": "b890d3a4c00971868e5988bc525b8144ea7af7bb8a2700650670d70cba2d9c1c",
+    "script_sha256": "d4c64380efe203aff8486a16f57e85f6bd0e16c88cf660f4159c3dd0e5efd395"
+  },
+  {
+    "language": "R",
+    "label": "ch12_event_r",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 402,
+    "script": "book_codeboxes_round2/ch12_event_r.R",
+    "code_sha256": "7fcc6d3678897955c51b0735657ee04207a20accfca0dd1dd03aa7259d00f2be",
+    "script_sha256": "03668f149957169ed0e43b89548952e2a3143cb0a7a4403093c095fabd3c08b4"
+  },
+  {
+    "language": "Python",
+    "label": "ch12_event_py",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 425,
+    "script": "book_codeboxes_round2/ch12_event_py.py",
+    "code_sha256": "ea7abf6a3599d584a44759bc54bdbbe29db0d2cbcd39e109aeaa188f46f85f79",
+    "script_sha256": "4ec29aeb339a65ea62f32eaae2f40afbb9f03c27263ce6633081b011a8c3ab80"
+  },
+  {
+    "language": "R",
+    "label": "B3_fars_r",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 662,
+    "script": "book_codeboxes_round2/B3_fars_r.R",
+    "code_sha256": "6a357815434479881eb1e3e93e7dabbf08e0badf7972c874a565e0d4ed8061e9",
+    "script_sha256": "36f457b16e7d7f8cc8512c92944a37ee5840f09cbe7d912d4fef590a54cbd89f"
+  },
+  {
+    "language": "Python",
+    "label": "B3_fars_py",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 683,
+    "script": "book_codeboxes_round2/B3_fars_py.py",
+    "code_sha256": "05c704a46d967fd65b37d707f5d30c689e0b9630646a0c5d22b0cdf6bdfa604a",
+    "script_sha256": "d6e69d500ffefae49bc52d7b98dde5847cd557e313110931c442a699e4f89d0e"
+  },
+  {
+    "language": "R",
+    "label": "ch12_mediation_r",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 906,
+    "script": "book_codeboxes_round2/ch12_mediation_r.R",
+    "code_sha256": "3f492631ac662c3510941919e24e24acb9edfcc3b938a5041b172ef34849b7dc",
+    "script_sha256": "45d026756c10e75c3ac88d5cccb5111a42c1cbb39a6ef075a672dfa5557e305f"
+  },
+  {
+    "language": "Python",
+    "label": "ch12_mediation_py",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 925,
+    "script": "book_codeboxes_round2/ch12_mediation_py.py",
+    "code_sha256": "62fbf653fd3606cae13ef0e71cdc79538faa95bddfc3ca5d34355936eb8a8e19",
+    "script_sha256": "b16c6f0fb71dd256f535622ca337e0b171c603a1c3d90d5470fccf7e3fc9d5ac"
+  },
+  {
+    "language": "R",
+    "label": "ch12_causal_6",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 1062,
+    "script": "book_codeboxes_round2/ch12_causal_6.R",
+    "code_sha256": "c2964b27c7dffec48e104e38e1468b6b075cdfd2cd2ac2a89519ff3c54376052",
+    "script_sha256": "65ed274a48629e4e9ce61f74860b82264e2193c1cf46d2f5219251f369f0876e"
+  },
+  {
+    "language": "Python",
+    "label": "ch12_causal_7",
+    "source": "book_chapters/ch12_causal.tex",
+    "line": 1079,
+    "script": "book_codeboxes_round2/ch12_causal_7.py",
+    "code_sha256": "225b143bb1351095c0926a06cb980fd21f22c4be487f036c3ea7d5aa927da0f9",
+    "script_sha256": "63e193bba95488fdaf4a0cd69e762a8c867e5dc55987cf11afdf7a28cc0124b6"
+  },
+  {
+    "language": "R",
+    "label": "tech_rd_r",
+    "source": "technical_supplements/tech_rd_ch12.tex",
+    "line": 141,
+    "script": "book_codeboxes_round2/tech_rd_r.R",
+    "code_sha256": "fc30c06961e7a048d42dd2aabf11f2d633846e2977bed6300a7bfabaa9bc4e38",
+    "script_sha256": "18064dacdc293b01535926bed502a959ac7f50042fcae25916653f40ae3cd547"
+  },
+  {
+    "language": "Python",
+    "label": "tech_rd_py",
+    "source": "technical_supplements/tech_rd_ch12.tex",
+    "line": 167,
+    "script": "book_codeboxes_round2/tech_rd_py.py",
+    "code_sha256": "e4e93bfd511e2deb87fb3eb66593c3cf8ec4d0c388c173bd7e534a677f02e502",
+    "script_sha256": "712b1addfee573e5c5f12162c8b83d6bcb4b287290c859af87cf32eabd6e3379"
+  },
+  {
+    "language": "R",
+    "label": "tech_design_r",
+    "source": "technical_supplements/tech_ols_design_ch12.tex",
+    "line": 83,
+    "script": "book_codeboxes_round2/tech_design_r.R",
+    "code_sha256": "f436e097c5541c7b991057a744437cf6379dda28abb9e9813c6d6938090d4177",
+    "script_sha256": "cc56dc74d9bee99ad266c33b19d77234b40042daf253650df73ab1c32b4818ed"
+  },
+  {
+    "language": "Python",
+    "label": "tech_design_py",
+    "source": "technical_supplements/tech_ols_design_ch12.tex",
+    "line": 104,
+    "script": "book_codeboxes_round2/tech_design_py.py",
+    "code_sha256": "2cef219397a5888b5671246bb130c8f67cbdaee0538cd25985a36c8906ff8172",
+    "script_sha256": "f5a3e7ab7c17c54fc024d4a176c25a4b0d63815917cc8c4064226a6aa6b8cf1d"
+  },
+  {
+    "language": "R",
+    "label": "appendix_delta_r",
+    "source": "Appendix Maths.tex",
+    "line": 1042,
+    "script": "book_codeboxes_round2/appendix_delta_r.R",
+    "code_sha256": "9872daf986b5a6f28e8b10ba187dc741f452acabac3669700b547e209426a25c",
+    "script_sha256": "1d4583e9529a22f47f4a7cf8167d996e9e9dee4970147d5bf6ea773fa25e2aa7"
+  },
+  {
+    "language": "Python",
+    "label": "appendix_delta_py",
+    "source": "Appendix Maths.tex",
+    "line": 1061,
+    "script": "book_codeboxes_round2/appendix_delta_py.py",
+    "code_sha256": "cb9c3d32cd6ffaabed24385b1eae25f204969398a0d0ba1230a46398508c74b1",
+    "script_sha256": "4dea4acc7cf7d77b5fb253ea669dd89ea1d54cfff42a57eeba46b076de883599"
+  }
+]

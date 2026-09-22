@@ -27,7 +27,7 @@ causality(var_fit, cause="trade_change")$Granger
 # 指定排序下，GDP 对贸易创新的响应（10期）
 set.seed(20260922)
 irf_obj <- irf(var_fit, impulse="trade_change", response="gdp",
-               n.ahead=10, boot=TRUE, runs=999, ci=0.9)
+               n.ahead=10, boot=TRUE, runs=999, ci=0.95)
 plot(irf_obj)
 
 # 预测误差方差分解

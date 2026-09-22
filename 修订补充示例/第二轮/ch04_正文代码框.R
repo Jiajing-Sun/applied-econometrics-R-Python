@@ -1,9 +1,6 @@
-# 第 4 章 R：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第4章R：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch04_correlation_inference.tex:91；ch4_corr_r
+# 代码框 1: book_chapters/ch04_correlation_inference.tex:91 / ch4_corr_r
 library(readr); library(dplyr)
 df <- read_csv("data/processed/chapter04_wdi_life_gdp_2024_economies.csv")
 stopifnot(nrow(df) == 192, !anyDuplicated(df$country_code))
@@ -28,7 +25,7 @@ df %>% group_by(region) %>%
   summarise(r = cor(log_gdp_pc, life_expectancy), n = n())
 
 
-# 教材：ch04_correlation_inference.tex:241；ch4_boot_r
+# 代码框 2: book_chapters/ch04_correlation_inference.tex:241 / ch4_boot_r
 set.seed(42)
 B <- 9999
 r_boot <- replicate(B, {
@@ -38,7 +35,7 @@ r_boot <- replicate(B, {
 quantile(r_boot, c(0.025, 0.975))   # 百分位 Bootstrap 95% CI
 
 
-# 教材：ch04_correlation_inference.tex:400；
+# 代码框 3: book_chapters/ch04_correlation_inference.tex:404 / ch04_correlation_inference_4
 x <- df$log_gdp_pc; y <- df$life_expectancy
 z <- log(df$population)
 ex <- resid(lm(x ~ z)); ey <- resid(lm(y ~ z))
@@ -50,7 +47,7 @@ stopifnot(abs(semipartial^2 - delta_r2) < 1e-10)
 c(partial = partial, semipartial = semipartial)
 
 
-# 教材：ch04_correlation_inference.tex:479；
+# 代码框 4: book_chapters/ch04_correlation_inference.tex:483 / ch04_correlation_inference_6
 set.seed(42)
 T_obs <- cor(df$log_gdp_pc, df$life_expectancy)
 B <- 9999

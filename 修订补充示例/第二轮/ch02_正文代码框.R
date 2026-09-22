@@ -1,9 +1,6 @@
-# 第 2 章 R：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第2章R：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch02_covariation.tex:90；box:korr
+# 代码框 1: book_chapters/ch02_covariation.tex:94 / box_korr
 df <- read.csv("data/processed/nbs_70city_house_price_2025.csv",
                fileEncoding = "UTF-8-BOM")
 new_house <- subset(df, market == "new_house")
@@ -24,7 +21,7 @@ r_xy <- s_xy / (sd(x) * sd(y))
 r_xy
 
 
-# 教材：ch02_covariation.tex:218；box:spearman
+# 代码框 2: book_chapters/ch02_covariation.tex:222 / box_spearman
 wide$rank_new <- rank(wide$yoy_index_new, ties.method = "average")
 wide$rank_second <- rank(wide$yoy_index_second, ties.method = "average")
 
@@ -32,7 +29,7 @@ cor(wide$rank_new, wide$rank_second)
 cor(wide$yoy_index_new, wide$yoy_index_second, method = "spearman")
 
 
-# 教材：ch02_covariation.tex:296；ch02_kendall_r
+# 代码框 3: book_chapters/ch02_covariation.tex:300 / ch02_kendall_r
 # Kendall tau_b（软件默认处理并列）
 cor(
   wide$yoy_index_new, wide$yoy_index_second,
@@ -56,13 +53,13 @@ cat("C =", concordant, "D =", discordant, "并列对 =", ties,
     "tau_a =", round(tau_a, 3), "\n")
 
 
-# 教材：ch02_covariation.tex:387；box:ols
+# 代码框 4: book_chapters/ch02_covariation.tex:391 / box_ols
 ols_model <- lm(yoy_index_second ~ yoy_index_new, data = wide)
 coef(ols_model)
 summary(ols_model)$r.squared
 
 
-# 教材：ch02_covariation.tex:521；ch02_binned_r
+# 代码框 5: book_chapters/ch02_covariation.tex:532 / ch02_binned_r
 # 按五分位切分新房同比指数
 wide$x_bin <- cut(wide$yoy_index_new,
                   breaks = quantile(wide$yoy_index_new, probs = 0:5/5),

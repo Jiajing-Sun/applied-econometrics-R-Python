@@ -5,14 +5,14 @@ from scipy import stats
 repo_dir=Path(__file__).resolve().parents[2]
 import os
 os.chdir(repo_dir)
-df=pd.read_csv(repo_dir / 'Chapter07_Nonlinear_functional_form/results/chapter07_wdi_owid_income_co2_analysis_data.csv')
 
-# 代码框 1: {Python 中多项式和边际效应}
+
+# 代码框 1: book_chapters/ch07_nonlinear.tex:139 / ch07_nonlinear_1
 import numpy as np, pandas as pd
 import statsmodels.formula.api as smf
 from pathlib import Path
 data_path = (Path("Chapter07_Nonlinear_functional_form")
-             / "results" / "chapter07_wdi_owid_income_co2_analysis_data.csv")
+             / "results" / "python_chapter07_wdi_owid_income_co2_analysis_data.csv")
 df = pd.read_csv(data_path)
 df["log_gdp2"] = df["log_gdp_pc"] ** 2
 mod_quad = smf.ols("co2_pc_tonnes ~ log_gdp_pc + log_gdp2", data=df).fit()
@@ -20,12 +20,12 @@ grid = df["log_gdp_pc"].quantile([.25, .50, .75])
 mod_quad.params["log_gdp_pc"] + 2 * mod_quad.params["log_gdp2"] * grid
 
 
-# 代码框 2: {Python 中 log-log 模型}
+# 代码框 2: book_chapters/ch07_nonlinear.tex:340 / ch07_nonlinear_3
 mod_log = smf.ols("np.log(co2_pc_tonnes) ~ log_gdp_pc", data=df).fit(cov_type="HC0", use_t=True)
 mod_log.params
 
 
-# 代码框 3: [label=ch07_cont_interact_py]{Python 中连续×连续交互项}
+# 代码框 3: book_chapters/ch07_nonlinear.tex:514 / ch07_cont_interact_py
 import numpy as np, statsmodels.formula.api as smf, pandas as pd
 
 df["lgdp_c"]  = df["log_gdp_pc"] - df["log_gdp_pc"].mean()
@@ -50,7 +50,7 @@ for q in q_trade:
     print(f"ME = {me:.3f}  95% CI = [{me-crit*se:.3f}, {me+crit*se:.3f}]")
 
 
-# 代码框 4: [label=ch07_kink_py]{Python 中分段线性回归}
+# 代码框 4: book_chapters/ch07_nonlinear.tex:599 / ch07_kink_py
 import numpy as np, statsmodels.formula.api as smf, pandas as pd
 
 c1 = 8.5
@@ -68,7 +68,7 @@ grid["kink1"] = np.maximum(grid["log_gdp_pc"] - c1, 0)
 grid["pred"]  = mod_kink.predict(grid)
 
 
-# 代码框 5: [label=ch07_me_py]{Python 中边际效应的系统计算}
+# 代码框 5: book_chapters/ch07_nonlinear.tex:706 / ch07_me_py
 # 方法 1: 手动 delta 法（二次模型）
 mod_quad = smf.ols(
     "co2_pc_tonnes ~ log_gdp_pc + I(log_gdp_pc**2)", data=df
@@ -89,7 +89,7 @@ for q in points:
 # 也可使用专门的边际效应软件；这里无需额外依赖。
 
 
-# 代码框 6: {Python 中生成预测曲线的基本流程}
+# 代码框 6: book_chapters/ch07_nonlinear.tex:779 / ch07_nonlinear_11
 grid = pd.DataFrame({
     "log_gdp_pc": np.linspace(df.log_gdp_pc.min(), df.log_gdp_pc.max(), 100)
 })

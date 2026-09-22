@@ -277,14 +277,14 @@ log_interpretation = pd.DataFrame(
         "模型": ["log-log", "lin-log", "log-level"],
         "设定": ["log(Y) ~ log(X)", "Y ~ log(X)", "log(Y) ~ X"],
         "系数含义": [
-            "X 增加1%，Y 平均约变化 beta%",
-            "X 增加1%，Y 平均约变化 beta/100 个单位",
-            "X 增加1个单位，Y 平均约变化 100*(exp(beta)-1)%",
+            "X增加1%，Y条件几何均值约变化beta%",
+            "X增加1%，Y条件算术均值约变化beta/100个单位",
+            "X增加1个单位，Y条件几何均值精确变化100*(exp(beta)-1)%",
         ],
         "本章读法": [
             f"收入弹性约 {float(log_log_fit['beta'][1]):.3f}",
             f"人均GDP增加1%，人均CO2约变化 {float(lin_log_fit['beta'][1]) / 100:.3f} 吨",
-            "本章未作为主模型；常用于二元或比例型因变量的稳健性比较",
+            "本章未作为主模型；适用于正值结果，单位变化的解释取决于X的计量单位",
         ],
     }
 )

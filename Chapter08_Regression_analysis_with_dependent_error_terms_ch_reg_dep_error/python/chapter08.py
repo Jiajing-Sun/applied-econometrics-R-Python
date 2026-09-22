@@ -124,7 +124,7 @@ def cluster_vcov(fit: dict[str, object], clusters: pd.Series | np.ndarray) -> np
     S = grouped_scores.to_numpy(float)
     meat = S.T @ S
     g = S.shape[0]
-    correction = (g / (g - 1)) * ((n - 1) / (n - p)) if g > 1 else 1.0
+    correction = g / (g - 1) if g > 1 else 1.0  # HC0 scores + group correction; matches R
     return correction * xtx_inv @ meat @ xtx_inv
 
 

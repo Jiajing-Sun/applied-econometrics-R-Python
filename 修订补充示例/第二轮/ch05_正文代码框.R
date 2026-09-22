@@ -1,9 +1,6 @@
-# 第 5 章 R：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第5章R：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch05_simple_regression.tex:179；
+# 代码框 1: book_chapters/ch05_simple_regression.tex:194 / ch05_simple_regression_0
 raw <- read.csv("data/processed/nbs_70city_house_price_2025.csv",
                 fileEncoding = "UTF-8-BOM")
 key <- c("city", "date", "year", "month")
@@ -20,7 +17,7 @@ summary(mod)
 confint(mod)
 
 
-# 教材：ch05_simple_regression.tex:350；
+# 代码框 2: book_chapters/ch05_simple_regression.tex:365 / ch05_simple_regression_2
 library(sandwich)
 library(lmtest)
 coeftest(mod, vcov = vcovHC(mod, type = "HC0"))
@@ -29,7 +26,7 @@ V_city <- vcovCL(mod, cluster = df$city, type = "HC1", cadjust = TRUE)
 coeftest(mod, vcov. = V_city, df = G - 1)
 
 
-# 教材：ch05_simple_regression.tex:471；ch05_mc_r
+# 代码框 3: book_chapters/ch05_simple_regression.tex:486 / ch05_mc_r
 set.seed(42)
 n <- 50; beta0 <- 2; beta1 <- 0.5; sigma <- 1
 x <- rnorm(n, mean=5, sd=2)   # 固定 X（重复抽样 Y）
@@ -51,7 +48,6 @@ hist(b1_hat, breaks=40, freq=FALSE,
 curve(dnorm(x, beta1, sigma/sqrt(SSX)), add=TRUE,
       col="red", lwd=2)
 abline(v=beta1, lty=2, col="blue")  # 真实值
-
 
 # 同一个模拟样本下比较预测区间与均值置信区间
 

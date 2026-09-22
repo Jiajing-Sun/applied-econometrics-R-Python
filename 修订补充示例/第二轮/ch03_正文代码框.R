@@ -1,9 +1,6 @@
-# 第 3 章 R：按章顺序提取教材正文代码框。
-# 从“配套代码”根目录运行；data/processed 为冻结数据目录。
-# 此文件不含审查断言；保留教材显示用的表达式。
+# 第3章R：从教材按顺序提取；从仓库根目录运行。
 
-
-# 教材：ch03_probability.tex:185；ch03_bayes_r
+# 代码框 1: book_chapters/ch03_probability.tex:185 / ch03_bayes_r
 # 企业违规检测数值验证
 p_vio   <- 0.02    # 违规先验
 p_alarm_vio  <- 0.95   # 灵敏度
@@ -22,7 +19,7 @@ alarm <- ifelse(vio==1, rbinom(N,1,p_alarm_vio),
 mean(vio[alarm == 1])   # 应接近 0.195
 
 
-# 教材：ch03_probability.tex:334；
+# 代码框 2: book_chapters/ch03_probability.tex:347 / ch03_probability_1
 set.seed(2026)
 B <- 10000
 n <- 50
@@ -31,7 +28,7 @@ mean(sample_means)
 sd(sample_means)
 
 
-# 教材：ch03_probability.tex:522；
+# 代码框 3: book_chapters/ch03_probability.tex:536 / ch03_probability_3
 set.seed(2026)
 coverage_B <- 5000
 coverage_n <- 30

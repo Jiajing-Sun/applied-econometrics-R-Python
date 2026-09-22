@@ -234,7 +234,7 @@ df$alcohol_involved <- ifelse(df$drinking == 1, 1, 0)
 df$rv <- df$age - 21
 df$Z <- ifelse(df$rv >= 0, 1, 0)
 df$Zrv <- df$Z * df$rv
-df$male <- ifelse(df$sex == 1, 1, 0)
+df$male <- ifelse(df$sex %in% c(1, 2), as.numeric(df$sex == 1), NA_real_)
 df$fatal_injury <- ifelse(df$inj_sev == 4, 1, 0)
 
 h <- 3
@@ -247,8 +247,10 @@ write.csv(df_h[, c("year", "st_case", "state", "statename", "age", "rv", "Z",
 rd_rf <- lm(alcohol_involved ~ Z + rv + Zrv, data = df_h)
 df_h$Dhat <- df_h$Z
 rd_2sls_naive <- lm(alcohol_involved ~ Dhat + rv + Zrv, data = df_h)
+# Unknown sex is excluded only from the covariate-adjusted fit.
+df_controls <- df_h[!is.na(df_h$male), ]
 rd_controls <- lm(alcohol_involved ~ Z + rv + Zrv + male +
-                    factor(year), data = df_h)
+                    factor(year), data = df_controls)
 
 rd_bw_rows <- data.frame()
 for (bw in c(2, 3, 4)) {
@@ -280,13 +282,15 @@ write.csv(rd_tables,
 
 # Sensitivity to dependence among people in the same recorded accident.
 accident <- interaction(df_h$year,df_h$st_case,drop=TRUE)
+accident_controls <- interaction(df_controls$year,df_controls$st_case,drop=TRUE)
 rd_cluster <- rbind(
  coef_table(rd_rf,vcovCL(rd_rf,cluster=accident,type="HC1",cadjust=TRUE),
             "未加控制：事故聚类CR1",df_ref=nlevels(accident)-1),
- coef_table(rd_controls,vcovCL(rd_controls,cluster=accident,type="HC1",cadjust=TRUE),
-            "性别年份控制：事故聚类CR1",df_ref=nlevels(accident)-1))
+ coef_table(rd_controls,vcovCL(rd_controls,cluster=accident_controls,type="HC1",cadjust=TRUE),
+            "性别年份控制：事故聚类CR1",df_ref=nlevels(accident_controls)-1))
 write.csv(rd_cluster,file.path(table_dir,"chapter12_fars_accident_cluster.csv"),row.names=FALSE)
-write.csv(data.frame(指标=c("事故聚类数","人员数"),数值=c(nlevels(accident),nrow(df_h))),
+write.csv(data.frame(指标=c("事故聚类数","人员数","控制样本事故聚类数","控制样本人员数","性别未知排除数"),
+                     数值=c(nlevels(accident),nrow(df_h),nlevels(accident_controls),nrow(df_controls),sum(is.na(df_h$male)))),
           file.path(result_dir,"chapter12_fars_accident_cluster_counts.csv"),row.names=FALSE)
 
 age_bins <- aggregate(alcohol_involved ~ age, data = df_h, FUN = mean)
@@ -320,7 +324,8 @@ legend("topleft", legend = c("年龄均值", "局部线性拟合", "21岁阈值"
 dev.off()
 
 open_png("chapter12_fars_rd_balance.png")
-balance <- aggregate(male ~ age, data=df_h, FUN=mean)
+balance <- aggregate(male ~ age, data=df_controls, FUN=mean)
+write.csv(balance,file.path(table_dir,"chapter12_fars_known_sex_balance.csv"),row.names=FALSE)
 plot(balance$age, balance$male, type="b",pch=19,col="#2166AC",lwd=2,
      xlab="年龄",ylab="男性比例",main="处理前特征的样本构成诊断")
 abline(v=21,lty=2,col="gray40")
