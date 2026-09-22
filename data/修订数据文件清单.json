@@ -6,8 +6,8 @@
   },
   {
     "path": "data/chapter_dataset_map.csv",
-    "bytes": 4902,
-    "sha256": "bbcc5bbb456a998289e44950c684b3b20e85d00ad09f6bf68b6c5a40712cb6fa"
+    "bytes": 4889,
+    "sha256": "84845cc9d2a41daffcde8483dfeb7d869b27e19234a0db6bc7ee1950d4a3b463"
   },
   {
     "path": "data/data_license_inventory.csv",
@@ -151,8 +151,8 @@
   },
   {
     "path": "data/processed_manifest.csv",
-    "bytes": 4930,
-    "sha256": "e5c5f74e1f43cb1f4ab952de9a9e3701ad0a79bd9fdc0883ce1d53cba65d1c78"
+    "bytes": 4908,
+    "sha256": "210d69fafea23340c7821bfd4f38e5b0e355988e82faa40a99ef48cdd203905a"
   },
   {
     "path": "data/scripts/generate_causal_simulations.py",
